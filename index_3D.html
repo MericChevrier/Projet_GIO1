@@ -35,25 +35,12 @@
 		<!--Menu de gauche - situation de base--> 
         <div id="menu_gauche">
 			<div id="situation">
-				<h1>Situation</h1>
+				<h1>Vue3D</h1>
 				<p><input type="search" id="search" name="barre_recherche"><button>Recherche</button>
 				<h2>Gestion des couches :</h2>
-				<h3>Mensuration officielle :</h3>
-				<p><label><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)">Point limite</label></p>
-				<p><label><input type="checkBox" name="biend_fonds" onclick="change_biend_fonds(this.checked)">Biend-fonds</label></p>
-				<p><label><input type="checkBox" name="DDP" onclick="change_DDP(this.checked)">DDP</label></p>
-				<p><label><input type="checkBox" name="batiment" onclick="change_batiment(this.checked)">Bâtiment</label></p>
-				<p><label><input type="checkBox" name="objets_lineaire" onclick="change_objets_lineaire(this.checked)">Objets linéaires</label></p>
-				<p><label><input type="checkBox" name="objets_surfacique" onclick="change_objets_surfacique(this.checked)">Objets surfaciques</label></p>
-				<p><label><input type="checkBox" name="couverture_du_sol" onclick="changecouverture_du_sol(this.checked)">Couverture du sol</label></p>
-				<h3>Restrictions :</h3>
-				<p><label><input type="checkBox" name="distances_aux_limites" onclick="change_distances_aux_limites(this.checked)">Distances aux limites</label></p>
-				<p><label><input type="checkBox" name="distances_aux_forêt" onclick="change_distances_aux_forêt(this.checked)">Distances aux forêt</label></p>
-				<p><label><input type="checkBox" name="distances_cours_deau" onclick="change_distances_cours_deau(this.checked)">Distances aux cours d'eau</label></p>
-				<p><label><input type="checkBox" name="alignements_routes" onclick="change_alignements_routes(this.checked)">Alignements routes</label></p>
-				<p><label><input type="checkBox" name="aire_implantation" onclick="change_aire_implantation(this.checked)">Aire d'implantation</label></p>
-				<p><label><input type="checkBox" name="zone_affectation" onclick="change_zone_affectation(this.checked)">Zone d'affectation</label></p>
-				<button type="button" name="import_projet" id="import_projet" onclick="poly_draw()">Importer un nouveau projet</button>
+				<p><label><input type="checkBox" name="MNT" onclick="change_MNT(this.checked)">MNT</label></p>
+				<p><label><input type="checkBox" name="swissbuilding" onclick="change_swissbuilding(this.checked)">SwissBuilding</label></p>
+				<p><label><input type="checkBox" name="volume_implantation" onclick="volume_implantation(this.checked)">Volume d'implantation</label></p>
 			</div>
 		</div>
 		
@@ -61,7 +48,7 @@
 		<div id="menu_droite">
 			<div id="information_projet">
 				<h1>Information sur le projet</h1>
-				<button type="button" name="import_dxf" id="import_dxf" onclick="poly_draw()">Importer la géométrie en .dxf</button>
+				<button type="button" name="import_obj" id="import_obj" onclick="poly_draw()">Importer la géométrie en .obj</button>
 				<h2>Général :</h2>
 				<h3>Mensuration officielle :</h3>
 				<p><label>Propriétaire :</label></p>
@@ -72,15 +59,16 @@
 				<p><label>Surface de plancher :</label></p>
 				<p><label>Surface au sol :</label></p>
 				<button type="button" name="validation" id="validation" onclick="poly_draw()">Validation</button>
-				<h3>Respect des restrictions 2D :</h3>
-				<p><label>Implantation</label></p>
-				<p><label>Surface de plancher (xxm² sur xxm²)</label></p>
-				<p><label>Surface au sol (xxm² sur xxm²)</label></p>
-				<h3>Géométrie 3D :</h3>
-				<button type="button" name="3D" id="3D" onclick="poly_draw()">Passer en mode 3D</button>
+				<h3>Respect des restrictions 3D :</h3>
+				<p><label>Volume d'implantation</label></p>
+				<button type="button" name="2D" id="2D" onclick="poly_draw()">Passer en mode 2D</button>
 			</div>
 		</div>
-	
+
+		<!--Bouton 2D--> 
+		<div id="bouton_2D">
+			<img src="Image/2D.png"/>
+		</div>
 		
 		<div id="map" class="map"></div>
 		<script src="lib/proj4.js"></script>

@@ -1,0 +1,73 @@
+html {
+    height: 100%;
+    width: 100%;
+    }
+body {
+    font-family: Lucida Sans Unicode;
+    font-size: 12px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    }
+
+table {
+	top: 0px;
+	position: absolute;
+	width: 100%;
+	z-index: 2;
+	font-family: Lucida Sans Unicode;
+	font-size: 30px;
+	}
+	
+#map {
+	top: 0px;
+    height: 100%;
+    width: 100%;
+    }
+	
+#menu_gauche {
+    background-color: #ffffff ;
+	box-shadow: 1px 1px 12px #555;
+	z-index: 1;
+    padding: 5px 20px;
+    position: absolute;
+	top : 0px;
+	top : 0px;
+	height : 100%;
+	width : 270px;
+    }
+	
+#menu_droite {
+    background-color: #ffffff ;
+	box-shadow: 1px 1px 12px #555;
+	z-index: 1;
+    padding: 5px 20px;
+    position: absolute;
+	top : 0px;
+	right: 0px;
+	float: right;
+	height : 100%;
+	width : 320px;
+    }
+
+#bouton_2D {
+	width : 300px;
+	heigt : 300px;
+	left : 800px;
+	position: absolute;
+    }
+
+#parametre {
+	margin: 40px 0px 0px 0px;
+}
+
+#situation {
+	position : relative;
+	top: 5px;
+}
+
+#information_projet {
+	position : relative;
+	top: 5px;
+}
