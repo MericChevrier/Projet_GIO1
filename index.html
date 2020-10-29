@@ -123,6 +123,19 @@
 			});
 			
 
+			var vectorLayer = new ol.layer.vectorLayer({
+  				source: new VectorSource({
+    				url: 'geojson/MO_CS_Batiment.geojson',
+    				format: new ol.format.GeoJSON(),
+  				}),
+  				style: function (feature) {
+    				style.getText().setText(feature.get('name'));
+    				return style;
+  				},
+			});
+
+
+
 	  
             // Ajout des couches à la map 
 			map.addLayer(mapbox_rues);
