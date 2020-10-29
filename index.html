@@ -25,6 +25,10 @@
                     case "mapbox_satellite":
                         mapbox_satellite.setVisible(true);
 						mapbox_rues.setVisible(false);
+						break;
+                    case "blanc":
+                        mapbox_satellite.setVisible(false);
+						mapbox_rues.setVisible(false);
                         break;
                 }
             };
@@ -41,6 +45,7 @@
 				<h3>Fond de plan</h3>
 				<p><label><input type="radio" name="baselayer" value="mapbox_rues" onclick="changeBaselayer(this.value)" checked>Fond Rues</label></p>
 				<p><label><input type="radio" name="baselayer" value="mapbox_satellite" onclick="changeBaselayer(this.value)" />Fond Satellite</label></p>
+				<p><label><input type="radio" name="baselayer" value="blanc" onclick="changeBaselayer(this.value)" />Fond Blanc</label></p>
 				<h3>Mensuration officielle :</h3>
 				<p><label><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)">Point limite</label></p>
 				<p><label><input type="checkBox" name="biend_fonds" onclick="change_biend_fonds(this.checked)">Biend-fonds / DDP</label></p>
