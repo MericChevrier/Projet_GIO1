@@ -53,8 +53,9 @@ table {
 
 #bouton_2D {
 	width : 300px;
-	heigt : 300px;
-	left : 800px;
+	height : 200px;
+	top : 5px;
+	left : 71%;
 	position: absolute;
     }
 
