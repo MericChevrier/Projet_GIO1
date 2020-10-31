@@ -122,18 +122,22 @@
 				visible: false
 			});
 			
+			var xhr = new XMLHttpRequest();
+
+				xhr.open("GET", 'C:/Users/Meric/Documents/GitHub/Projet_GIO1/geojson/MO_CS_Batiment.geojson', true);
+				xhr.send();
 
 
-			// var vectorLayer = new ol.layer.vectorLayer({
-  			// 	source: new VectorSource({
-    		// 		url: 'geojson/MO_CS_Batiment.geojson',
-    		// 		format: new ol.format.GeoJSON(),
-  			// 	}),
-  			// 	style: function (feature) {
-    		// 		style.getText().setText(feature.get('name'));
-    		// 		return style;
-  			// 	},
-			// });
+
+
+			var vectorLayer = new ol.layer.Vector({
+				Tile: 'added layer',
+  				source: new ol.source.Vector({
+					  projection : 'EPSG:2056',
+					  url: https://openlayers.org/en/master/examples/data/geojson/countries.geojson',
+					  format: new ol.format.GeoJSON()
+  				}),
+			});
 
 			
 
@@ -141,6 +145,7 @@
             // Ajout des couches à la map 
 			map.addLayer(mapbox_rues);
 			map.addLayer(mapbox_satellite);
+			map.addLayer(vectorLayer);
 										
 		</script>
 	</body>
