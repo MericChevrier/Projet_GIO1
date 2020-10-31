@@ -75,6 +75,16 @@ var wmsLayer = new ol.layer.Image({
   })
 });
 
+
+var vectorLayer = new ol.layer.Vector({
+
+  source: new ol.source.Vector({
+    url: 'C:/wamp64/www/Projet_GIO1/geojson/MO_BF_Parcelle.geojson',
+    format: new ol.format.GeoJSON(),
+    projection : 'EPSG:2056',
+  }),
+});
+
 var map = new ol.Map({
   layers: [wmtsLayer, wmsLayer],
   target: 'map',
