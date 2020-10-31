@@ -101,6 +101,7 @@
 				interactions : ol.interaction.defaults({doubleClickZoom :false}),
 				target: "map",
 				view: new ol.View({
+					projection : ol.proj.get('EPSG:2056'),
 					center: ol.proj.fromLonLat([7.40, 46.23]),
 					zoom: 12,
 				}),
@@ -122,20 +123,16 @@
 				visible: false
 			});
 			
-			var xhr = new XMLHttpRequest();
-
-				xhr.open("GET", 'C:/Users/Meric/Documents/GitHub/Projet_GIO1/geojson/MO_CS_Batiment.geojson', true);
-				xhr.send();
 
 
 
 
 			var vectorLayer = new ol.layer.Vector({
-				Tile: 'added layer',
+
   				source: new ol.source.Vector({
+					  url: 'geojson/MO_BF_Parcelle.geojson',
+					  format: new ol.format.GeoJSON(),
 					  projection : 'EPSG:2056',
-					  url: https://openlayers.org/en/master/examples/data/geojson/countries.geojson',
-					  format: new ol.format.GeoJSON()
   				}),
 			});
 
