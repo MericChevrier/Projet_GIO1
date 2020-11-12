@@ -12,7 +12,10 @@
 		
 		
 		
-        <script type="text/javascript">
+		<script type="text/javascript">
+		
+
+
             
 			// Affichage du fond de carte
 			function changeBaselayer(layer) {
@@ -33,6 +36,16 @@
                         break;
                 }
             };
+
+
+			function LayerVisibility(couche, layer) {
+				if (couche == true){
+					biend_fonds.setVisible(true);
+					}
+				else {
+					biend_fonds.setVisible(false);
+					}
+			};
 			
         </script>
     </head>
@@ -49,7 +62,7 @@
 				<p><label><input type="radio" name="baselayer" value="blanc" onclick="changeBaselayer(this.value)" />Fond Blanc</label></p>
 				<h3>Mensuration officielle :</h3>
 				<p><label><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)">Point limite</label></p>
-				<p><label><input type="checkBox" name="biend_fonds" onclick="change_biend_fonds(this.checked)">Biend-fonds / DDP</label></p>
+				<p><label><input type="checkBox" name="biend_fonds" onclick="LayerVisibility(this.checked, this.name)">Biend-fonds / DDP</label></p>
 				<p><label><input type="checkBox" name="batiment" onclick="change_batiment(this.checked)">Bâtiment</label></p>
 				<p><label><input type="checkBox" name="objets_lineaire" onclick="change_objets_lineaire(this.checked)">Objets linéaires</label></p>
 				<p><label><input type="checkBox" name="objets_surfacique" onclick="change_objets_surfacique(this.checked)">Objets surfaciques</label></p>
@@ -128,14 +141,16 @@
 
 
 			function AddVerctorLayer(var_name, layer_url){
-				var var_name = new ol.layer.Vector({
+				var biend_fonds = new ol.layer.Vector({
 					source: new ol.source.Vector({
 					url: layer_url,
 					format: new ol.format.GeoJSON(),
 					projection : 'EPSG:2056',
+					
 					}),
+				visible: false,
 				});
-			map.addLayer(var_name)
+			map.addLayer(biend_fonds)
 			}
 
 
@@ -147,8 +162,8 @@
 			map.addLayer(mapbox_rues);
 			map.addLayer(mapbox_satellite);
 
-			AddVerctorLayer('BF_parcelle', 'geojson/MO_BF_Parcelle_WGS84.geojson');
-			AddVerctorLayer('CS_batiment', 'geojson/MO_CS_Batiment_WGS84.geojson');
+			AddVerctorLayer('biend_fonds', 'geojson/MO_BF_Parcelle_WGS84.geojson');
+			// AddVerctorLayer('CS_batiment', 'geojson/MO_CS_Batiment_WGS84.geojson');
 			
 										
 		</script>
