@@ -58,16 +58,13 @@
 
 <script>
 import 'ol/ol.css';
+import * as ol from 'ol';
 import Map from 'ol/Map';
 import OSM from 'ol/source/OSM';
+import XYZ from 'ol/source/XYZ';
 import TileLayer from 'ol/layer/Tile';
 import View from 'ol/View';
 import * as olProj from 'ol/proj';
-
-
-
-
-
 
 
 
@@ -79,7 +76,8 @@ export default {
       zoom: 12,
       mapbox_url_rues: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg',
       mapbox_name_rues: 'mapbox_rues',
-      mapbox_url_satellite: 'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg'
+      mapbox_url_satellite: 'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg',
+      mapbox_name_satellite: 'mapbox_satellite',
     }
   },
   computed:{
@@ -94,6 +92,12 @@ export default {
     }
   },
   methods: {
+
+
+
+
+
+
     /**
      * Init Openlayers map
      * 
@@ -104,12 +108,6 @@ export default {
     setupOpenlayersMap (mapcenter,mapzoom) {
       return new Map({
         target: 'ol-container',
-        layers: [
-          new ol.layer.Tile({
-            source: new ol.source.XYZ({
-              url: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg',
-            }),
-          }) ],
         view: new View({
           center: mapcenter,
           zoom: mapzoom
@@ -117,19 +115,21 @@ export default {
       })
     },
 
-    setupmapbox (url, name) {
-      var name = new ol.layer.Tile({
-        source: new ol.source.XYZ({
+    setupmapbox (url, name, visibility) {
+      var name = new TileLayer({
+        source: new XYZ({
           url: url
         }),
+        visible: visibility
       })
-      ol-container.addLayer(name)
+      this.olmap.addLayer(name)
     },
 
   },
   mounted() {
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
-    // this.olmap = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues)
+    this.olmap = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
+    this.olmap = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
   }
 
 }
