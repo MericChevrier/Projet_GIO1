@@ -6,7 +6,7 @@
 export default {
   data(){
     return{
-      hellomessage:"Hello World !!"
+      hellomessage:"Page d'Accueil!"
     }
   }
 }

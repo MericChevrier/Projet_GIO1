@@ -19,24 +19,16 @@ export default {
     return {
       menulist:[
         {
-          menuname:"Hello",
+          menuname:"Accueil",
           route:"/"
         },
         { 
-          menuname:"Axios",
-          route:"/axios"
+          menuname:"Carte 2D",
+          route:"/carte2D"
         },
         { 
-          menuname:"2d_openlayers",
-          route:"/openlayers"
-        },
-        { 
-          menuname:"2d_leaflet",
-          route:"/leaflet"
-        },
-        { 
-          menuname:"3d_cesium",
-          route:"/cesium"
+          menuname:"Carte 3D",
+          route:"/carte3D"
         }
       ] 
     }

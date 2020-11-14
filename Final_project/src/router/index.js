@@ -1,36 +1,24 @@
 import { createWebHistory, createRouter } from "vue-router";
-import VhelloWorld from "@/components/views/ViewHome.vue";
-import Vleaflet from "@/components/views/ViewLeaflet.vue";
-import Vcesium from "@/components/views/ViewCesium.vue";
-import Vaxios from "@/components/views/ViewAxios.vue";
-import Vopenlayers from "@/components/views/ViewOpenlayers.vue";
+import VHome from "@/components/views/ViewHome.vue";
+import VCarte3D from "@/components/views/ViewCesium.vue";
+import VCarte2D from "@/components/views/ViewOpenlayers.vue";
 import NotFound404 from "@/components/errors/404page.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: VhelloWorld,
+    component: VHome,
   },
   {
-    path: "/axios",
-    name: "Axios",
-    component: Vaxios,
+    path: "/carte2D",
+    name: "Carte2D",
+    component: VCarte2D,
   },
   {
-    path: "/openlayers",
-    name: "Openlayers",
-    component: Vopenlayers,
-  },
-  {
-    path: "/leaflet",
-    name: "Leaflet",
-    component: Vleaflet,
-  },
-  {
-    path: "/cesium",
-    name: "Cesium",
-    component: Vcesium,
+    path: "/carte3D",
+    name: "Carte3D",
+    component: VCarte3D,
   },
   {
     path: "/:catchAll(.*)",
