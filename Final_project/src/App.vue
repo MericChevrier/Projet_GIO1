@@ -1,5 +1,5 @@
 <template>
-  <img id="vue-icon" src="./assets/logo.png"/>
+  
   <!-- Bulma: menu tabs -->
   <div class="tabs is-centered">
     <ul>
@@ -47,12 +47,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #30669c;
+  margin-top: 20px;
   height: 100%;
   width: 100%;
 }
-#vue-icon{
-  height: 5em;
-}
+
 </style>
