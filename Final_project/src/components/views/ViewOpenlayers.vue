@@ -120,8 +120,9 @@ export default {
         source: new XYZ({
           url: url
         }),
-        visible: visibility
+        visible: visibility,
       })
+      
       this.olmap.addLayer(name)
     },
 
