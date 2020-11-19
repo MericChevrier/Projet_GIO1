@@ -129,8 +129,8 @@ export default {
   },
   mounted() {
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
-    this.olmap = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
-    this.olmap = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
+    this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
+    this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
   }
 
 }
