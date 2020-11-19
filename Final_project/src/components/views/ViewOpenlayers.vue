@@ -92,12 +92,6 @@ export default {
     }
   },
   methods: {
-
-
-
-
-
-
     /**
      * Init Openlayers map
      * 
