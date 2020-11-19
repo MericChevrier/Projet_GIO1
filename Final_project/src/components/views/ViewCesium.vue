@@ -1,5 +1,41 @@
 <template>
-  <div id="cesium-container"></div>
+  <div id="ces-container">
+    <!--Menu de gauche - situation de base--> 
+    <div id="cesium-container">
+    </div>
+    <div id="menu_gauche">
+		  	<div id="situation">
+			  	<h1>Vue3D</h1>
+				  <input type="search" id="search" name="barre_recherche"><button>Recherche</button>
+			  	<h2>Gestion des couches :</h2>
+          <p><label><input type="checkBox" name="MNT" onclick="change_MNT(this.checked)">MNT</label></p>
+			  	<p><label><input type="checkBox" name="swissbuilding" onclick="change_swissbuilding(this.checked)">SwissBuilding</label></p>
+			  	<p><label><input type="checkBox" name="volume_implantation" onclick="volume_implantation(this.checked)">Volume d'implantation</label></p>
+		  	</div>
+    </div>
+		
+		<!--Menu de droite - information sur le projet--> 
+	  <div id="menu_droite">
+		  <div id="information_projet">
+		  	<h1>Information sur le projet</h1>
+		  	<button type="button" name="import_obj" id="import_obj" onclick="poly_draw()">Importer la géométrie en .obj</button>
+		  	<h2>Général :</h2>
+		  	<h3>Mensuration officielle :</h3>
+		  	<p><label>Propriétaire :</label></p>
+		  	<p><label>Porteur du projet :</label></p>
+		  	<p><label>Parcelle:</label></p>
+		  	<p><label>Date de mise à l'enquête :</label></p>
+		  	<p><label>Zone d'affectation :</label></p>
+		  	<p><label>Surface de plancher :</label></p>
+		  	<p><label>Surface au sol :</label></p>
+		  	<button type="button" name="validation" id="validation" onclick="poly_draw()">Validation</button>
+		  	<h3>Respect des restrictions 3D :</h3>
+		  	<p><label>Volume d'implantation</label></p>
+		  	<button type="button" name="2D" id="2D" onclick="poly_draw()">Passer en mode 2D</button>
+		  </div>
+	  </div>
+  </div>
+
 </template>
 
 <script>
@@ -52,7 +88,39 @@ export default {
 </script>
 
 <style scoped>
+#ces-container {
+  height: 100%;
+  width: 100%;
+}
 #cesium-container {
-  height: 500px;
+  height: 90%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#menu_gauche {
+  background-color: #ffffff ;
+  box-shadow: 1px 1px 12px #555;
+  z-index: 1;
+  padding: 5px 20px;
+  position: absolute;
+	top : 0px;
+  top : 0px;
+  height : 100%;
+  width : 15%;
+}
+
+#menu_droite {
+  background-color: #ffffff ;
+	box-shadow: 1px 1px 12px #555;
+	z-index: 1;
+  padding: 5px 20px;
+  position: absolute;
+	top : 0px;
+	right: 0px;
+	float: right;
+	height : 100%;
+	width : 15%;
 }
 </style>
