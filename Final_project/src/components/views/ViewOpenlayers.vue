@@ -1,6 +1,6 @@
 <template>
   <script type="text/javascript" src="import_geometrie.js"></script>
-    <script type="text/javascript" src="import_projet.js"></script>
+  <script type="text/javascript" src="import_projet.js"></script>
   <div id="ol-container" class="map">
     <!--Menu de gauche - situation de base--> 
     <div id="menu_gauche">
