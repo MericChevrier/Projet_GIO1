@@ -1,4 +1,5 @@
 <template>
+  <script type="text/javascript" src="import_geometrie.js"></script>
   <div id="ol-container" class="map">
     <!--Menu de gauche - situation de base--> 
     <div id="menu_gauche">
