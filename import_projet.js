@@ -29,3 +29,5 @@ function dispFile(contents) {
         document.body.appendChild(fileInput)
         clickElem(fileInput)
     }
+function poly_draw() {
+}

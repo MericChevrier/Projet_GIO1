@@ -1,6 +1,4 @@
 <template>
-  <script type="text/javascript" src="import_geometrie.js"></script>
-    <script type="text/javascript" src="import_projet.js"></script>
   <div id="ol-container" class="map">
     <!--Menu de gauche - situation de base--> 
     <div id="menu_gauche">
@@ -26,7 +24,7 @@
 			  	<p><label><input type="checkBox" name="alignements_routes" onclick="change_alignements_routes(this.checked)">Alignements routes</label></p>
 			  	<p><label><input type="checkBox" name="aire_implantation" onclick="change_aire_implantation(this.checked)">Aire d'implantation</label></p>
 			  	<p><label><input type="checkBox" name="zone_affectation" onclick="change_zone_affectation(this.checked)">Zone d'affectation</label></p>
-          <button type="button" name="import_projet" id="import_projet" onclick="poly_draw()">Importer un nouveau projet</button>
+          <!--<button type="button" name="import_projet" id="import_projet" onclick="poly_draw()">Importer un nouveau projet</button>-->
 		  	</div>
   	</div>
 
@@ -34,7 +32,7 @@
 		<div id="menu_droite">
 			<div id="information_projet">
 				<h1>Information sur le projet</h1>
-				<button type="button" name="import_dxf" id="import_dxf" onclick="openFile(dispFile)">Importer la géométrie en .dxf</button>
+				<button type="button" name="import_dxf" id="import_dxf" onclick="openFile(dispFile)">Importer la géométrie en .json</button>
         <pre id="contents"></pre>
 				<h2>Général :</h2>
 				<h3>Mensuration officielle :</h3>
