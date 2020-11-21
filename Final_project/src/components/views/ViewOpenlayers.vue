@@ -34,7 +34,6 @@
 			<div id="information_projet">
 				<h1 class="title is-4">Information</h1>
 				<button class="button is-small" type="button" name="import_dxf" id="import_dxf" onclick="openFile(dispFile)">Importer .json</button>
-        <!-- <pre id="contents"></pre> -->
 				<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
