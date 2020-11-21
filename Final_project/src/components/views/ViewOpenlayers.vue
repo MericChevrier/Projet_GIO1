@@ -64,6 +64,9 @@ import OSM from 'ol/source/OSM';
 import XYZ from 'ol/source/XYZ';
 import TileLayer from 'ol/layer/Tile';
 import View from 'ol/View';
+import Vector from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import GeoJSON from 'ol/format/GeoJSON';
 import * as olProj from 'ol/proj';
 
 
@@ -128,7 +131,7 @@ export default {
     //Affichage du fond de carte
 		changeBaselayer : function (layer) {
       console.log("changeBaselayer(\"" + layer + "\")");
-      console.log(this.mapbox_rues);
+      
 
         switch (layer) {
           case "mapbox_rues":
@@ -146,12 +149,27 @@ export default {
         }
     },
 
+    // Ajouter les Geojson
+    AddVerctorLayer(var_name, layer_url){
+			var var_name = new Vector({
+				source: new VectorSource({
+				url: layer_url,
+				format: new GeoJSON(),
+				projection : 'EPSG:4326',
+				}),
+				visible: true,
+				});
+    this.olmap.addLayer(var_name)
+    console.log(var_name)
+		}
+
   },
 
   mounted() {
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
     this.mapbox_rues = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
     this.mapbox_satellite = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
+    this.AddVerctorLayer('biend_fonds', "../geojson/MO_BF_Parcelle_WGS84.geojson");
 
   }
 
