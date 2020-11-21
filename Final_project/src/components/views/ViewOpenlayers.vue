@@ -162,7 +162,6 @@ export default {
     this.olmap.addLayer(var_name)
     console.log(var_name)
 		}
-
   },
 
   mounted() {
