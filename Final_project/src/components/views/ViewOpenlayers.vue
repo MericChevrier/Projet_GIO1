@@ -159,6 +159,7 @@ export default {
 				}),
 				visible: true,
 				});
+<<<<<<< HEAD
     this.olmap.addLayer(layer)
     }
     
@@ -183,6 +184,11 @@ export default {
         }
     },
 
+=======
+    this.olmap.addLayer(var_name)
+    console.log(var_name)
+		}
+>>>>>>> a2ce5b57d5db084335d40564f43075446d5e5010
   },
 
   mounted() {
