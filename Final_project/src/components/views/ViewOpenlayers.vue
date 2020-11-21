@@ -162,26 +162,26 @@ export default {
     this.olmap.addLayer(layer)
     }
     
-    //Affichage du fond de carte
-		LayerVisibility : function (layer) {
-      console.log("changeBaselayer(\"" + layer + "\")");
+    // //Affichage du fond de carte
+		// LayerVisibility : function (layer) {
+    //   console.log("changeBaselayer(\"" + layer + "\")");
       
 
-        switch (layer) {
-          case "mapbox_rues":
-            this.mapbox_rues.setVisible(true);
-				  	this.mapbox_satellite.setVisible(false);
-				  	break;
-          case "mapbox_satellite":
-            this.mapbox_satellite.setVisible(true);
-						this.mapbox_rues.setVisible(false);
-						break;
-          case "blanc":
-            this.mapbox_satellite.setVisible(false);
-						this.mapbox_rues.setVisible(false);
-            break;
-        }
-    },
+    //     switch (layer) {
+    //       case "mapbox_rues":
+    //         this.mapbox_rues.setVisible(true);
+		// 		  	this.mapbox_satellite.setVisible(false);
+		// 		  	break;
+    //       case "mapbox_satellite":
+    //         this.mapbox_satellite.setVisible(true);
+		// 				this.mapbox_rues.setVisible(false);
+		// 				break;
+    //       case "blanc":
+    //         this.mapbox_satellite.setVisible(false);
+		// 				this.mapbox_rues.setVisible(false);
+    //         break;
+    //     }
+    // },
 
   },
 
