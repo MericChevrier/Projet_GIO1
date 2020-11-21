@@ -3,27 +3,28 @@
     <!--Menu de gauche - situation de base--> 
     <div id="menu_gauche">
 		  	<div id="situation">
-			  	<h1>Situation</h1>
-			  	<input type="search" id="search" name="barre_recherche"><button>Recherche</button>
-			  	<h2>Gestion des couches :</h2>
-			  	<h3>Fond de plan</h3>
-			  	<p><label><input type="radio" v-on:click="changeBaselayer('mapbox_rues')" checked> Fond Rues</label></p>
-		  		<p><label><input type="radio" v-on:click="changeBaselayer('mapbox_satellite')" /> Fond Satellite</label></p>
-		    	<p><label><input type="radio" v-on:click="changeBaselayer('blanc')" /> Fond Blanc</label></p>
-		  		<h3>Mensuration officielle :</h3>
-		  		<p><label><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)"> Point limite</label></p>
-		  		<p><label><input type="checkBox" name="biend_fonds" onclick="LayerVisibility(this.checked, this.name)"> Biend-fonds / DDP</label></p>
-		  		<p><label><input type="checkBox" name="batiment" onclick="change_batiment(this.checked)"> Bâtiment</label></p>
-		  		<p><label><input type="checkBox" name="objets_lineaire" onclick="change_objets_lineaire(this.checked)"> Objets linéaires</label></p>
-		  		<p><label><input type="checkBox" name="objets_surfacique" onclick="change_objets_surfacique(this.checked)"> Objets surfaciques</label></p>
-			  	<p><label><input type="checkBox" name="couverture_du_sol" onclick="changecouverture_du_sol(this.checked)"> Couverture du sol</label></p>
-			  	<h3>Restrictions :</h3>
-			  	<p><label><input type="checkBox" name="distances_aux_limites" onclick="change_distances_aux_limites(this.checked)"> Distances aux limites</label></p>
-			  	<p><label><input type="checkBox" name="distances_aux_forêt" onclick="change_distances_aux_forêt(this.checked)"> Distances aux forêt</label></p>
-			  	<p><label><input type="checkBox" name="distances_cours_deau" onclick="change_distances_cours_deau(this.checked)"> Distances aux cours d'eau</label></p>
-			  	<p><label><input type="checkBox" name="alignements_routes" onclick="change_alignements_routes(this.checked)"> Alignements routes</label></p>
-			  	<p><label><input type="checkBox" name="aire_implantation" onclick="change_aire_implantation(this.checked)"> Aire d'implantation</label></p>
-			  	<p><label><input type="checkBox" name="zone_affectation" onclick="change_zone_affectation(this.checked)"> Zone d'affectation</label></p>
+			  	<h1 class="title is-4">Situation</h1>
+			  	<input class="input is-primary is-small" type="text" placeholder="Text" id="search" name="barre_recherche">
+          <button class="button is-small" type="button">Recherche</button>
+			  	<h2 class="subtitle is-6 has-text-left">Gestion des couches :</h2>
+			  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Fond de plan</U></h3>
+			  	<p><label class="radio is-size-7 has-text-black"><input type="radio" v-on:click="changeBaselayer('mapbox_rues')" checked> Fond Rues</label></p>
+		  		<p><label class="radio is-size-7 has-text-black"><input type="radio" v-on:click="changeBaselayer('mapbox_satellite')" /> Fond Satellite</label></p>
+		    	<p><label class="radio is-size-7 has-text-black"><input type="radio" v-on:click="changeBaselayer('blanc')" /> Fond Blanc</label></p>
+		  		<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)"> Point limite</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="biend_fonds" onclick="LayerVisibility(this.checked, this.name)"> Biend-fonds / DDP</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="batiment" onclick="change_batiment(this.checked)"> Bâtiment</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="objets_lineaire" onclick="change_objets_lineaire(this.checked)"> Objets linéaires</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="objets_surfacique" onclick="change_objets_surfacique(this.checked)"> Objets surfaciques</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="couverture_du_sol" onclick="changecouverture_du_sol(this.checked)"> Couverture du sol</label></p>
+			  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Restrictions :</U></h3>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="distances_aux_limites" onclick="change_distances_aux_limites(this.checked)"> Distances aux limites</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="distances_aux_forêt" onclick="change_distances_aux_forêt(this.checked)"> Distances aux forêt</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="distances_cours_deau" onclick="change_distances_cours_deau(this.checked)"> Distances aux cours d'eau</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="alignements_routes" onclick="change_alignements_routes(this.checked)"> Alignements routes</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="aire_implantation" onclick="change_aire_implantation(this.checked)"> Aire d'implantation</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="zone_affectation" onclick="change_zone_affectation(this.checked)"> Zone d'affectation</label></p>
           <!--<button type="button" name="import_projet" id="import_projet" onclick="poly_draw()">Importer un nouveau projet</button>-->
 		  	</div>
   	</div>
@@ -31,25 +32,25 @@
     <!--Menu de droite - information sur le projet--> 
 		<div id="menu_droite">
 			<div id="information_projet">
-				<h1>Information sur le projet</h1>
-				<button type="button" name="import_dxf" id="import_dxf" onclick="openFile(dispFile)">Importer la géométrie en .json</button>
+				<h1 class="title is-4">Information sur le projet</h1>
+				<button class="button is-small" type="button" name="import_dxf" id="import_dxf" onclick="openFile(dispFile)">Importer .json</button>
         <pre id="contents"></pre>
-				<h2>Général :</h2>
-				<h3>Mensuration officielle :</h3>
-				<p><label>Propriétaire :</label></p>
-				<p><label>Porteur du projet :</label></p>
-				<p><label>Parcelle:</label></p>
-				<p><label>Date de mise à l'enquête :</label></p>
-				<p><label>Zone d'affectation :</label></p>
-				<p><label>Surface de plancher :</label></p>
-				<p><label>Surface au sol :</label></p>
-				<button type="button" name="validation" id="validation" onclick="poly_draw()">Validation</button>
-				<h3>Respect des restrictions 2D :</h3>
-				<p><label>Implantation</label></p>
-				<p><label>Surface de plancher (xxm² sur xxm²)</label></p>
-				<p><label>Surface au sol (xxm² sur xxm²)</label></p>
-				<h3>Géométrie 3D :</h3>
-				<button type="button" name="3D" id="3D" onclick="poly_draw()">Passer en mode 3D</button>
+				<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
+		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
+		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
+				<p><label class="is-size-7 has-text-black">Porteur du projet :</label></p>
+				<p><label class="is-size-7 has-text-black">Parcelle:</label></p>
+				<p><label class="is-size-7 has-text-black">Date de mise à l'enquête :</label></p>
+				<p><label class="is-size-7 has-text-black">Zone d'affectation :</label></p>
+				<p><label class="is-size-7 has-text-black">Surface de plancher :</label></p>
+				<p><label class="is-size-7 has-text-black">Surface au sol :</label></p>
+				<button class="button is-small" type="button" name="validation" id="validation" onclick="poly_draw()">Validation</button>
+				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Respect des restrictions 2D :</U></h3>
+				<p><label class="is-size-7 has-text-black">Implantation</label></p>
+				<p><label class="is-size-7 has-text-black">Surface de plancher (xxm² sur xxm²)</label></p>
+				<p><label class="is-size-7 has-text-black">Surface au sol (xxm² sur xxm²)</label></p>
+				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Géométrie 3D :</U></h3>
+				<button class="button is-small" type="button" name="3D" id="3D" onclick="poly_draw()">Passer en mode 3D</button>
 			</div>
 		</div>
   </div>
