@@ -48,7 +48,7 @@ export default {
   name: "CesiumGlobeView",
   data() {
     return{
-      center: [6.659361,46.779389],
+      center: [7.40, 46.23],
       defaultheight:1500.,
       viewer:null
     }
@@ -81,7 +81,7 @@ export default {
   },
   mounted() {
     // add cesium ion token to the app
-    Cesium.Ion.defaultAccessToken = process.env.VUE_APP_CESIUM_ION_TOKEN;
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZDUzNGNhNC0wYmFmLTQ0MWMtYjAxNS1iNjY1ZmNkY2VhYTUiLCJpZCI6MzgxMjcsImlhdCI6MTYwNTk2NDc5Mn0.PYaP8WOSB4mIuk_kBnuIz1xcJc5rewQbB0xoyUjuW8I';
     
     this.viewer = this.setupCesiumGlobe();
     this.flytodirection(this.center,this.defaultheight,this.viewer)
