@@ -26,7 +26,7 @@
 			  	<p><label><input type="checkBox" name="alignements_routes" onclick="change_alignements_routes(this.checked)">Alignements routes</label></p>
 			  	<p><label><input type="checkBox" name="aire_implantation" onclick="change_aire_implantation(this.checked)">Aire d'implantation</label></p>
 			  	<p><label><input type="checkBox" name="zone_affectation" onclick="change_zone_affectation(this.checked)">Zone d'affectation</label></p>
-          <button type="button" name="import_projet" id="import_projet" onclick="poly_draw()">Importer un nouveau projet</button>
+          <!--<button type="button" name="import_projet" id="import_projet" onclick="poly_draw()">Importer un nouveau projet</button>-->
 		  	</div>
   	</div>
 
