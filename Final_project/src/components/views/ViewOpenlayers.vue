@@ -34,7 +34,7 @@
 		<div id="menu_droite">
 			<div id="information_projet">
 				<h1>Information sur le projet</h1>
-				<button type="button" name="import_dxf" id="import_dxf" onclick="openFile(dispFile)">Importer la géométrie en .dxf</button>
+				<button type="button" name="import_dxf" id="import_dxf" onclick="openFile(dispFile)">Importer la géométrie en .json</button>
         <pre id="contents"></pre>
 				<h2>Général :</h2>
 				<h3>Mensuration officielle :</h3>
