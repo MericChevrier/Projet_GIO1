@@ -5,12 +5,13 @@
     </div>
     <div id="menu_gauche">
 		  	<div id="situation">
-			  	<h1>Vue3D</h1>
-				  <input type="search" id="search" name="barre_recherche"><button>Recherche</button>
-			  	<h2>Gestion des couches :</h2>
-          <p><label><input type="checkBox" name="MNT" onclick="change_MNT(this.checked)">MNT</label></p>
-			  	<p><label><input type="checkBox" name="swissbuilding" onclick="change_swissbuilding(this.checked)">SwissBuilding</label></p>
-			  	<p><label><input type="checkBox" name="volume_implantation" onclick="volume_implantation(this.checked)">Volume d'implantation</label></p>
+			  	<h1 class="title is-4">Vue3D</h1>
+				  <input class="input is-primary is-small" type="text" placeholder="Text" id="search" name="barre_recherche">
+          <button class="button is-small">Recherche</button>
+			  	<h2 class="subtitle is-6">Gestion des couches :</h2>
+          <p><label class="checkbox"><input type="checkbox" name="MNT" onclick="change_MNT(this.checked)"> MNT</label></p>
+			  	<p><label class="checkbox"><input type="checkbox" name="swissbuilding" onclick="change_swissbuilding(this.checked)"> SwissBuilding</label></p>
+			  	<p><label class="checkbox"><input type="checkbox" name="volume_implantation" onclick="volume_implantation(this.checked)"> Volume d'implantation</label></p>
 		  	</div>
     </div>
 		
