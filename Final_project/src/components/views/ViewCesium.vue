@@ -7,32 +7,32 @@
 		  	<div id="situation">
 			  	<h1 class="title is-4">Vue3D</h1>
 				  <input class="input is-primary is-small" type="text" placeholder="Text" id="search" name="barre_recherche">
-          <button class="button is-small">Recherche</button>
-			  	<h2 class="subtitle is-6">Gestion des couches :</h2>
-          <p><label class="checkbox"><input type="checkbox" name="MNT" onclick="change_MNT(this.checked)"> MNT</label></p>
-			  	<p><label class="checkbox"><input type="checkbox" name="swissbuilding" onclick="change_swissbuilding(this.checked)"> SwissBuilding</label></p>
-			  	<p><label class="checkbox"><input type="checkbox" name="volume_implantation" onclick="volume_implantation(this.checked)"> Volume d'implantation</label></p>
+          <button class="button is-small" type="button">Recherche</button>
+			  	<h2 class="subtitle is-6 has-text-left has-text-weight-semibold">Gestion des couches</h2>
+          <p><label class="checkbox subtitle is-6"><input type="checkbox" name="MNT" onclick="change_MNT(this.checked)"> MNT</label></p>
+			  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="swissbuilding" onclick="change_swissbuilding(this.checked)"> SwissBuilding</label></p>
+			  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="volume_implantation" onclick="volume_implantation(this.checked)"> Volume d'implantation</label></p>
 		  	</div>
     </div>
 		
 		<!--Menu de droite - information sur le projet--> 
 	  <div id="menu_droite">
 		  <div id="information_projet">
-		  	<h1>Information sur le projet</h1>
-		  	<button type="button" name="import_obj" id="import_obj" onclick="poly_draw()">Importer la géométrie en .obj</button>
-		  	<h2>Général :</h2>
-		  	<h3>Mensuration officielle :</h3>
-		  	<p><label>Propriétaire :</label></p>
-		  	<p><label>Porteur du projet :</label></p>
-		  	<p><label>Parcelle:</label></p>
-		  	<p><label>Date de mise à l'enquête :</label></p>
-		  	<p><label>Zone d'affectation :</label></p>
-		  	<p><label>Surface de plancher :</label></p>
-		  	<p><label>Surface au sol :</label></p>
-		  	<button type="button" name="validation" id="validation" onclick="poly_draw()">Validation</button>
-		  	<h3>Respect des restrictions 3D :</h3>
-		  	<p><label>Volume d'implantation</label></p>
-		  	<button type="button" name="2D" id="2D" onclick="poly_draw()">Passer en mode 2D</button>
+		  	<h1 class="title is-4">Information sur le projet</h1>
+		  	<button class="button is-small" type="button" name="import_obj" id="import_obj" onclick="poly_draw()">Importer .obj</button>
+		  	<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
+		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
+		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Porteur du projet :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Parcelle:</label></p>
+		  	<p><label class="is-size-7 has-text-black">Date de mise à l'enquête :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Zone d'affectation :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Surface de plancher :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Surface au sol :</label></p>
+		  	<button class="button is-small" type="button" name="validation" id="validation" onclick="poly_draw()">Validation</button>
+		  	<h3 class="subtitle is-6"><U>Respect des restrictions 3D :</U></h3>
+		  	<p><label class="is-size-7 has-text-black">Volume d'implantation :</label></p>
+		  	<button class="button is-small" type="button" name="2D" id="2D" onclick="poly_draw()">Passer en mode 2D</button>
 		  </div>
 	  </div>
   </div>
