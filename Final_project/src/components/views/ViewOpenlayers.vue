@@ -7,9 +7,9 @@
 			  	<input type="search" id="search" name="barre_recherche"><button>Recherche</button>
 			  	<h2>Gestion des couches :</h2>
 			  	<h3>Fond de plan</h3>
-			  	<p><label><input type="radio" name="baselayer" value="mapbox_rues" onclick="changeBaselayer(this.value)" checked>Fond Rues</label></p>
-		  		<p><label><input type="radio" name="baselayer" value="mapbox_satellite" onclick="changeBaselayer(this.value)" />Fond Satellite</label></p>
-		    	<p><label><input type="radio" name="baselayer" value="blanc" onclick="changeBaselayer(this.value)" />Fond Blanc</label></p>
+			  	<p><label><input type="radio" v-on:click="changeBaselayer('mapbox_rues')" checked>Fond Rues</label></p>
+		  		<p><label><input type="radio" v-on:click="changeBaselayer('mapbox_satellite')" />Fond Satellite</label></p>
+		    	<p><label><input type="radio" v-on:click="changeBaselayer('blanc')" />Fond Blanc</label></p>
 		  		<h3>Mensuration officielle :</h3>
 		  		<p><label><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)">Point limite</label></p>
 		  		<p><label><input type="checkBox" name="biend_fonds" onclick="LayerVisibility(this.checked, this.name)">Biend-fonds / DDP</label></p>
@@ -74,6 +74,8 @@ export default {
     return{
       center: [7.40, 46.23],
       olmap:null,
+      mapbox_rues:null,
+      mapbox_satellite:null,
       zoom: 12,
       mapbox_url_rues: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg',
       mapbox_name_rues: 'mapbox_rues',
@@ -119,13 +121,38 @@ export default {
       })
       
       this.olmap.addLayer(name)
+      return name
+     
+    },
+
+    //Affichage du fond de carte
+		changeBaselayer : function (layer) {
+      console.log("changeBaselayer(\"" + layer + "\")");
+      console.log(this.mapbox_rues);
+
+        switch (layer) {
+          case "mapbox_rues":
+            this.mapbox_rues.setVisible(true);
+				  	this.mapbox_satellite.setVisible(false);
+				  	break;
+          case "mapbox_satellite":
+            this.mapbox_satellite.setVisible(true);
+						this.mapbox_rues.setVisible(false);
+						break;
+          case "blanc":
+            this.mapbox_satellite.setVisible(false);
+						this.mapbox_rues.setVisible(false);
+            break;
+        }
     },
 
   },
+
   mounted() {
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
-    this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
-    this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
+    this.mapbox_rues = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
+    this.mapbox_satellite = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
+
   }
 
 }
