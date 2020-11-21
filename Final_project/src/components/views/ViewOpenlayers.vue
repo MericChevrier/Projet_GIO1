@@ -13,7 +13,7 @@
 		    	<p><label class="radio is-size-7 has-text-black"><input type="radio" v-on:click="changeBaselayer('blanc')" /> Fond Blanc</label></p>
 		  		<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)"> Point limite</label></p>
-		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" v-on:click="LayerVisibility('bien_fond')"> Biend-fonds / DDP</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" v-on:click="ChangeLayerVisibility('bien_fond', this.checked)"> Biend-fonds / DDP</label></p>
 		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="batiment" onclick="change_batiment(this.checked)"> Bâtiment</label></p>
 		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="objets_lineaire" onclick="change_objets_lineaire(this.checked)"> Objets linéaires</label></p>
 		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="objets_surfacique" onclick="change_objets_surfacique(this.checked)"> Objets surfaciques</label></p>
@@ -157,31 +157,18 @@ export default {
 				format: new GeoJSON(),
 				projection : 'EPSG:4326',
 				}),
-				visible: true,
+				visible: false,
 				});
     this.olmap.addLayer(layer)
-    }
+    },
     
-    // //Affichage du fond de carte
-		// LayerVisibility : function (layer) {
-    //   console.log("changeBaselayer(\"" + layer + "\")");
-      
+    //Affichage du fond de carte
+		ChangeLayerVisibility : function (layer, check) {
+      console.log("ChangeLayerVisibility(\"" + layer + "\")");
+      console.log(check)
 
-    //     switch (layer) {
-    //       case "mapbox_rues":
-    //         this.mapbox_rues.setVisible(true);
-		// 		  	this.mapbox_satellite.setVisible(false);
-		// 		  	break;
-    //       case "mapbox_satellite":
-    //         this.mapbox_satellite.setVisible(true);
-		// 				this.mapbox_rues.setVisible(false);
-		// 				break;
-    //       case "blanc":
-    //         this.mapbox_satellite.setVisible(false);
-		// 				this.mapbox_rues.setVisible(false);
-    //         break;
-    //     }
-    // },
+  
+    },
 
   },
 
