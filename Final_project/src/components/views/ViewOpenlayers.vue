@@ -7,23 +7,23 @@
 			  	<input type="search" id="search" name="barre_recherche"><button>Recherche</button>
 			  	<h2>Gestion des couches :</h2>
 			  	<h3>Fond de plan</h3>
-			  	<p><label><input type="radio" v-on:click="changeBaselayer('mapbox_rues')" checked>Fond Rues</label></p>
-		  		<p><label><input type="radio" v-on:click="changeBaselayer('mapbox_satellite')" />Fond Satellite</label></p>
-		    	<p><label><input type="radio" v-on:click="changeBaselayer('blanc')" />Fond Blanc</label></p>
+			  	<p><label><input type="radio" v-on:click="changeBaselayer('mapbox_rues')" checked> Fond Rues</label></p>
+		  		<p><label><input type="radio" v-on:click="changeBaselayer('mapbox_satellite')" /> Fond Satellite</label></p>
+		    	<p><label><input type="radio" v-on:click="changeBaselayer('blanc')" /> Fond Blanc</label></p>
 		  		<h3>Mensuration officielle :</h3>
-		  		<p><label><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)">Point limite</label></p>
-		  		<p><label><input type="checkBox" name="biend_fonds" onclick="LayerVisibility(this.checked, this.name)">Biend-fonds / DDP</label></p>
-		  		<p><label><input type="checkBox" name="batiment" onclick="change_batiment(this.checked)">Bâtiment</label></p>
-		  		<p><label><input type="checkBox" name="objets_lineaire" onclick="change_objets_lineaire(this.checked)">Objets linéaires</label></p>
-		  		<p><label><input type="checkBox" name="objets_surfacique" onclick="change_objets_surfacique(this.checked)">Objets surfaciques</label></p>
-			  	<p><label><input type="checkBox" name="couverture_du_sol" onclick="changecouverture_du_sol(this.checked)">Couverture du sol</label></p>
+		  		<p><label><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)"> Point limite</label></p>
+		  		<p><label><input type="checkBox" name="biend_fonds" onclick="LayerVisibility(this.checked, this.name)"> Biend-fonds / DDP</label></p>
+		  		<p><label><input type="checkBox" name="batiment" onclick="change_batiment(this.checked)"> Bâtiment</label></p>
+		  		<p><label><input type="checkBox" name="objets_lineaire" onclick="change_objets_lineaire(this.checked)"> Objets linéaires</label></p>
+		  		<p><label><input type="checkBox" name="objets_surfacique" onclick="change_objets_surfacique(this.checked)"> Objets surfaciques</label></p>
+			  	<p><label><input type="checkBox" name="couverture_du_sol" onclick="changecouverture_du_sol(this.checked)"> Couverture du sol</label></p>
 			  	<h3>Restrictions :</h3>
-			  	<p><label><input type="checkBox" name="distances_aux_limites" onclick="change_distances_aux_limites(this.checked)">Distances aux limites</label></p>
-			  	<p><label><input type="checkBox" name="distances_aux_forêt" onclick="change_distances_aux_forêt(this.checked)">Distances aux forêt</label></p>
-			  	<p><label><input type="checkBox" name="distances_cours_deau" onclick="change_distances_cours_deau(this.checked)">Distances aux cours d'eau</label></p>
-			  	<p><label><input type="checkBox" name="alignements_routes" onclick="change_alignements_routes(this.checked)">Alignements routes</label></p>
-			  	<p><label><input type="checkBox" name="aire_implantation" onclick="change_aire_implantation(this.checked)">Aire d'implantation</label></p>
-			  	<p><label><input type="checkBox" name="zone_affectation" onclick="change_zone_affectation(this.checked)">Zone d'affectation</label></p>
+			  	<p><label><input type="checkBox" name="distances_aux_limites" onclick="change_distances_aux_limites(this.checked)"> Distances aux limites</label></p>
+			  	<p><label><input type="checkBox" name="distances_aux_forêt" onclick="change_distances_aux_forêt(this.checked)"> Distances aux forêt</label></p>
+			  	<p><label><input type="checkBox" name="distances_cours_deau" onclick="change_distances_cours_deau(this.checked)"> Distances aux cours d'eau</label></p>
+			  	<p><label><input type="checkBox" name="alignements_routes" onclick="change_alignements_routes(this.checked)"> Alignements routes</label></p>
+			  	<p><label><input type="checkBox" name="aire_implantation" onclick="change_aire_implantation(this.checked)"> Aire d'implantation</label></p>
+			  	<p><label><input type="checkBox" name="zone_affectation" onclick="change_zone_affectation(this.checked)"> Zone d'affectation</label></p>
           <!--<button type="button" name="import_projet" id="import_projet" onclick="poly_draw()">Importer un nouveau projet</button>-->
 		  	</div>
   	</div>
