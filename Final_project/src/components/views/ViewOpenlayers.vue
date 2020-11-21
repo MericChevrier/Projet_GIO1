@@ -32,7 +32,7 @@
     <!--Menu de droite - information sur le projet--> 
 		<div id="menu_droite">
 			<div id="information_projet">
-				<h1 class="title is-4">Information sur le projet</h1>
+				<h1 class="title is-4">Information</h1>
 				<button class="button is-small" type="button" name="import_dxf" id="import_dxf" onclick="openFile(dispFile)">Importer .json</button>
         <pre id="contents"></pre>
 				<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
