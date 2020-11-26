@@ -1,6 +1,6 @@
 <template>
   <div id="ol-container" class="map">
-    <!--Menu de gauche - situation de base--> 
+    <!--Menu de gauche - situation de base-->
     <div id="menu_gauche">
 		  	<div id="situation">
 			  	<h1 class="title is-4">Situation</h1>
@@ -29,7 +29,7 @@
 		  	</div>
   	</div>
 
-    <!--Menu de droite - information sur le projet--> 
+    <!--Menu de droite - information sur le projet-->
 		<div id="menu_droite">
 			<div id="information_projet">
 				<h1 class="title is-4">Informations</h1>
@@ -89,7 +89,7 @@ export default {
   computed:{
     /**
      * Transform coordinate from EPSG:4326 to EPSG:3857
-     * 
+     *
      * @use center in EPSG:4326
      * @return center in EPSG:3857
      */
@@ -100,7 +100,7 @@ export default {
   methods: {
     /**
      * Init Openlayers map
-     * 
+     *
      * @param {number[]} mapcenter center of the map in EPSG:3857
      * @param {number} mapzoom zommlevel
      * @returns {Map} initmap new openlayers map
@@ -122,16 +122,16 @@ export default {
         }),
         visible: visibility,
       })
-      
+
       this.olmap.addLayer(name)
       return name
-     
+
     },
 
     //Affichage du fond de carte
 		changeBaselayer : function (layer) {
       console.log("changeBaselayer(\"" + layer + "\")");
-      
+
 
         switch (layer) {
           case "mapbox_rues":
@@ -161,23 +161,24 @@ export default {
 				visible: true,
 				});
     this.olmap.addLayer(layer)
+    return layer
     },
-    
+
     //Affichage du fond de carte
 		ChangeLayerVisibility : function (layer) {
-      console.log(layer);
-      // if(document.getElementById(layer).checked == true){
-      //   this.layer.setVisible(true);
-      // }
-      // else {
-      //   this.layer.setVisible(false);
-      // }
+      console.log(this.bien_fond);
+      if(document.getElementById(layer).checked == true){
+         this.bien_fond.setVisible(true);
+      }
+      else {
+        this.bien_fond.setVisible(false);
+      }
 
       console.log(document.getElementById(layer).checked);
       console.log("ChangeLayerVisibility(\"" + layer + "\")");
-      
 
-  
+
+
     },
 
   },
@@ -188,7 +189,7 @@ export default {
     this.mapbox_satellite = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
     // this.AddVerctorLayer("../geojson/MO_BF_Parcelle_WGS84.geojson");
     this.bien_fond = this.AddVerctorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson");
-    
+
     // this.ddp = this.AddVerctorLayer( "geojson/MO_BF_DDP_WGS84.geojson");
     // this.batiment = this.AddVerctorLayer('geojson/MO_CS_Batiment_WGS84.geojson');
     // this.surface_cs = this.AddVerctorLayer( "geojson/MO_CS_WGS84.geojson");
