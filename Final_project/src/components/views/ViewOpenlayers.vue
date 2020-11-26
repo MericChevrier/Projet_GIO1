@@ -13,7 +13,7 @@
 		    	<p><label class="radio is-size-7 has-text-black"><input type="radio" v-on:click="changeBaselayer('blanc')" /> Fond Blanc</label></p>
 		  		<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)"> Point limite</label></p>
-		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" v-on:click="ChangeLayerVisibility('bien_fond', this.checked)"> Biend-fonds / DDP</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" id="bien_fond" v-on:click="ChangeLayerVisibility('bien_fond')"> Biend-fonds / DDP</label></p>
 		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="batiment" onclick="change_batiment(this.checked)"> Bâtiment</label></p>
 		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="objets_lineaire" onclick="change_objets_lineaire(this.checked)"> Objets linéaires</label></p>
 		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="objets_surfacique" onclick="change_objets_surfacique(this.checked)"> Objets surfaciques</label></p>
@@ -164,9 +164,18 @@ export default {
     },
     
     //Affichage du fond de carte
-		ChangeLayerVisibility : function (layer, check) {
+		ChangeLayerVisibility : function (layer) {
+      console.log(layer);
+      // if(document.getElementById(layer).checked == true){
+      //   this.layer.setVisible(true);
+      // }
+      // else {
+      //   this.layer.setVisible(false);
+      // }
+
+      console.log(document.getElementById(layer).checked);
       console.log("ChangeLayerVisibility(\"" + layer + "\")");
-      console.log(check)
+      
 
   
     },
@@ -179,6 +188,7 @@ export default {
     this.mapbox_satellite = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
     // this.AddVerctorLayer("../geojson/MO_BF_Parcelle_WGS84.geojson");
     this.bien_fond = this.AddVerctorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson");
+    
     // this.ddp = this.AddVerctorLayer( "geojson/MO_BF_DDP_WGS84.geojson");
     // this.batiment = this.AddVerctorLayer('geojson/MO_CS_Batiment_WGS84.geojson');
     // this.surface_cs = this.AddVerctorLayer( "geojson/MO_CS_WGS84.geojson");
