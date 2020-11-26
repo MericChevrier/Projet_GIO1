@@ -157,7 +157,7 @@ export default {
 				format: new GeoJSON(),
 				projection : 'EPSG:4326',
 				}),
-				visible: false,
+				visible: true,
 				});
     this.olmap.addLayer(layer)
     },
@@ -178,11 +178,11 @@ export default {
     this.mapbox_satellite = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
     // this.AddVerctorLayer("../geojson/MO_BF_Parcelle_WGS84.geojson");
     this.bien_fond = this.AddVerctorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson");
-   this.ddp = this.AddVerctorLayer( "geojson/MO_BF_DDP_WGS84.geojson");
-    this.batiment = this.AddVerctorLayer('geojson/MO_CS_Batiment_WGS84.geojson');
-    this.surface_cs = this.AddVerctorLayer( "geojson/MO_CS_WGS84.geojson");
-    this.od_lineaire = this.AddVerctorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson");
-    this.od_surfacique = this.AddVerctorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson");
+    // this.ddp = this.AddVerctorLayer( "geojson/MO_BF_DDP_WGS84.geojson");
+    // this.batiment = this.AddVerctorLayer('geojson/MO_CS_Batiment_WGS84.geojson');
+    // this.surface_cs = this.AddVerctorLayer( "geojson/MO_CS_WGS84.geojson");
+    // this.od_lineaire = this.AddVerctorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson");
+    // this.od_surfacique = this.AddVerctorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson");
 
   }
 
