@@ -149,6 +149,7 @@ export default {
         }
     },
 
+
     // Ajouter les Geojson
     AddVerctorLayer(layer_url){
 			var layer = new Vector({
