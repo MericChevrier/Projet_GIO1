@@ -157,13 +157,16 @@ export default {
 				source: new VectorSource({
 				url: layer_url,
 				format: new GeoJSON(),
-				projection : 'EPSG:4326',
-				}),
+        projection : 'EPSG:4326', 
+        }),
 				visible: false,
 				});
     this.olmap.addLayer(layer)
     return layer
     },
+
+
+
 
     //Affichage du fond de carte
 		ChangeLayerVisibility : function (layer) {
