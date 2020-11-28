@@ -33,7 +33,7 @@
 		<div id="menu_droite">
 			<div id="information_projet">
 				<h1 class="title is-4">Informations</h1>
-				<button class="button is-small" type="button" name="import_dxf" id="import_dxf" onclick="openFile(dispFile)">Importer .json</button>
+				<button class="button is-small" type="button" id="import_json" v-on:click="import_json()">Importer .json</button>
 				<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
@@ -68,6 +68,7 @@ import Vector from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import * as olProj from 'ol/proj';
+import * as import_projet from './import_projet.js';
 
 
 
@@ -220,7 +221,10 @@ export default {
       console.log(document.getElementById(layer).checked);
       console.log("ChangeLayerVisibility(\"" + layer + "\")");
     },
-
+    //import projet en json
+    import_json : function () {
+        import_projet.openFile(import_projet.dispFile);
+      }
   },
 
   mounted() {
