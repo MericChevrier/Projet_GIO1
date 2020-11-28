@@ -69,6 +69,7 @@ import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import * as olProj from 'ol/proj';
 import * as import_projet from './import_projet.js';
+import * as import_json from './import_json.js';
 
 
 
@@ -151,19 +152,7 @@ export default {
     },
 
 
-    // Ajouter les Geojson
-    AddVerctorLayer(layer_url){
-			var layer = new Vector({
-				source: new VectorSource({
-				url: layer_url,
-				format: new GeoJSON(),
-        projection : 'EPSG:4326', 
-        }),
-				visible: false,
-				});
-    this.olmap.addLayer(layer)
-    return layer
-    },
+
 
 
 
@@ -234,7 +223,7 @@ export default {
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
     this.mapbox_rues = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
     this.mapbox_satellite = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
-    this.bien_fond = this.AddVerctorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson");
+    this.bien_fond = import_json.AddVerctorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson");
     this.ddp = this.AddVerctorLayer( "geojson/MO_BF_DDP_WGS84.geojson");
     this.batiment = this.AddVerctorLayer('geojson/MO_CS_Batiment_WGS84.geojson');
     this.surface_cs = this.AddVerctorLayer( "geojson/MO_CS_WGS84.geojson");

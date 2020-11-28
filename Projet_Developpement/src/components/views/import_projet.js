@@ -1,3 +1,4 @@
+import * as import_json from './import_json.js';
 export function dispFile(contents) {
     document.getElementById('contents').innerHTML=contents
     }
@@ -12,28 +13,16 @@ export function dispFile(contents) {
         if (!file) {
             return;
         }
-        //var reader = new FileReader();
-        //reader.onload = function(e) {
-        //    var contents = e.target.result;
-        //    fileInput.func(contents)
-        //    document.body.removeChild(fileInput)
-        //}
-        //reader.readAsText(file)
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var contents = e.target.result;
+            fileInput.func(contents)
+            document.body.removeChild(fileInput)
+        }
+        reader.readAsText(file)
     }
     export function openFile(func) {
-        // readFile = function(e) {
-        //     var file = e.target.files[0];
-        //     if (!file) {
-        //         return;
-        //     }
-        //     //var reader = new FileReader();
-        //     //reader.onload = function(e) {
-        //     //    var contents = e.target.result;
-        //     //    fileInput.func(contents)
-        //     //    document.body.removeChild(fileInput)
-        //     //}
-        //     //reader.readAsText(file)
-        // }
+
         fileInput = document.createElement("input")
         fileInput.type='file'
         fileInput.style.display='none'
@@ -42,5 +31,10 @@ export function dispFile(contents) {
         document.body.appendChild(fileInput)
         clickElem(fileInput)
     }
+
 export let fileInput
 
+export function importJSON(olmap){
+    var file = readSingleFile(e);
+    console.log(file);
+}

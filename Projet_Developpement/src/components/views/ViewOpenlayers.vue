@@ -69,6 +69,8 @@ import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import * as olProj from 'ol/proj';
 import * as import_projet from './import_projet.js';
+import * as import_json from './import_json.js';
+import { dispFile } from '../../../../Final_project/src/components/views/import_projet.js';
 
 
 
@@ -151,19 +153,7 @@ export default {
     },
 
 
-    // Ajouter les Geojson
-    AddVerctorLayer(layer_url){
-			var layer = new Vector({
-				source: new VectorSource({
-				url: layer_url,
-				format: new GeoJSON(),
-        projection : 'EPSG:4326', 
-        }),
-				visible: false,
-				});
-    this.olmap.addLayer(layer)
-    return layer
-    },
+
 
 
 
@@ -224,9 +214,11 @@ export default {
       console.log(document.getElementById(layer).checked);
       console.log("ChangeLayerVisibility(\"" + layer + "\")");
     },
+
     //import projet en json
     import_json : function () {
-        import_projet.openFile(import_projet.dispFile);
+      this.projet = import_json.AddVectorLayer( "geojson/Projet_test.geojson",this.olmap);
+      this.projet.setVisible(true);
       }
   },
 
@@ -234,12 +226,13 @@ export default {
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
     this.mapbox_rues = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
     this.mapbox_satellite = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
-    this.bien_fond = this.AddVerctorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson");
-    this.ddp = this.AddVerctorLayer( "geojson/MO_BF_DDP_WGS84.geojson");
-    this.batiment = this.AddVerctorLayer('geojson/MO_CS_Batiment_WGS84.geojson');
-    this.surface_cs = this.AddVerctorLayer( "geojson/MO_CS_WGS84.geojson");
-    this.od_lineaire = this.AddVerctorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson");
-    this.od_surfacique = this.AddVerctorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson");
+    this.bien_fond = import_json.AddVectorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson",this.olmap);
+    this.ddp = import_json.AddVectorLayer( "geojson/MO_BF_DDP_WGS84.geojson",this.olmap);
+    this.batiment = import_json.AddVectorLayer('geojson/MO_CS_Batiment_WGS84.geojson',this.olmap);
+    this.surface_cs = import_json.AddVectorLayer( "geojson/MO_CS_WGS84.geojson",this.olmap);
+    this.od_lineaire = import_json.AddVectorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson",this.olmap);
+    this.od_surfacique = import_json.AddVectorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson",this.olmap);
+    
 
   }
 
