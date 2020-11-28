@@ -1,0 +1,279 @@
+<template>
+  <div id="ol-container" class="map">
+    <!--Menu de gauche - situation de base-->
+    <div id="menu_gauche">
+		  	<div id="situation">
+			  	<h1 class="title is-4">Situation</h1>
+			  	<input class="input is-primary is-small" type="text" placeholder="Text" id="search" name="barre_recherche">
+          <button class="button is-small" type="button">Recherche</button>
+			  	<h2 class="subtitle is-6 has-text-left">Gestion des couches :</h2>
+			  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Fond de plan</U></h3>
+			  	<p><label class="radio is-size-7 has-text-black"><input type="radio" v-on:click="changeBaselayer('mapbox_rues')" checked> Fond Rues</label></p>
+		  		<p><label class="radio is-size-7 has-text-black"><input type="radio" v-on:click="changeBaselayer('mapbox_satellite')" /> Fond Satellite</label></p>
+		    	<p><label class="radio is-size-7 has-text-black"><input type="radio" v-on:click="changeBaselayer('blanc')" /> Fond Blanc</label></p>
+		  		<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
+		  		<!-- <p><label class="is-size-7 has-text-black"><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)"> Point limite</label></p> -->
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" id="bien_fond" v-on:click="ChangeLayerVisibility('bien_fond')"> Biend-fonds</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" id="batiment" v-on:click="ChangeLayerVisibility('batiment')"> Bâtiment</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" id="od_lineaire" v-on:click="ChangeLayerVisibility('od_lineaire')"> Objets linéaires</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" id="od_surfacique" v-on:click="ChangeLayerVisibility('od_surfacique')"> Objets surfaciques</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" id="surface_cs" v-on:click="ChangeLayerVisibility('surface_cs')"> Couverture du sol</label></p>
+			  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Restrictions :</U></h3>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="distances_aux_limites" onclick="change_distances_aux_limites(this.checked)"> Distances aux limites</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="distances_aux_forêt" onclick="change_distances_aux_forêt(this.checked)"> Distances aux forêt</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="distances_cours_deau" onclick="change_distances_cours_deau(this.checked)"> Distances aux cours d'eau</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="alignements_routes" onclick="change_alignements_routes(this.checked)"> Alignements routes</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="aire_implantation" onclick="change_aire_implantation(this.checked)"> Aire d'implantation</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="zone_affectation" onclick="change_zone_affectation(this.checked)"> Zone d'affectation</label></p>
+          <!--<button type="button" name="import_projet" id="import_projet" onclick="poly_draw()">Importer un nouveau projet</button>-->
+		  	</div>
+  	</div>
+
+    <!--Menu de droite - information sur le projet-->
+		<div id="menu_droite">
+			<div id="information_projet">
+				<h1 class="title is-4">Informations</h1>
+				<button class="button is-small" type="button" id="import_json" v-on:click="import_json()">Importer .json</button>
+				<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
+		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
+		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
+				<p><label class="is-size-7 has-text-black">Porteur du projet :</label></p>
+				<p><label class="is-size-7 has-text-black">Parcelle:</label></p>
+				<p><label class="is-size-7 has-text-black">Date de mise à l'enquête :</label></p>
+				<p><label class="is-size-7 has-text-black">Zone d'affectation :</label></p>
+				<p><label class="is-size-7 has-text-black">Surface de plancher :</label></p>
+				<p><label class="is-size-7 has-text-black">Surface au sol :</label></p>
+				<button class="button is-small" type="button" name="validation" id="validation" onclick="poly_draw()">Validation</button>
+				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Respect des restrictions 2D :</U></h3>
+				<p><label class="is-size-7 has-text-black">Implantation</label></p>
+				<p><label class="is-size-7 has-text-black">Surface de plancher (xxm² sur xxm²)</label></p>
+				<p><label class="is-size-7 has-text-black">Surface au sol (xxm² sur xxm²)</label></p>
+				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Géométrie 3D :</U></h3>
+				<button class="button is-small" type="button" name="3D" id="3D" onclick="poly_draw()">Passer en mode 3D</button>
+			</div>
+		</div>
+  </div>
+
+</template>
+
+<script>
+import 'ol/ol.css';
+import * as ol from 'ol';
+import Map from 'ol/Map';
+import OSM from 'ol/source/OSM';
+import XYZ from 'ol/source/XYZ';
+import TileLayer from 'ol/layer/Tile';
+import View from 'ol/View';
+import Vector from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import GeoJSON from 'ol/format/GeoJSON';
+import * as olProj from 'ol/proj';
+import * as import_projet from './import_projet.js';
+
+
+
+
+export default {
+  data() {
+    return{
+      center: [7.40, 46.23],
+      olmap:null,
+      mapbox_rues:null,
+      mapbox_satellite:null,
+      zoom: 12,
+      mapbox_url_rues: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg',
+      mapbox_name_rues: 'mapbox_rues',
+      mapbox_url_satellite: 'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg',
+      mapbox_name_satellite: 'mapbox_satellite',
+    }
+  },
+  computed:{
+    /**
+     * Transform coordinate from EPSG:4326 to EPSG:3857
+     *
+     * @use center in EPSG:4326
+     * @return center in EPSG:3857
+     */
+    center3857(){
+      return olProj.transform(this.center, 'EPSG:4326', 'EPSG:3857');
+    }
+  },
+  methods: {
+    /**
+     * Init Openlayers map
+     *
+     * @param {number[]} mapcenter center of the map in EPSG:3857
+     * @param {number} mapzoom zommlevel
+     * @returns {Map} initmap new openlayers map
+     */
+    setupOpenlayersMap (mapcenter,mapzoom) {
+      return new Map({
+        target: 'ol-container',
+        view: new View({
+          center: mapcenter,
+          zoom: mapzoom
+        })
+      })
+    },
+
+    setupmapbox (url, name, visibility) {
+      var name = new TileLayer({
+        source: new XYZ({
+          url: url
+        }),
+        visible: visibility,
+      })
+
+      this.olmap.addLayer(name)
+      return name
+
+    },
+
+    //Affichage du fond de carte
+		changeBaselayer : function (layer) {
+      console.log("changeBaselayer(\"" + layer + "\")");
+
+
+        switch (layer) {
+          case "mapbox_rues":
+            this.mapbox_rues.setVisible(true);
+				  	this.mapbox_satellite.setVisible(false);
+				  	break;
+          case "mapbox_satellite":
+            this.mapbox_satellite.setVisible(true);
+						this.mapbox_rues.setVisible(false);
+						break;
+          case "blanc":
+            this.mapbox_satellite.setVisible(false);
+						this.mapbox_rues.setVisible(false);
+            break;
+        }
+    },
+
+
+    // Ajouter les Geojson
+    AddVerctorLayer(layer_url){
+			var layer = new Vector({
+				source: new VectorSource({
+				url: layer_url,
+				format: new GeoJSON(),
+        projection : 'EPSG:4326', 
+        }),
+				visible: false,
+				});
+    this.olmap.addLayer(layer)
+    return layer
+    },
+
+
+
+
+    //Affichage du fond de carte
+		ChangeLayerVisibility : function (layer) {
+      switch (layer) {
+        case "bien_fond":
+          console.log(document.getElementById(layer).checked)
+          if(document.getElementById(layer).checked == true){
+            this.bien_fond.setVisible(true);
+          }
+          else {
+            this.bien_fond.setVisible(false);
+          }
+				  break;
+        case "ddp":
+          if(document.getElementById(layer).checked == true){
+            this.ddp.setVisible(true);
+          }
+          else {
+            this.ddp.setVisible(false);
+          }
+          break;
+        case "batiment":
+          if(document.getElementById(layer).checked == true){
+            this.batiment.setVisible(true);
+          }
+          else {
+            this.batiment.setVisible(false);
+          }
+          break;
+        case "surface_cs":
+          if(document.getElementById(layer).checked == true){
+            this.surface_cs.setVisible(true);
+          }
+          else {
+            this.surface_cs.setVisible(false);
+          }
+          break;
+        case "od_lineaire":
+          if(document.getElementById(layer).checked == true){
+            this.od_lineaire.setVisible(true);
+          }
+          else {
+            this.od_lineaire.setVisible(false);
+          }
+          break;
+        case "od_surfacique":
+          if(document.getElementById(layer).checked == true){
+            this.od_surfacique.setVisible(true);
+          }
+          else {
+            this.od_surfacique.setVisible(false);
+          }
+				  break;
+        }
+      console.log(document.getElementById(layer).checked);
+      console.log("ChangeLayerVisibility(\"" + layer + "\")");
+    },
+    //import projet en json
+    import_json : function () {
+        import_projet.openFile(import_projet.dispFile);
+      }
+  },
+
+  mounted() {
+    this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
+    this.mapbox_rues = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
+    this.mapbox_satellite = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
+    this.bien_fond = this.AddVerctorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson");
+    this.ddp = this.AddVerctorLayer( "geojson/MO_BF_DDP_WGS84.geojson");
+    this.batiment = this.AddVerctorLayer('geojson/MO_CS_Batiment_WGS84.geojson');
+    this.surface_cs = this.AddVerctorLayer( "geojson/MO_CS_WGS84.geojson");
+    this.od_lineaire = this.AddVerctorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson");
+    this.od_surfacique = this.AddVerctorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson");
+
+  }
+
+}
+</script>
+
+<style scoped>
+#ol-container {
+  height: 100%;
+  width: 100%;
+}
+
+#menu_gauche {
+  background-color: #ffffff ;
+  box-shadow: 1px 1px 12px #555;
+  z-index: 1;
+  padding: 5px 20px;
+  position: absolute;
+	top : 0px;
+  top : 0px;
+  height : 100%;
+  width : 270px;
+}
+
+#menu_droite {
+  background-color: #ffffff ;
+	box-shadow: 1px 1px 12px #555;
+	z-index: 1;
+  padding: 5px 20px;
+  position: absolute;
+	top : 0px;
+	right: 0px;
+	float: right;
+	height : 100%;
+	width : 300px;
+}
+</style>
