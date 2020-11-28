@@ -12,12 +12,12 @@
 		  		<p><label class="radio is-size-7 has-text-black"><input type="radio" v-on:click="changeBaselayer('mapbox_satellite')" /> Fond Satellite</label></p>
 		    	<p><label class="radio is-size-7 has-text-black"><input type="radio" v-on:click="changeBaselayer('blanc')" /> Fond Blanc</label></p>
 		  		<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
-		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)"> Point limite</label></p>
-		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" id="bien_fond" v-on:click="ChangeLayerVisibility('bien_fond')"> Biend-fonds / DDP</label></p>
-		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="batiment" onclick="change_batiment(this.checked)"> Bâtiment</label></p>
-		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="objets_lineaire" onclick="change_objets_lineaire(this.checked)"> Objets linéaires</label></p>
-		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" name="objets_surfacique" onclick="change_objets_surfacique(this.checked)"> Objets surfaciques</label></p>
-			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="couverture_du_sol" onclick="changecouverture_du_sol(this.checked)"> Couverture du sol</label></p>
+		  		<!-- <p><label class="is-size-7 has-text-black"><input type="checkBox" name="point_limite" onclick="change_point_limite(this.checked)"> Point limite</label></p> -->
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" id="bien_fond" v-on:click="ChangeLayerVisibility('bien_fond')"> Biend-fonds</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" id="batiment" v-on:click="ChangeLayerVisibility('batiment')"> Bâtiment</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" id="od_lineaire" v-on:click="ChangeLayerVisibility('od_lineaire')"> Objets linéaires</label></p>
+		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" id="od_surfacique" v-on:click="ChangeLayerVisibility('od_surfacique')"> Objets surfaciques</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" id="surface_cs" v-on:click="ChangeLayerVisibility('surface_cs')"> Couverture du sol</label></p>
 			  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Restrictions :</U></h3>
 			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="distances_aux_limites" onclick="change_distances_aux_limites(this.checked)"> Distances aux limites</label></p>
 			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="distances_aux_forêt" onclick="change_distances_aux_forêt(this.checked)"> Distances aux forêt</label></p>
@@ -158,7 +158,7 @@ export default {
 				format: new GeoJSON(),
 				projection : 'EPSG:4326',
 				}),
-				visible: true,
+				visible: false,
 				});
     this.olmap.addLayer(layer)
     return layer
@@ -166,19 +166,59 @@ export default {
 
     //Affichage du fond de carte
 		ChangeLayerVisibility : function (layer) {
-      console.log(this.bien_fond);
-      if(document.getElementById(layer).checked == true){
-         this.bien_fond.setVisible(true);
-      }
-      else {
-        this.bien_fond.setVisible(false);
-      }
-
+      switch (layer) {
+        case "bien_fond":
+          console.log(document.getElementById(layer).checked)
+          if(document.getElementById(layer).checked == true){
+            this.bien_fond.setVisible(true);
+          }
+          else {
+            this.bien_fond.setVisible(false);
+          }
+				  break;
+        case "ddp":
+          if(document.getElementById(layer).checked == true){
+            this.ddp.setVisible(true);
+          }
+          else {
+            this.ddp.setVisible(false);
+          }
+          break;
+        case "batiment":
+          if(document.getElementById(layer).checked == true){
+            this.batiment.setVisible(true);
+          }
+          else {
+            this.batiment.setVisible(false);
+          }
+          break;
+        case "surface_cs":
+          if(document.getElementById(layer).checked == true){
+            this.surface_cs.setVisible(true);
+          }
+          else {
+            this.surface_cs.setVisible(false);
+          }
+          break;
+        case "od_lineaire":
+          if(document.getElementById(layer).checked == true){
+            this.od_lineaire.setVisible(true);
+          }
+          else {
+            this.od_lineaire.setVisible(false);
+          }
+          break;
+        case "od_surfacique":
+          if(document.getElementById(layer).checked == true){
+            this.od_surfacique.setVisible(true);
+          }
+          else {
+            this.od_surfacique.setVisible(false);
+          }
+				  break;
+        }
       console.log(document.getElementById(layer).checked);
       console.log("ChangeLayerVisibility(\"" + layer + "\")");
-
-
-
     },
 
   },
@@ -187,14 +227,12 @@ export default {
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
     this.mapbox_rues = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
     this.mapbox_satellite = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
-    // this.AddVerctorLayer("../geojson/MO_BF_Parcelle_WGS84.geojson");
     this.bien_fond = this.AddVerctorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson");
-
-    // this.ddp = this.AddVerctorLayer( "geojson/MO_BF_DDP_WGS84.geojson");
-    // this.batiment = this.AddVerctorLayer('geojson/MO_CS_Batiment_WGS84.geojson');
-    // this.surface_cs = this.AddVerctorLayer( "geojson/MO_CS_WGS84.geojson");
-    // this.od_lineaire = this.AddVerctorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson");
-    // this.od_surfacique = this.AddVerctorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson");
+    this.ddp = this.AddVerctorLayer( "geojson/MO_BF_DDP_WGS84.geojson");
+    this.batiment = this.AddVerctorLayer('geojson/MO_CS_Batiment_WGS84.geojson');
+    this.surface_cs = this.AddVerctorLayer( "geojson/MO_CS_WGS84.geojson");
+    this.od_lineaire = this.AddVerctorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson");
+    this.od_surfacique = this.AddVerctorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson");
 
   }
 
