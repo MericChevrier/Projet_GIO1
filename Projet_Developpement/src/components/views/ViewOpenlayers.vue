@@ -70,6 +70,7 @@ import GeoJSON from 'ol/format/GeoJSON';
 import * as olProj from 'ol/proj';
 import * as import_projet from './import_projet.js';
 import * as import_json from './import_json.js';
+import * as import_base from './import_base.js';
 import { dispFile } from '../../../../Final_project/src/components/views/import_projet.js';
 
 
@@ -108,28 +109,7 @@ export default {
      * @param {number} mapzoom zommlevel
      * @returns {Map} initmap new openlayers map
      */
-    setupOpenlayersMap (mapcenter,mapzoom) {
-      return new Map({
-        target: 'ol-container',
-        view: new View({
-          center: mapcenter,
-          zoom: mapzoom
-        })
-      })
-    },
 
-    setupmapbox (url, name, visibility) {
-      var name = new TileLayer({
-        source: new XYZ({
-          url: url
-        }),
-        visible: visibility,
-      })
-
-      this.olmap.addLayer(name)
-      return name
-
-    },
 
     //Affichage du fond de carte
 		changeBaselayer : function (layer) {
@@ -223,9 +203,10 @@ export default {
   },
 
   mounted() {
-    this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
-    this.mapbox_rues = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
-    this.mapbox_satellite = this.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false)
+    //faire une liste et une boucle
+    this.olmap = import_base.setupOpenlayersMap(this.center3857,this.zoom);
+    this.mapbox_rues = import_base.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true, this.olmap)
+    this.mapbox_satellite = import_base.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false, this.olmap)
     this.bien_fond = import_json.AddVectorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson",this.olmap);
     this.ddp = import_json.AddVectorLayer( "geojson/MO_BF_DDP_WGS84.geojson",this.olmap);
     this.batiment = import_json.AddVectorLayer('geojson/MO_CS_Batiment_WGS84.geojson',this.olmap);
