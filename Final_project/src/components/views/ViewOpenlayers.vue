@@ -159,7 +159,6 @@ export default {
 				format: new GeoJSON(),
         projection : 'EPSG:4326', 
         }),
-        style : 
 				visible: false,
 				});
     this.olmap.addLayer(layer)
