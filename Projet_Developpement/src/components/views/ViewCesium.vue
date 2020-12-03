@@ -19,7 +19,7 @@
 	  <div id="menu_droite">
 		  <div id="information_projet">
 		  	<h1 class="title is-4">Information sur le projet</h1>
-		  	<button class="button is-small" type="button" name="import_obj" id="import_obj" onclick="poly_draw()">Importer .obj</button>
+		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="cesium_import_json('geojson/cesium_projet_test.geojson')">Importer .obj</button>
 		  	<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
@@ -40,6 +40,7 @@
 <script>
 import "cesium/Build/Cesium/Widgets/widgets.css";
 import * as Cesium from 'cesium';
+import * as cesium_import_json from './cesium_import_json.js';
 
 export default {
   name: "CesiumGlobeView",
@@ -75,6 +76,9 @@ export default {
       viewer.scene.primitives.add(Cesium.createOsmBuildings());
       return viewer;
     }
+
+    //cesium_import_json : cesium_import_json.CesiumImportJson
+
   },
   mounted() {
     // add cesium ion token to the app
