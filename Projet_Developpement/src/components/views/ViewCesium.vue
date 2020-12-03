@@ -32,8 +32,6 @@
 		  	<button class="button is-small" type="button" name="validation" id="validation" onclick="poly_draw()">Validation</button>
 		  	<h3 class="subtitle is-6"><U>Respect des restrictions 3D :</U></h3>
 		  	<p><label class="is-size-7 has-text-black">Volume d'implantation :</label></p>
-		  	<h3 class="subtitle is-6"><U>Géométrie 2D :</U></h3>
-        <button class="button is-small" type="button" name="2D" id="2D" onclick="poly_draw()">Passer en mode 2D</button>
 		  </div>
 	  </div>
   </div>
