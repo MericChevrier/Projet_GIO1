@@ -1,8 +1,7 @@
 <template>
-  <div id="ces-container">
+  <div id="cesium-container">
     <!--Menu de gauche - situation de base--> 
-    <div id="cesium-container">
-    </div>
+
     <div id="menu_gauche">
 		  	<div id="situation">
 			  	<h1 class="title is-4">Vue3D</h1>
