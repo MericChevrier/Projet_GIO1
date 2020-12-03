@@ -1,7 +1,8 @@
 <template>
-  <div id="cesium-container">
+  <div id="ces-container">
     <!--Menu de gauche - situation de base--> 
-
+    <div id="cesium-container">
+    </div>
     <div id="menu_gauche">
 		  	<div id="situation">
 			  	<h1 class="title is-4">Vue3D</h1>
@@ -46,7 +47,7 @@ export default {
   name: "CesiumGlobeView",
   data() {
     return{
-      center: [6.659361,46.779389],
+      center: [7.40, 46.23],
       defaultheight:1500.,
       viewer:null
     }
