@@ -71,7 +71,7 @@ import * as olProj from 'ol/proj';
 import * as import_projet from './import_projet.js';
 import * as import_json from './import_json.js';
 import * as import_base from './import_base.js';
-import { dispFile } from '../../../../Final_project/src/components/views/import_projet.js';
+import { dispFile } from '../../../../Projet_Developpement/src/components/views/import_projet.js';
 
 
 
