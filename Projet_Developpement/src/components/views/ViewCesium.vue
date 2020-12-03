@@ -1,5 +1,42 @@
 <template>
-  <div id="cesium-container"></div>
+  <div id="ces-container">
+    <!--Menu de gauche - situation de base--> 
+    <div id="cesium-container">
+    </div>
+    <div id="menu_gauche">
+		  	<div id="situation">
+			  	<h1 class="title is-4">Vue3D</h1>
+				  <input class="input is-primary is-small" type="text" placeholder="Text" id="search" name="barre_recherche">
+          <button class="button is-small" type="button">Recherche</button>
+			  	<h2 class="subtitle is-6 has-text-left has-text-weight-semibold">Gestion des couches</h2>
+          <p><label class="checkbox subtitle is-6"><input type="checkbox" name="MNT" onclick="change_MNT(this.checked)"> MNT</label></p>
+			  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="swissbuilding" onclick="change_swissbuilding(this.checked)"> SwissBuilding</label></p>
+			  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="volume_implantation" onclick="volume_implantation(this.checked)"> Volume d'implantation</label></p>
+		  	</div>
+    </div>
+		
+		<!--Menu de droite - information sur le projet--> 
+	  <div id="menu_droite">
+		  <div id="information_projet">
+		  	<h1 class="title is-4">Information sur le projet</h1>
+		  	<button class="button is-small" type="button" name="import_obj" id="import_obj" onclick="poly_draw()">Importer .obj</button>
+		  	<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
+		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
+		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Porteur du projet :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Parcelle:</label></p>
+		  	<p><label class="is-size-7 has-text-black">Date de mise à l'enquête :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Zone d'affectation :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Surface de plancher :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Surface au sol :</label></p>
+		  	<button class="button is-small" type="button" name="validation" id="validation" onclick="poly_draw()">Validation</button>
+		  	<h3 class="subtitle is-6"><U>Respect des restrictions 3D :</U></h3>
+		  	<p><label class="is-size-7 has-text-black">Volume d'implantation :</label></p>
+		  	<h3 class="subtitle is-6"><U>Géométrie 2D :</U></h3>
+        <button class="button is-small" type="button" name="2D" id="2D" onclick="poly_draw()">Passer en mode 2D</button>
+		  </div>
+	  </div>
+  </div>
 </template>
 
 <script>
@@ -52,7 +89,39 @@ export default {
 </script>
 
 <style scoped>
+#ces-container {
+  height: 100%;
+  width: 100%;
+}
 #cesium-container {
-  height: 500px;
+  height: 90%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#menu_gauche {
+  background-color: #ffffff ;
+  box-shadow: 1px 1px 12px #555;
+  z-index: 1;
+  padding: 5px 20px;
+  position: absolute;
+	top : 0px;
+  top : 0px;
+  height : 100%;
+  width : 15%;
+}
+
+#menu_droite {
+  background-color: #ffffff ;
+	box-shadow: 1px 1px 12px #555;
+	z-index: 1;
+  padding: 5px 20px;
+  position: absolute;
+	top : 0px;
+	right: 0px;
+	float: right;
+	height : 100%;
+	width : 15%;
 }
 </style>
