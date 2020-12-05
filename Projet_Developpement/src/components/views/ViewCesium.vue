@@ -19,7 +19,7 @@
 	  <div id="menu_droite">
 		  <div id="information_projet">
 		  	<h1 class="title is-4">Information sur le projet</h1>
-		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="CesiumImportJson('geojson/cesium_projet_test.geojson',this.viewer)">Importer .json</button>
+		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="cesium_import_json('geojson/cesium_projet_test.geojson',this.viewer)">Importer .json</button>
 		  	<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
@@ -77,18 +77,14 @@ export default {
       return viewer;
     },
 
-    //cesium_import_json : cesium_import_json.CesiumImportJson
-    CesiumImportJson(url,viewer){
-    // var viewer = new Cesium.Viewer('cesium-container');
-    //     viewer.dataSources.add(
-    //     Cesium.GeoJsonDataSource.load(url)
-    //  );
-      var dataSource = Cesium.GeoJsonDataSource.load(url,{
-        show : 1
-     });
-      viewer.dataSources.add(dataSource);
-      viewer.zoomTo(dataSource);
-    }
+    cesium_import_json : cesium_import_json.CesiumImportJson
+    // CesiumImportJson(url,viewer){
+    //   var dataSource = Cesium.GeoJsonDataSource.load(url,{
+    //     show : 1
+    //     });
+    //   viewer.dataSources.add(dataSource);
+    //   viewer.zoomTo(dataSource);
+    // }
   },
   mounted() {
     // add cesium ion token to the app
