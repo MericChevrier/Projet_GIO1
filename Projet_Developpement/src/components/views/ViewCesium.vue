@@ -41,6 +41,7 @@
 import "cesium/Build/Cesium/Widgets/widgets.css";
 import * as Cesium from 'cesium';
 import * as cesium_import_json from './cesium_import_json.js';
+import { sharejson } from './json_data.js';
 
 export default {
   name: "CesiumGlobeView",
@@ -77,14 +78,8 @@ export default {
       return viewer;
     },
 
+    //import projet en json
     cesium_import_json : cesium_import_json.CesiumImportJson
-    // CesiumImportJson(url,viewer){
-    //   var dataSource = Cesium.GeoJsonDataSource.load(url,{
-    //     show : 1
-    //     });
-    //   viewer.dataSources.add(dataSource);
-    //   viewer.zoomTo(dataSource);
-    // }
   },
   mounted() {
     // add cesium ion token to the app
@@ -92,6 +87,7 @@ export default {
     
     this.viewer = this.setupCesiumGlobe();
     this.flytodirection(this.center,this.defaultheight,this.viewer)
+    console.log(sharejson.data)
   },
 };
 </script>
