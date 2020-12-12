@@ -131,12 +131,6 @@ export default {
         }
     },
 
-
-
-
-
-
-
     //Affichage du fond de carte
 		ChangeLayerVisibility : function (layer) {
       switch (layer) {
