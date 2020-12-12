@@ -1,4 +1,3 @@
-import * as import_json from './import_json.js';
 export function dispFile(contents) {
     document.getElementById('contents').innerHTML=contents
     }
@@ -15,26 +14,25 @@ export function dispFile(contents) {
         }
         var reader = new FileReader();
         reader.onload = function(e) {
-            var contents = e.target.result;
-            fileInput.func(contents)
-            document.body.removeChild(fileInput)
+           var contents = e.target.result;
+           fileInput.func(contents)
+           document.body.removeChild(fileInput)
         }
         reader.readAsText(file)
+        return reader
     }
     export function openFile(func) {
 
         fileInput = document.createElement("input")
         fileInput.type='file'
         fileInput.style.display='none'
-        fileInput.onchange=readFile
         fileInput.func=func
+        fileInput.onchange=readFile
+
         document.body.appendChild(fileInput)
         clickElem(fileInput)
+        console.log(fileInput)
+        
     }
-
 export let fileInput
 
-export function importJSON(olmap){
-    var file = readSingleFile(e);
-    console.log(file);
-}

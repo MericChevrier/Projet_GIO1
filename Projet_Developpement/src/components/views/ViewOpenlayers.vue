@@ -29,12 +29,17 @@
 		  	</div>
   	</div>
 
+
+
     <!--Menu de droite - information sur le projet-->
 		<div id="menu_droite">
 			<div id="information_projet">
-				<h1 class="title is-4">Informations</h1>
-				<button class="button is-small" type="button" id="import_json" v-on:click="import_json('geojson/cesium_projet_test.geojson',this.olmap,true)">Importer .json</button>
-				<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
+        <h1 class="title is-4">Informations</h1>
+        <input type="file" id="file-input" />
+        <h3>Contents of the file:</h3>
+        <pre id="file-content"></pre>
+				<button class="button is-small" type="button" id="import_j" v-on:click="import_json()">Importer .json</button>
+        <h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
 				<p><label class="is-size-7 has-text-black">Porteur du projet :</label></p>
@@ -71,6 +76,7 @@ import * as olProj from 'ol/proj';
 import * as import_projet from './import_projet.js';
 import * as import_json from './import_json.js';
 import * as import_base from './import_base.js';
+import * as import_p from './import.js';
 import { dispFile } from '../../../../Projet_Developpement/src/components/views/import_projet.js';
 import { sharejson } from './json_data.js';
 
@@ -187,9 +193,33 @@ export default {
       console.log(document.getElementById(layer).checked);
       console.log("ChangeLayerVisibility(\"" + layer + "\")");
     },
+    //import projet en json
+    // import_json : function () {
+    //     import_projet.openFile(import_projet.dispFile);
+    //   },
 
     //import projet en json
-    import_json : import_json.AddVectorLayer
+    import_json : import_p.import_json
+  //   readSingleFile : function(e) {
+  //   var file = e.target.files[0];
+  //   if (!file) {
+  //     return;
+  //   }
+  //   var reader = new FileReader();
+  //   reader.onload = function(e) {
+  //     var contents = e.target.result;
+  //     displayContents(contents);
+  //   };
+  //   reader.readAsText(file);
+  // },
+  // displayContents : function (contents) {
+  //   var element = document.getElementById('file-content');
+  //   element.textContent = contents;
+  // },
+  // import_json : function() {
+  // document.getElementById('file-input').addEventListener('change', readSingleFile, false);
+  // console.log(document)
+  // }
   },
 
   mounted() {
@@ -229,6 +259,19 @@ export default {
 }
 
 #menu_droite {
+  background-color: #ffffff ;
+	box-shadow: 1px 1px 12px #555;
+	z-index: 1;
+  padding: 5px 20px;
+  position: absolute;
+	top : 0px;
+	right: 0px;
+	float: right;
+	height : 100%;
+	width : 300px;
+}
+
+#file_content {
   background-color: #ffffff ;
 	box-shadow: 1px 1px 12px #555;
 	z-index: 1;
