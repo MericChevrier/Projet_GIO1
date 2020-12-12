@@ -19,7 +19,7 @@
 	  <div id="menu_droite">
 		  <div id="information_projet">
 		  	<h1 class="title is-4">Information sur le projet</h1>
-		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="cesium_import_json('geojson/cesium_projet_test.geojson',this.viewer)">Importer .json</button>
+		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="cesium_import_json(geojsonObject,this.viewer)">Importer .json</button>
 		  	<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
@@ -78,13 +78,22 @@ export default {
       return viewer;
     },
 
+      
     //import projet en json
     cesium_import_json : cesium_import_json.CesiumImportJson
   },
   mounted() {
     // add cesium ion token to the app
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZDUzNGNhNC0wYmFmLTQ0MWMtYjAxNS1iNjY1ZmNkY2VhYTUiLCJpZCI6MzgxMjcsImlhdCI6MTYwNTk2NDc5Mn0.PYaP8WOSB4mIuk_kBnuIz1xcJc5rewQbB0xoyUjuW8I';
-    
+    var geojsonObject = {
+    "type": "FeatureCollection",
+    "name": "Projet_test",
+    "crs": { "type": "name", "properties": { "name": "EPSG:4326" } },
+    "features": [
+    { "type": "Feature", "properties": { }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.401150372542284, 46.235605880314871 ], [ 7.399830108041084, 46.235331953263326 ], [ 7.399914698308324, 46.235136647041486 ], [ 7.401224726130267, 46.235405242285502 ], [ 7.401150372542284, 46.235605880314871 ] ] ] } }
+    ]
+    }
+    ;
     this.viewer = this.setupCesiumGlobe();
     this.flytodirection(this.center,this.defaultheight,this.viewer)
     console.log(sharejson.data)
