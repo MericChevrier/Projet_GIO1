@@ -4,6 +4,8 @@ import Map from 'ol/Map';
 import XYZ from 'ol/source/XYZ';
 import TileLayer from 'ol/layer/Tile';
 import View from 'ol/View';
+import * as chaine_json from './chaine_json.js';
+import {OSM, Vector as VectorSource} from 'ol/source';
 
 export function setupOpenlayersMap (mapcenter,mapzoom) {
     return new Map({

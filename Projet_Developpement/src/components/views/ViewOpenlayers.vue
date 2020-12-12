@@ -77,8 +77,10 @@ import * as import_projet from './import_projet.js';
 import * as import_json from './import_json.js';
 import * as import_base from './import_base.js';
 import * as import_p from './import.js';
+import * as chaine_json from './chaine_json.js';
 import { dispFile } from '../../../../Projet_Developpement/src/components/views/import_projet.js';
 import { sharejson } from './json_data.js';
+
 
 
 export default {
@@ -198,6 +200,10 @@ export default {
     //     import_projet.openFile(import_projet.dispFile);
     //   },
 
+    
+
+
+
     //import projet en json
     import_json : import_p.import_json
   //   readSingleFile : function(e) {
@@ -233,6 +239,7 @@ export default {
     this.surface_cs = import_json.AddVectorLayer( "geojson/MO_CS_WGS84.geojson",this.olmap);
     this.od_lineaire = import_json.AddVectorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson",this.olmap);
     this.od_surfacique = import_json.AddVectorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson",this.olmap);
+    this.projet = chaine_json.AddVectorLayer2(this.olmap);
     sharejson.data = "HELLO"
 
   }
