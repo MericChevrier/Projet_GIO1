@@ -81,18 +81,32 @@ export default {
       
     //import projet en json
     cesium_import_json : cesium_import_json.CesiumImportJson
+
+//geojsonObject.features[0].geometry.coordinates
+
   },
   mounted() {
     // add cesium ion token to the app
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZDUzNGNhNC0wYmFmLTQ0MWMtYjAxNS1iNjY1ZmNkY2VhYTUiLCJpZCI6MzgxMjcsImlhdCI6MTYwNTk2NDc5Mn0.PYaP8WOSB4mIuk_kBnuIz1xcJc5rewQbB0xoyUjuW8I';
     var geojsonObject = {
-    "type": "FeatureCollection",
-    "name": "Projet_test",
-    "crs": { "type": "name", "properties": { "name": "EPSG:4326" } },
-    "features": [
-    { "type": "Feature", "properties": { }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.401150372542284, 46.235605880314871 ], [ 7.399830108041084, 46.235331953263326 ], [ 7.399914698308324, 46.235136647041486 ], [ 7.401224726130267, 46.235405242285502 ], [ 7.401150372542284, 46.235605880314871 ] ] ] } }
-    ]
-    }
+"type": "FeatureCollection",
+"name": "Projet_test",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } }
+]
+}
     ;
     this.viewer = this.setupCesiumGlobe();
     this.flytodirection(this.center,this.defaultheight,this.viewer)

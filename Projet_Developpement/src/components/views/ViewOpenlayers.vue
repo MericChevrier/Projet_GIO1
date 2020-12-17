@@ -48,7 +48,7 @@
 				<p><label class="is-size-7 has-text-black">Zone d'affectation :</label></p>
 				<p><label class="is-size-7 has-text-black">Surface de plancher :</label></p>
 				<p><label class="is-size-7 has-text-black">Surface au sol :</label></p>
-				<button class="button is-small" type="button" name="validation" id="validation" onclick="poly_draw()">Validation</button>
+				<button class="button is-small" type="button" name="validation" id="validation" v-on:click="intersection()">Validation</button>
 				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Respect des restrictions 2D :</U></h3>
 				<p><label class="is-size-7 has-text-black">Implantation</label></p>
 				<p><label class="is-size-7 has-text-black">Surface de plancher (xxm² sur xxm²)</label></p>
@@ -80,6 +80,10 @@ import * as import_p from './import.js';
 import * as chaine_json from './chaine_json.js';
 import { dispFile } from '../../../../Projet_Developpement/src/components/views/import_projet.js';
 import { sharejson } from './json_data.js';
+import * as turf from '@turf/turf';
+import { intersect } from '@turf/intersect';
+import { polygon } from '@turf/helpers';
+import { booleanContains } from '@turf/boolean-contains';
 
 
 
@@ -205,7 +209,7 @@ export default {
 
 
     //import projet en json
-    import_json : import_p.import_json
+    import_json : import_p.import_json,
   //   readSingleFile : function(e) {
   //   var file = e.target.files[0];
   //   if (!file) {
@@ -226,6 +230,31 @@ export default {
   // document.getElementById('file-input').addEventListener('change', readSingleFile, false);
   // console.log(document)
   // }
+intersection : function(){
+    
+    var geojsonObject = {
+    "type": "FeatureCollection",
+    "name": "Projet_test",
+    "crs": { "type": "name", "properties": { "name": "EPSG:4326" } },
+    "features": [
+    { "type": "Feature", "properties": { }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.401150372542284, 46.235605880314871 ], [ 7.399830108041084, 46.235331953263326 ], [ 7.399914698308324, 46.235136647041486 ], [ 7.401224726130267, 46.235405242285502 ], [ 7.401150372542284, 46.235605880314871 ] ] ] } }
+    ]
+    }
+    
+    var projet = polygon(geojsonObject.features[0].geometry.coordinates);
+
+var limite_construction = polygon([[
+    [2, 2],
+    [3, 2],
+    [3, 10],
+    [2, 3],
+    [2, 2]
+]]);
+
+var intersectionnn = turf.booleanContains(limite_construction, projet);
+console.log(intersectionnn);
+}
+
   },
 
   mounted() {
@@ -239,7 +268,8 @@ export default {
     this.surface_cs = import_json.AddVectorLayer( "geojson/MO_CS_WGS84.geojson",this.olmap);
     this.od_lineaire = import_json.AddVectorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson",this.olmap);
     this.od_surfacique = import_json.AddVectorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson",this.olmap);
-    this.projet = chaine_json.AddVectorLayer2(this.olmap);
+    this.projet = import_json.AddVectorLayer( "geojson/cesium_projet_test.geojson",this.olmap,true);
+    //this.projet = chaine_json.AddVectorLayer2(this.olmap);
     sharejson.data = "HELLO"
 
   }
