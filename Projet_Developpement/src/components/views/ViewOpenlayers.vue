@@ -19,12 +19,7 @@
 		  		<p><label class="is-size-7 has-text-black"><input type="checkBox" id="od_surfacique" v-on:click="ChangeLayerVisibility('od_surfacique')"> Objets surfaciques</label></p>
 			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" id="surface_cs" v-on:click="ChangeLayerVisibility('surface_cs')"> Couverture du sol</label></p>
 			  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Restrictions :</U></h3>
-			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="distances_aux_limites" onclick="change_distances_aux_limites(this.checked)"> Distances aux limites</label></p>
-			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="distances_aux_forêt" onclick="change_distances_aux_forêt(this.checked)"> Distances aux forêt</label></p>
-			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="distances_cours_deau" onclick="change_distances_cours_deau(this.checked)"> Distances aux cours d'eau</label></p>
-			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="alignements_routes" onclick="change_alignements_routes(this.checked)"> Alignements routes</label></p>
-			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="aire_implantation" onclick="change_aire_implantation(this.checked)"> Aire d'implantation</label></p>
-			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" name="zone_affectation" onclick="change_zone_affectation(this.checked)"> Zone d'affectation</label></p>
+			  	<p><label class="is-size-7 has-text-black"><input type="checkBox" id="aire_implantation" v-on:click="ChangeLayerVisibility('aire_implantation')"> Aire d'implantation</label></p>
           <!--<button type="button" name="import_projet" id="import_projet" onclick="poly_draw()">Importer un nouveau projet</button>-->
 		  	</div>
   	</div>
@@ -194,6 +189,14 @@ export default {
           else {
             this.od_surfacique.setVisible(false);
           }
+          break;
+        case "aire_implantation":
+          if(document.getElementById(layer).checked == true){
+            this.aire_implantation.setVisible(true);
+          }
+          else {
+            this.aire_implantation.setVisible(false);
+          }
 				  break;
         }
       console.log(document.getElementById(layer).checked);
@@ -272,10 +275,10 @@ console.log(intersectionnn);
     this.surface_cs = import_json.AddVectorLayer( "geojson/MO_CS_WGS84.geojson",this.olmap);
     this.od_lineaire = import_json.AddVectorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson",this.olmap);
     this.od_surfacique = import_json.AddVectorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson",this.olmap);
-    //this.projet = import_json.AddVectorLayer( "geojson/cesium_projet_test.geojson",this.olmap,true);
-    this.projet = chaine_json.AddVectorLayer2(this.olmap);
+    this.aire_implantation = import_json.AddVectorLayer( "geojson/Aire_Implantation.geojson",this.olmap);
+    this.projet = import_json.AddVectorLayer( "geojson/cesium_projet_test.geojson",this.olmap,true);
+    //this.projet = chaine_json.AddVectorLayer2(this.olmap);
     sharejson.data = "HELLO"
-
   }
 
 }
