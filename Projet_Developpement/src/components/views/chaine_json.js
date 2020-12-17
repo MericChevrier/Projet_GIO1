@@ -15,7 +15,7 @@ import GeoJSON from 'ol/format/GeoJSON';
 //     fill: null,
 //     stroke: new Stroke({color: 'red', width: 1}),
 //   });
-  
+
 //   var styles = {
 //     'Point': new Style({
 //       image: image,
@@ -80,30 +80,30 @@ import GeoJSON from 'ol/format/GeoJSON';
 //       }),
 //     }),
 //   };
-  
-  var styleFunction = function (feature) {
-    return styles[feature.getGeometry().getType()];
-  };
-  
-  var geojsonObject = {
-    "type": "FeatureCollection",
-    "name": "Projet_test",
-    "crs": { "type": "name", "properties": { "name": "EPSG:4326" } },
-    "features": [
-    { "type": "Feature", "properties": { }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.401150372542284, 46.235605880314871 ], [ 7.399830108041084, 46.235331953263326 ], [ 7.399914698308324, 46.235136647041486 ], [ 7.401224726130267, 46.235405242285502 ], [ 7.401150372542284, 46.235605880314871 ] ] ] } }
-    ]
-    }
-    ;  
 
-  export function AddVectorLayer2(olmap){
-    var layer = new Vector({
-        source: new VectorSource({
-        features: new GeoJSON().readFeatures(geojsonObject),
-        format: new GeoJSON(),
-        //projection : 'EPSG:4326', 
-        }),
-        visible: 'True',
-        });
-    olmap.addLayer(layer)
-    return layer
-     }
+var styleFunction = function (feature) {
+  return styles[feature.getGeometry().getType()];
+};
+
+var geojsonObject = {
+  "type": "FeatureCollection",
+  "name": "Projet_test",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "features": [
+    { "type": "Feature", "properties": {}, "geometry": { "type": "Polygon", "coordinates": [[[7.401150372542284, 46.235605880314871], [7.399830108041084, 46.235331953263326], [7.399914698308324, 46.235136647041486], [7.401224726130267, 46.235405242285502], [7.401150372542284, 46.235605880314871]]] } }
+  ]
+}
+  ;
+
+export function AddVectorLayer2(olmap) {
+  var layer = new Vector({
+    source: new VectorSource({
+      features: new GeoJSON().readFeatures(geojsonObject),
+      format: new GeoJSON(),
+      //projection : 'EPSG:4326', 
+    }),
+    visible: 'True',
+  });
+  olmap.addLayer(layer)
+  return layer
+}

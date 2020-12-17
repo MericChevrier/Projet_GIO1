@@ -35,10 +35,10 @@
 		<div id="menu_droite">
 			<div id="information_projet">
         <h1 class="title is-4">Informations</h1>
-        <input type="file" id="file-input" />
+        <input hidden= "true" type="file" id="file-input" />
         <h3>Contents of the file:</h3>
         <pre id="file-content"></pre>
-				<button class="button is-small" type="button" id="import_j" v-on:click="import_json()">Importer .json</button>
+				<button class="button is-small" type="button" id="import_j" v-on:click="import_json(getJSONcontent)">Importer .json</button>
         <h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
@@ -210,6 +210,10 @@ export default {
 
     //import projet en json
     import_json : import_p.import_json,
+
+    getJSONcontent : function(json){
+      sharejson.data=json
+    },
   //   readSingleFile : function(e) {
   //   var file = e.target.files[0];
   //   if (!file) {
@@ -268,8 +272,8 @@ console.log(intersectionnn);
     this.surface_cs = import_json.AddVectorLayer( "geojson/MO_CS_WGS84.geojson",this.olmap);
     this.od_lineaire = import_json.AddVectorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson",this.olmap);
     this.od_surfacique = import_json.AddVectorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson",this.olmap);
-    this.projet = import_json.AddVectorLayer( "geojson/cesium_projet_test.geojson",this.olmap,true);
-    //this.projet = chaine_json.AddVectorLayer2(this.olmap);
+    //this.projet = import_json.AddVectorLayer( "geojson/cesium_projet_test.geojson",this.olmap,true);
+    this.projet = chaine_json.AddVectorLayer2(this.olmap);
     sharejson.data = "HELLO"
 
   }
