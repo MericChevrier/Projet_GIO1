@@ -91,7 +91,6 @@ export default {
         this.viewer.zoomTo(dataSource);
         return this.viewer;
     }
->>>>>>> 1ccce71f5ff1b85b229f1db3100f9d89e25b226d
 //geojsonObject.features[0].geometry.coordinates
   },
   mounted() {
