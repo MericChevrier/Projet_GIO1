@@ -80,16 +80,26 @@ export default {
 
       
     //import projet en json
-    cesium_import_json : cesium_import_json.CesiumImportJson
 
+    //cesium_import_json : cesium_import_json.CesiumImportJson
+
+    CesiumImportJson : function(object){
+        Cesium.GeoJsonDataSource.load(object,{
+          show : 1
+          });
+        this.viewer.dataSources.add(dataSource);
+        this.viewer.zoomTo(dataSource);
+        return this.viewer;
+    }
+>>>>>>> 1ccce71f5ff1b85b229f1db3100f9d89e25b226d
 //geojsonObject.features[0].geometry.coordinates
-
   },
   mounted() {
     // add cesium ion token to the app
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZDUzNGNhNC0wYmFmLTQ0MWMtYjAxNS1iNjY1ZmNkY2VhYTUiLCJpZCI6MzgxMjcsImlhdCI6MTYwNTk2NDc5Mn0.PYaP8WOSB4mIuk_kBnuIz1xcJc5rewQbB0xoyUjuW8I';
     
     var geojsonObject = {
+<<<<<<< HEAD
 "type": "FeatureCollection",
 "name": "Projet_test",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
@@ -108,7 +118,7 @@ export default {
 { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } }
 ]
 }
-    ;
+;
     this.viewer = this.setupCesiumGlobe();
     this.flytodirection(this.center,this.defaultheight,this.viewer)
     console.log(sharejson.data)
