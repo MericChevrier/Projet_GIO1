@@ -19,7 +19,7 @@
 	  <div id="menu_droite">
 		  <div id="information_projet">
 		  	<h1 class="title is-4">Information sur le projet</h1>
-		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="CesiumImportJson(sharejson.data)">Afficher le projet en 3D</button>
+		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="CesiumImportProjet()">Afficher le projet en 3D</button>
 		  	<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
@@ -40,9 +40,8 @@
 <script>
 import "cesium/Build/Cesium/Widgets/widgets.css";
 import * as Cesium from 'cesium';
-//import * as cesium_import_json from './cesium_import_json.js';
 import { sharejson } from './json_data.js';
-import { feature } from '@turf/helpers';
+
 
 
 export default {
@@ -62,8 +61,6 @@ export default {
      * @param {number} globeheight altitude
      * @param {Viewer} viewer cesium viewer
      */
-    
-    
     flytodirection(globecenter,globeheight,viewer){
       viewer.camera.flyTo({
         destination : Cesium.Cartesian3.fromDegrees(globecenter[0], globecenter[1], globeheight)
@@ -81,12 +78,8 @@ export default {
       });
       viewer.scene.primitives.add(Cesium.createOsmBuildings());
       return viewer;
-    },
-
-      
-    //import projet en json
-
-
+    },   
+    // fonction d'import pour fichiers json
     CesiumImportJson : function(obj){
         var dataSource = Cesium.GeoJsonDataSource.load(obj,{
           show : 1
@@ -94,15 +87,29 @@ export default {
         this.viewer.dataSources.add(dataSource);
         this.viewer.zoomTo(dataSource);
         console.log("hello");
+    },
+
+  // fonction d'import pour projet json
+    CesiumImportProjet : function(){
+        var dataSource = Cesium.GeoJsonDataSource.load(sharejson.data,{
+          show : 1
+          });
+        this.viewer.dataSources.add(dataSource);
+        this.viewer.zoomTo(dataSource);
+        console.log("hello");
     }
-//geojsonObject.features[0].geometry.coordinates
+
   },
   mounted() {
     // add cesium ion token to the app
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZDUzNGNhNC0wYmFmLTQ0MWMtYjAxNS1iNjY1ZmNkY2VhYTUiLCJpZCI6MzgxMjcsImlhdCI6MTYwNTk2NDc5Mn0.PYaP8WOSB4mIuk_kBnuIz1xcJc5rewQbB0xoyUjuW8I';
+    //initialisation du globe Cesium
     this.viewer = this.setupCesiumGlobe();
+    // positionement de base de la caméra
     this.flytodirection(this.center,this.defaultheight,this.viewer)
-    this.CesiumImportJson("geojson/cesium_projet_test.geojson")
+    var projetjson = sharejson.data
+    //import de couches de bases
+    //this.CesiumImportJson("geojson/cesium_projet_test.geojson")
   },
 };
 </script>

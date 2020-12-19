@@ -68,12 +68,10 @@ import Vector from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import * as olProj from 'ol/proj';
-import * as import_projet from './import_projet.js';
 import * as import_json from './import_json.js';
 import * as import_base from './import_base.js';
 import * as import_p from './import.js';
 import * as chaine_json from './chaine_json.js';
-import { dispFile } from '../../../../Projet_Developpement/src/components/views/import_projet.js';
 import { sharejson } from './json_data.js';
 import * as turf from '@turf/turf';
 import { intersect } from '@turf/intersect';
@@ -247,26 +245,41 @@ export default {
 
 intersection : function(){
     
-    var geojsonObject = {
-    "type": "FeatureCollection",
-    "name": "Projet_test",
-    "crs": { "type": "name", "properties": { "name": "EPSG:4326" } },
-    "features": [
-    { "type": "Feature", "properties": { }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.401150372542284, 46.235605880314871 ], [ 7.399830108041084, 46.235331953263326 ], [ 7.399914698308324, 46.235136647041486 ], [ 7.401224726130267, 46.235405242285502 ], [ 7.401150372542284, 46.235605880314871 ] ] ] } }
-    ]
-    }
     
-    var projet = turf.polygonize(sharejson.object);
+    
+    var projet = polygon(sharejson.data.features[0].geometry.coordinates);
+    //turf.polygonize
     //geojsonObject.features[0].geometry.coordinates
     console.log(projet);
 
-    var limite_construction = polygon([[
-        [2, 2],
-        [3, 2],
-        [3, 10],
-        [2, 3],
-        [2, 2]
-    ]]);
+    var air_implant = new VectorSource({
+            url: "geojson/Aire_Implantation.geojson",
+            format: new GeoJSON(),
+            projection: 'EPSG:4326',
+        });
+        console.log(air_implant);
+    
+    // {
+    // "type": "FeatureCollection",
+    // "name": "Projet_test",
+    // "crs": { "type": "name", "properties": { "name": "EPSG:4326" } },
+    // "features": [
+    // { "type": "Feature", "properties": { }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.401150372542284, 46.235605880314871 ], [ 7.399830108041084, 46.235331953263326 ], [ 7.399914698308324, 46.235136647041486 ], [ 7.401224726130267, 46.235405242285502 ], [ 7.401150372542284, 46.235605880314871 ] ] ] } }
+    // ]
+    // }
+
+
+
+
+    var limite_construction = polygon(air_implant.features[0].geometry.coordinates);
+
+    // polygon([[
+    //     [2, 2],
+    //     [3, 2],
+    //     [3, 10],
+    //     [2, 3],
+    //     [2, 2]
+    // ]]);
 
     var intersectionnn = turf.booleanContains(limite_construction, projet);
     console.log(intersectionnn);
