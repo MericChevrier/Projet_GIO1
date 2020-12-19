@@ -40,8 +40,6 @@ export function AddVectorLayer2(olmap) {
         dataProjection: 'EPSG:4326',
         featureProjection: 'EPSG:3857'
       }),
-      //format: new GeoJSON(),
-      //projection : 'EPSG:4326', 
     }),
     visible: 'True',
   });
