@@ -6,5 +6,12 @@ class jsondata{
     set data(json){
         this.#data = json
     }
+    #object;
+    get object(){
+        return this.#object;
+    }
+    set object(json){
+        this.#object = {json}
+    }
 }
 export const sharejson = new jsondata();

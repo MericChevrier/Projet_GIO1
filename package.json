@@ -2,6 +2,7 @@
   "dependencies": {
     "@turf/boolean-contains": "^6.0.1",
     "@turf/helpers": "^6.1.4",
+    "@turf/polygonize": "^5.1.5",
     "@turf/turf": "^5.1.6",
     "live-server": "^1.2.1",
     "ol": "^6.4.3",
