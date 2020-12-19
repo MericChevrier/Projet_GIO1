@@ -109,7 +109,7 @@ export default {
     this.flytodirection(this.center,this.defaultheight,this.viewer)
     var projetjson = sharejson.data
     //import de couches de bases
-    //this.CesiumImportJson("geojson/cesium_projet_test.geojson")
+    //this.CesiumImportJson("geojson/MNT_Coupe_WGS84_Helli.geojson")
   },
 };
 </script>
