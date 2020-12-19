@@ -19,7 +19,7 @@
 	  <div id="menu_droite">
 		  <div id="information_projet">
 		  	<h1 class="title is-4">Information sur le projet</h1>
-		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="CesiumImportJson()">Afficher le projet en 3D</button>
+		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="CesiumImportJson(sharejson.data)">Afficher le projet en 3D</button>
 		  	<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
@@ -87,8 +87,8 @@ export default {
     //import projet en json
 
 
-    CesiumImportJson : function(){
-        var dataSource = Cesium.GeoJsonDataSource.load(sharejson.data,{
+    CesiumImportJson : function(obj){
+        var dataSource = Cesium.GeoJsonDataSource.load(obj,{
           show : 1
           });
         this.viewer.dataSources.add(dataSource);
@@ -100,12 +100,9 @@ export default {
   mounted() {
     // add cesium ion token to the app
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZDUzNGNhNC0wYmFmLTQ0MWMtYjAxNS1iNjY1ZmNkY2VhYTUiLCJpZCI6MzgxMjcsImlhdCI6MTYwNTk2NDc5Mn0.PYaP8WOSB4mIuk_kBnuIz1xcJc5rewQbB0xoyUjuW8I';
-    
-    
-;
     this.viewer = this.setupCesiumGlobe();
     this.flytodirection(this.center,this.defaultheight,this.viewer)
-    console.log(sharejson.data)
+    this.CesiumImportJson("geojson/cesium_projet_test.geojson")
   },
 };
 </script>
