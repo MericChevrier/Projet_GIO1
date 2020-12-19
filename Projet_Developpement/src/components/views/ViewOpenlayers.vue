@@ -202,13 +202,7 @@ export default {
       console.log(document.getElementById(layer).checked);
       console.log("ChangeLayerVisibility(\"" + layer + "\")");
     },
-    //import projet en json
-    // import_json : function () {
-    //     import_projet.openFile(import_projet.dispFile);
-    //   },
-
-    
-
+ 
 
 
     //import projet en json
@@ -216,27 +210,9 @@ export default {
 
     getJSONcontent : function(json){
       sharejson.data=json
+      this.projet = chaine_json.AddVectorLayer2(this.olmap);
     },
-  //   readSingleFile : function(e) {
-  //   var file = e.target.files[0];
-  //   if (!file) {
-  //     return;
-  //   }
-  //   var reader = new FileReader();
-  //   reader.onload = function(e) {
-  //     var contents = e.target.result;
-  //     displayContents(contents);
-  //   };
-  //   reader.readAsText(file);
-  // },
-  // displayContents : function (contents) {
-  //   var element = document.getElementById('file-content');
-  //   element.textContent = contents;
-  // },
-  // import_json : function() {
-  // document.getElementById('file-input').addEventListener('change', readSingleFile, false);
-  // console.log(document)
-  // }
+
 intersection : function(){
     
     var geojsonObject = {
@@ -248,7 +224,7 @@ intersection : function(){
     ]
     }
     
-    var projet = polygon(geojsonObject.features[0].geometry.coordinates);
+    var projet = polygon(sharejson.data);
 
 var limite_construction = polygon([[
     [2, 2],
@@ -276,8 +252,8 @@ console.log(intersectionnn);
     this.od_lineaire = import_json.AddVectorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson",this.olmap);
     this.od_surfacique = import_json.AddVectorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson",this.olmap);
     this.aire_implantation = import_json.AddVectorLayer( "geojson/Aire_Implantation.geojson",this.olmap);
-    this.projet = import_json.AddVectorLayer( "geojson/cesium_projet_test.geojson",this.olmap,true);
-    //this.projet = chaine_json.AddVectorLayer2(this.olmap);
+    //this.projet = import_json.AddVectorLayer( "geojson/cesium_projet_test.geojson",this.olmap,true);
+    
     sharejson.data = "HELLO"
   }
 

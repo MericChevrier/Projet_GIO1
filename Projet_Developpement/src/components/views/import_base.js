@@ -11,7 +11,7 @@ export function setupOpenlayersMap (mapcenter,mapzoom) {
     return new Map({
       target: 'ol-container',
       view: new View({
-        projection : 'EPSG:4326',
+        projection : 'EPSG:3857',
         center: mapcenter,
         zoom: mapzoom
       })
