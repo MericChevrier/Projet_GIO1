@@ -8,4 +8,3 @@ class jsondata{
     }
 }
 export const sharejson = new jsondata();
-console.log(sharejson)

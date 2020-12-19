@@ -42,6 +42,8 @@ import "cesium/Build/Cesium/Widgets/widgets.css";
 import * as Cesium from 'cesium';
 import * as cesium_import_json from './cesium_import_json.js';
 import { sharejson } from './json_data.js';
+import { feature } from '@turf/helpers';
+import * as import_projet_cesium from './const.js';
 
 export default {
   name: "CesiumGlobeView",
@@ -60,6 +62,8 @@ export default {
      * @param {number} globeheight altitude
      * @param {Viewer} viewer cesium viewer
      */
+    AddProjetCesium : import_projet_cesium.AddProjetCesium,
+    
     flytodirection(globecenter,globeheight,viewer){
       viewer.camera.flyTo({
         destination : Cesium.Cartesian3.fromDegrees(globecenter[0], globecenter[1], globeheight)
@@ -72,7 +76,8 @@ export default {
      */
     setupCesiumGlobe () {
       let viewer = new Cesium.Viewer('cesium-container', {
-        terrainProvider: new Cesium.createWorldTerrain()
+        terrainProvider: new Cesium.createWorldTerrain(),
+        feature: new Cesium.GeoJsonDataSource.load(sharejson.data)
       });
       viewer.scene.primitives.add(Cesium.createOsmBuildings());
       return viewer;
@@ -85,38 +90,35 @@ export default {
 
     CesiumImportJson : function(){
 
-      var geojsonObject = sharejson.data;
-      console.log(geojsonObject)
-//       {
-// "type": "FeatureCollection",
-// "name": "Projet_test",
-// "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-// "features": [
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } }
-// ]
-// }
-      var reader = new FileReader();
-      reader.readAsText(geojsonObject);
+      var geojsonObject = new jsondata({
+"type": "FeatureCollection",
+"name": "Projet_test",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } },
+{ "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } }
+]
+});
+      // var reader = new FileReader();
+      // reader.readFeatures(geojsonObject);
         // var dataSource = {};
-        // dataSource.readAsText(geojsonObject);
-        // Cesium.GeoJsonDataSource.load(geojsonObject,{
-        //   show : 1
-        //   });
-        console.log(reader);
-        // this.viewer.dataSources.add(dataSource);
-        // this.viewer.zoomTo(dataSource);
-        // console.log("hello");
+        Cesium.GeoJsonDataSource.load(geojsonObject,{
+          show : 1
+          });
+        //console.log(reader);
+        this.viewer.dataSources.add(dataSource);
+        this.viewer.zoomTo(dataSource);
+        console.log("hello");
     }
 //geojsonObject.features[0].geometry.coordinates
   },
