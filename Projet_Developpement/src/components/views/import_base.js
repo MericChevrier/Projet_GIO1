@@ -7,6 +7,14 @@ import View from 'ol/View';
 import * as chaine_json from './chaine_json.js';
 import {OSM, Vector as VectorSource} from 'ol/source';
 
+    /**
+     * Init Openlayers map
+     *
+     * @param {number[]} mapcenter center of the map in EPSG:3857
+     * @param {number} mapzoom zommlevel
+     * @returns {Map} initmap new openlayers map
+     */
+
 export function setupOpenlayersMap (mapcenter,mapzoom) {
     return new Map({
       target: 'ol-container',

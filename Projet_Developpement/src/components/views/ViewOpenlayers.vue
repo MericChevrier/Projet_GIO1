@@ -108,13 +108,7 @@ export default {
     }
   },
   methods: {
-    /**
-     * Init Openlayers map
-     *
-     * @param {number[]} mapcenter center of the map in EPSG:3857
-     * @param {number} mapzoom zommlevel
-     * @returns {Map} initmap new openlayers map
-     */
+
 
 
     //Affichage du fond de carte
