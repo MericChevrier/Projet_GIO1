@@ -226,32 +226,37 @@ intersection : function(){
     
     var projet = polygon(sharejson.data);
 
-var limite_construction = polygon([[
-    [2, 2],
-    [3, 2],
-    [3, 10],
-    [2, 3],
-    [2, 2]
-]]);
+    var limite_construction = polygon([[
+        [2, 2],
+        [3, 2],
+        [3, 10],
+        [2, 3],
+        [2, 2]
+    ]]);
 
-var intersectionnn = turf.booleanContains(limite_construction, projet);
-console.log(intersectionnn);
-}
+    var intersectionnn = turf.booleanContains(limite_construction, projet);
+    console.log(intersectionnn);
+    },
+
+
 
   },
 
   mounted() {
+
+
+
     //faire une liste et une boucle
     this.olmap = import_base.setupOpenlayersMap(this.center3857,this.zoom);
     this.mapbox_rues = import_base.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true, this.olmap)
     this.mapbox_satellite = import_base.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false, this.olmap)
-    this.bien_fond = import_json.AddVectorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson",this.olmap);
-    this.ddp = import_json.AddVectorLayer( "geojson/MO_BF_DDP_WGS84.geojson",this.olmap);
-    this.batiment = import_json.AddVectorLayer('geojson/MO_CS_Batiment_WGS84.geojson',this.olmap);
-    this.surface_cs = import_json.AddVectorLayer( "geojson/MO_CS_WGS84.geojson",this.olmap);
-    this.od_lineaire = import_json.AddVectorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson",this.olmap);
-    this.od_surfacique = import_json.AddVectorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson",this.olmap);
+    
+    this.surface_cs = import_json.AddVectorLayer( "geojson/MO_CS_WGS84.geojson",this.olmap, false, 'surface_cs');
+    this.od_lineaire = import_json.AddVectorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson",this.olmap, false, 'od_lineaire');
+    this.od_surfacique = import_json.AddVectorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson",this.olmap, false, 'od_surfacique');
     this.aire_implantation = import_json.AddVectorLayer( "geojson/Aire_Implantation.geojson",this.olmap);
+    this.batiment = import_json.AddVectorLayer('geojson/MO_CS_Batiment_WGS84.geojson',this.olmap, false, 'batiment');
+    this.bien_fond = import_json.AddVectorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson",this.olmap, false, 'bien_fond');
     //this.projet = import_json.AddVectorLayer( "geojson/cesium_projet_test.geojson",this.olmap,true);
     
     sharejson.data = "HELLO"
