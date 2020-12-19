@@ -40,7 +40,7 @@
 <script>
 import "cesium/Build/Cesium/Widgets/widgets.css";
 import * as Cesium from 'cesium';
-import * as cesium_import_json from './cesium_import_json.js';
+//import * as cesium_import_json from './cesium_import_json.js';
 import { sharejson } from './json_data.js';
 import { feature } from '@turf/helpers';
 import * as import_projet_cesium from './const.js';

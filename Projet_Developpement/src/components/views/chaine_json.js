@@ -16,5 +16,4 @@ export function AddVectorLayer2(olmap) {
     visible: 'True',
   });
   olmap.addLayer(layer)
-  //return layer
 }
