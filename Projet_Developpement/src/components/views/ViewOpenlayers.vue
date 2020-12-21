@@ -1,5 +1,8 @@
 <template>
   <div id="ol-container" class="map">
+          <li v-for="user in users" :key="user.id">         
+            {{user.name}}       
+          </li>
     <!--Menu de gauche - situation de base-->
     <div id="menu_gauche">
 		  	<div id="situation">
@@ -73,11 +76,15 @@ import * as import_base from './import_base.js';
 import * as import_p from './import.js';
 import * as chaine_json from './chaine_json.js';
 import { sharejson } from './json_data.js';
+import { sharedproject } from './json_data.js';
 import * as turf from '@turf/turf';
 import { intersect } from '@turf/intersect';
 import { polygon } from '@turf/helpers';
 import { booleanContains } from '@turf/boolean-contains';
 import { polygonize } from '@turf/polygonize';
+import * as air_implant from './air_implantation.js';
+
+
 
 
 
@@ -214,12 +221,18 @@ export default {
  
 
 
+
+
+
+
+
+
     //import projet en json
     import_json : import_p.import_json,
 
     getJSONcontent : function(json){
       sharejson.data=JSON.parse(json)
-//       console.log(sharejson.data)
+       console.log(sharejson.data)
 //       console.log({
 // "type": "FeatureCollection",
 // "name": "Projet_test",
@@ -252,11 +265,7 @@ intersection : function(){
     //geojsonObject.features[0].geometry.coordinates
     console.log(projet);
 
-    var air_implant = new VectorSource({
-            url: "geojson/Aire_Implantation.geojson",
-            format: new GeoJSON(),
-            projection: 'EPSG:4326',
-        });
+    var air_implant = polygon(sharedproject.data.features[0].geometry.coordinates);
         console.log(air_implant);
     
     // {
@@ -271,7 +280,7 @@ intersection : function(){
 
 
 
-    var limite_construction = polygon(air_implant.features[0].geometry.coordinates);
+    //var limite_construction = polygon(air_implant.features[0].geometry.coordinates);
 
     // polygon([[
     //     [2, 2],
@@ -281,7 +290,7 @@ intersection : function(){
     //     [2, 2]
     // ]]);
 
-    var intersectionnn = turf.booleanContains(limite_construction, projet);
+    var intersectionnn = turf.booleanContains(air_implant, projet);
     console.log(intersectionnn);
     },
 
@@ -305,6 +314,10 @@ intersection : function(){
     this.batiment = import_json.AddVectorLayer('geojson/MO_CS_Batiment_WGS84.geojson',this.olmap, false, 'batiment');
     this.bien_fond = import_json.AddVectorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson",this.olmap, false, 'bien_fond');
     //this.projet = import_json.AddVectorLayer( "geojson/cesium_projet_test.geojson",this.olmap,true);
+    this.air_implant=air_implant.init();
+    // console.log(sharedproject.data);
+    // console.log(sharejson.data);
+    
     
     //sharejson.data = "HELLO"
   }
