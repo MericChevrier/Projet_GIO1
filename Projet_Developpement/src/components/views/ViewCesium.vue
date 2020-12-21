@@ -74,7 +74,7 @@ export default {
     setupCesiumGlobe () {
       let viewer = new Cesium.Viewer('cesium-container', {
         terrainProvider: new Cesium.createWorldTerrain(),
-        feature: new Cesium.GeoJsonDataSource.load(sharejson.data)
+        //feature: new Cesium.GeoJsonDataSource.load(sharejson.data)
       });
       viewer.scene.primitives.add(Cesium.createOsmBuildings());
       return viewer;
@@ -107,7 +107,7 @@ export default {
     this.viewer = this.setupCesiumGlobe();
     // positionement de base de la caméra
     this.flytodirection(this.center,this.defaultheight,this.viewer)
-    var projetjson = sharejson.data
+    //var projetjson = sharejson.data
     //import de couches de bases
     //this.CesiumImportJson("geojson/MNT_Coupe_WGS84_Helli.geojson")
   },
