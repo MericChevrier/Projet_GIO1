@@ -34,25 +34,25 @@
 			<div id="information_projet">
         <h1 class="title is-4">Informations</h1>
         <input hidden= "true" type="file" id="file-input" />
-        <h3>Contents of the file:</h3>
-        <pre id="file-content"></pre>
+        <!-- <h3>Contents of the file:</h3> -->
+        <pre hidden=true id="file-content"></pre>
 				<button class="button is-small" type="button" id="import_j" v-on:click="import_json(getJSONcontent)">Importer .json</button>
         <h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
 		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
-				<p><label class="is-size-7 has-text-black">Porteur du projet :</label></p>
+				<!-- <p><label class="is-size-7 has-text-black">Porteur du projet :</label></p>
 				<p><label class="is-size-7 has-text-black">Parcelle:</label></p>
 				<p><label class="is-size-7 has-text-black">Date de mise à l'enquête :</label></p>
 				<p><label class="is-size-7 has-text-black">Zone d'affectation :</label></p>
-				<p><label class="is-size-7 has-text-black">Surface de plancher :</label></p>
+				<p><label class="is-size-7 has-text-black">Surface de plancher :</label></p> -->
 				<p><label class="is-size-7 has-text-black">Surface au sol :</label></p>
 				<button class="button is-small" type="button" name="validation" id="validation" v-on:click="intersection()">Validation</button>
 				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Respect des restrictions 2D :</U></h3>
 				<p><label class="is-size-7 has-text-black">Implantation : {{validation}}</label></p>
-				<p><label class="is-size-7 has-text-black">Surface de plancher (xxm² sur xxm²)</label></p>
-				<p><label class="is-size-7 has-text-black">Surface au sol (xxm² sur xxm²)</label></p>
-				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Géométrie 3D :</U></h3>
-				<button class="button is-small" type="button" name="3D" id="3D" onclick="poly_draw()">Passer en mode 3D</button>
+				<!-- <p><label class="is-size-7 has-text-black">Surface de plancher (xxm² sur xxm²)</label></p> -->
+				<!-- <p><label class="is-size-7 has-text-black">Surface au sol (xxm² sur xxm²)</label></p> -->
+				<!-- <h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Géométrie 3D :</U></h3> -->
+				<!-- <button class="button is-small" type="button" name="3D" id="3D" onclick="poly_draw()">Passer en mode 3D</button> -->
 			</div>
 		</div>
   </div>
@@ -80,6 +80,7 @@ import { sharedproject } from './json_data.js';
 import * as turf from '@turf/turf';
 import { intersect } from '@turf/intersect';
 import { polygon } from '@turf/helpers';
+import { area } from '@turf/area';
 import { booleanContains } from '@turf/boolean-contains';
 import { polygonize } from '@turf/polygonize';
 import * as air_implant from './air_implantation.js';
@@ -296,7 +297,9 @@ intersection : function(){
     console.log(intersectionnn);
     if (intersectionnn == true){this.validation = 'validé'}
       else {this.validation = 'fausse'};
-      //return this.validation = 'bla'
+
+    var surface = turf.area(sharejson.data.features[0].geometry.coordinates);
+    console.log(surface);
     
 
     },
