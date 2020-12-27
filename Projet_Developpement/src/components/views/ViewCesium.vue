@@ -4,20 +4,22 @@
     <div id="cesium-container">
     </div>
     <div id="menu_gauche">
-		  	<div id="situation">
-			  	<h1 class="title is-4">Vue3D</h1>
-				  <input class="input is-primary is-small" type="text" placeholder="Text" id="search" name="barre_recherche">
-          <button class="button is-small" type="button">Recherche</button>
-			  	<h2 class="subtitle is-6 has-text-left has-text-weight-semibold">Gestion des couches</h2>
-          <p><label class="checkbox subtitle is-6"><input type="checkbox" name="MNT" onclick="change_MNT(this.checked)"> MNT</label></p>
-			  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="swissbuilding" onclick="change_swissbuilding(this.checked)"> SwissBuilding</label></p>
-			  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="volume_implantation" onclick="volume_implantation(this.checked)"> Volume d'implantation</label></p>
-		  	</div>
+		  <div id="situation">
+        <!--Titres et création des divers boutons pour l'affichage des couches souhaitées-->
+		  	<h1 class="title is-4">Vue3D</h1>
+			  <input class="input is-primary is-small" type="text" placeholder="Text" id="search" name="barre_recherche">
+        <button class="button is-small" type="button">Recherche</button>
+				<h2 class="subtitle is-6 has-text-left has-text-weight-semibold">Gestion des couches</h2>
+        <p><label class="checkbox subtitle is-6"><input type="checkbox" name="MNT" onclick="change_MNT(this.checked)"> MNT</label></p>
+		  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="swissbuilding" onclick="change_swissbuilding(this.checked)"> SwissBuilding</label></p>
+		  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="volume_implantation" onclick="volume_implantation(this.checked)"> Volume d'implantation</label></p>
+			</div>
     </div>
 		
 		<!--Menu de droite - information sur le projet--> 
 	  <div id="menu_droite">
 		  <div id="information_projet">
+        <!--Titres et création des divers boutons pour l'affichage des couches souhaitées-->
 		  	<h1 class="title is-4">Information sur le projet</h1>
 		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="CesiumImportProjet()">Afficher le projet en 3D</button>
 		  	<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
@@ -48,6 +50,7 @@ export default {
   name: "CesiumGlobeView",
   data() {
     return{
+      //position et zoom du globe cesium de base
       center: [7.40, 46.23],
       defaultheight:1500.,
       viewer:null
