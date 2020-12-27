@@ -48,7 +48,7 @@
 				<p><label class="is-size-7 has-text-black">Surface au sol :</label></p>
 				<button class="button is-small" type="button" name="validation" id="validation" v-on:click="intersection()">Validation</button>
 				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Respect des restrictions 2D :</U></h3>
-				<p><label class="is-size-7 has-text-black">Implantation</label></p>
+				<p><label class="is-size-7 has-text-black">Implantation : {{validation}}</label></p>
 				<p><label class="is-size-7 has-text-black">Surface de plancher (xxm² sur xxm²)</label></p>
 				<p><label class="is-size-7 has-text-black">Surface au sol (xxm² sur xxm²)</label></p>
 				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Géométrie 3D :</U></h3>
@@ -100,6 +100,7 @@ export default {
       mapbox_name_rues: 'mapbox_rues',
       mapbox_url_satellite: 'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg',
       mapbox_name_satellite: 'mapbox_satellite',
+      validation: ''
     }
   },
   computed:{
@@ -115,6 +116,7 @@ export default {
   },
   methods: {
 
+    
     /**
      * Init Openlayers map
      *
@@ -292,6 +294,11 @@ intersection : function(){
 
     var intersectionnn = turf.booleanContains(air_implant, projet);
     console.log(intersectionnn);
+    if (intersectionnn == true){this.validation = 'validé'}
+      else {this.validation = 'fausse'};
+      //return this.validation = 'bla'
+    
+
     },
 
 
@@ -301,7 +308,7 @@ intersection : function(){
   mounted() {
 
 
-
+    var validation = 'fr';
     //faire une liste et une boucle
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
     this.mapbox_rues = import_base.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true, this.olmap)
@@ -314,9 +321,10 @@ intersection : function(){
     this.batiment = import_json.AddVectorLayer('geojson/MO_CS_Batiment_WGS84.geojson',this.olmap, false, 'batiment');
     this.bien_fond = import_json.AddVectorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson",this.olmap, false, 'bien_fond');
     //this.projet = import_json.AddVectorLayer( "geojson/cesium_projet_test.geojson",this.olmap,true);
-    this.air_implant=air_implant.init();
+    air_implant.init();
     // console.log(sharedproject.data);
     // console.log(sharejson.data);
+
     
     
     //sharejson.data = "HELLO"
