@@ -13,6 +13,7 @@
         <p><label class="checkbox subtitle is-6"><input type="checkbox" name="MNT" onclick="change_MNT(this.checked)"> MNT</label></p>
 		  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="swissbuilding" onclick="change_swissbuilding(this.checked)"> SwissBuilding</label></p>
 		  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="volume_implantation" onclick="volume_implantation(this.checked)"> Volume d'implantation</label></p>
+        <!-- <p><label class="is-size-7 has-text-black"><input type="checkBox" id="mnt" v-on:click="ChangeLayerVisibility('mnt')"> mnt</label></p> -->
 			</div>
     </div>
 		
@@ -53,9 +54,11 @@ export default {
       //position et zoom du globe cesium de base
       center: [7.40, 46.23],
       defaultheight:1500.,
-      viewer:null
+      viewer:null,
+      mnt:null
     }
   },
+
   methods: {
     /**
      * Fly to position 
@@ -81,38 +84,70 @@ export default {
       });
       viewer.scene.primitives.add(Cesium.createOsmBuildings());
       return viewer;
-    },   
+    },  
     // fonction d'import pour fichiers json
     CesiumImportJson : function(obj){
         var dataSource = Cesium.GeoJsonDataSource.load(obj,{
-          show : 1
+          show :1
+          });
+        this.viewer.dataSources.add(dataSource);
+        //this.viewer.zoomTo(dataSource);
+        console.log("hello");
+        return dataSource
+    },
+
+  // fonction d'import pour projet json
+    CesiumImportProjet : function(){
+        var dataSource = Cesium.GeoJsonDataSource.load(sharejson.data,{
+          show :1
           });
         this.viewer.dataSources.add(dataSource);
         this.viewer.zoomTo(dataSource);
         console.log("hello");
     },
 
-  // fonction d'import pour projet json
-    CesiumImportProjet : function(){
-        var dataSource = Cesium.GeoJsonDataSource.load(sharejson.data,{
-          show : 1
-          });
-        this.viewer.dataSources.add(dataSource);
-        this.viewer.zoomTo(dataSource);
-        console.log("hello");
-    }
+
+        //Affichage du fond de carte
+		// ChangeLayerVisibility : function (layer) {
+    //   switch (layer) {
+    //     case "mnt":
+    //       if(document.getElementById(layer).checked == true){
+    //         this.mnt = mnt.show;
+    //       }
+    //       else {
+    //         this.mnt = !mnt.show;
+    //       }
+    //       break;
+        // case "volume_implantation":
+        //   if(document.getElementById(layer).checked == true){
+        //     this.surface_cs.setVisible(true);
+        //   }
+        //   else {
+        //     this.surface_cs.setVisible(false);
+        //   }
+        //   break;
+    //     }
+    //   console.log(document.getElementById(layer).checked);
+    //   console.log("ChangeLayerVisibility(\"" + layer + "\")");
+    // },
+    //   Sandcastle.addToolbarButton('Toggle Ellipsoids', function () {
+    //   this.mnt.show = !this.mnt.show;
+    // })
 
   },
   mounted() {
+    var show = '';
     // add cesium ion token to the app
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZDUzNGNhNC0wYmFmLTQ0MWMtYjAxNS1iNjY1ZmNkY2VhYTUiLCJpZCI6MzgxMjcsImlhdCI6MTYwNTk2NDc5Mn0.PYaP8WOSB4mIuk_kBnuIz1xcJc5rewQbB0xoyUjuW8I';
     //initialisation du globe Cesium
     this.viewer = this.setupCesiumGlobe();
     // positionement de base de la caméra
-    this.flytodirection(this.center,this.defaultheight,this.viewer)
+    this.flytodirection(this.center,this.defaultheight,this.viewer);
     //var projetjson = sharejson.data
     //import de couches de bases
-    this.CesiumImportJson("geojson/MNT_coupe_transfo_WGS84_Helli.geojson")
+    //this.CesiumImportJson("geojson/MNT_coupe_transfo_WGS84_Helli.geojson")
+    //this.CesiumImportJson("geojson/Aire_implantation_3D_transfo_WGS84_Helli.geojson")
+    this.mnt = this.CesiumImportJson('geojson/MNT_coupe_transfo_WGS84_Helli.geojson');
   },
 };
 </script>
