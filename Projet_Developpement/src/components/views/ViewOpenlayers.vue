@@ -228,33 +228,25 @@ export default {
       this.projet = chaine_json.AddVectorLayer2(this.olmap);
     },
 
-intersection : function(){
-    
-    
-    // création d'un polygone avec le projet importé
-    var projet = polygon(sharejson.data.features[0].geometry.coordinates);
-    // récupération du nom du projet
-    this.name = sharejson.data.name;
-    // calcul de la surface du projet => ne fonctionne que pour les projets 2D
-    var surface_calc = turf.area(projet);
-    if (surface_calc){this.surface = turf.round(surface_calc, 2)}
-
-    // validation du projet par rapport aux aires d'implantation de la commune
-    var count = 0
-    for (const features in sharedproject.data.features) {
-      var air_implant = polygon(sharedproject.data.features[features].geometry.coordinates[0]);
-      var contains = turf.booleanContains(air_implant, projet);
-      if (contains == true){count += 1}
-    }
-    console.log(count);
-    if (count == 1){this.validation = 'validé'}
-    else {this.validation = 'fausse'};
-
+    intersection : function(){
+      // création d'un polygone avec le projet importé
+      var projet = polygon(sharejson.data.features[0].geometry.coordinates);
+      // récupération du nom du projet
+      this.name = sharejson.data.name;
+      // calcul de la surface du projet => ne fonctionne que pour les projets 2D
+      var surface_calc = turf.area(projet);
+      if (surface_calc){this.surface = turf.round(surface_calc, 2)}
+      // validation du projet par rapport aux aires d'implantation de la commune
+      var count = 0
+      for (const features in sharedproject.data.features) {
+        var air_implant = polygon(sharedproject.data.features[features].geometry.coordinates[0]);
+        var contains = turf.booleanContains(air_implant, projet);
+        if (contains == true){count += 1}
+      }
+      if (count == 1){this.validation = 'validé'}
+      else {this.validation = 'fausse'};
+      },
     },
-
-
-
-  },
 
   mounted() {
 
