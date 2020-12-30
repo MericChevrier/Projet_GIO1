@@ -39,13 +39,13 @@
 				<button class="button is-small" type="button" id="import_j" v-on:click="import_json(getJSONcontent)">Importer .json</button>
         <h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
-		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Projet :{{name}}</label></p>
 				<!-- <p><label class="is-size-7 has-text-black">Porteur du projet :</label></p>
 				<p><label class="is-size-7 has-text-black">Parcelle:</label></p>
 				<p><label class="is-size-7 has-text-black">Date de mise à l'enquête :</label></p>
 				<p><label class="is-size-7 has-text-black">Zone d'affectation :</label></p>
 				<p><label class="is-size-7 has-text-black">Surface de plancher :</label></p> -->
-				<p><label class="is-size-7 has-text-black">Surface au sol :</label></p>
+				<p><label class="is-size-7 has-text-black">Surface au sol : {{surface}} m²</label></p>
 				<button class="button is-small" type="button" name="validation" id="validation" v-on:click="intersection()">Validation</button>
 				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Respect des restrictions 2D :</U></h3>
 				<p><label class="is-size-7 has-text-black">Implantation : {{validation}}</label></p>
@@ -79,7 +79,8 @@ import { sharejson } from './json_data.js';
 import { sharedproject } from './json_data.js';
 import * as turf from '@turf/turf';
 import { intersect } from '@turf/intersect';
-import { polygon } from '@turf/helpers';
+import { feature, polygon } from '@turf/helpers';
+
 import { area } from '@turf/area';
 import { booleanContains } from '@turf/boolean-contains';
 import { polygonize } from '@turf/polygonize';
@@ -223,38 +224,11 @@ export default {
     },
  
 
-
-
-
-
-
-
-
     //import projet en json
     import_json : import_p.import_json,
 
     getJSONcontent : function(json){
       sharejson.data=JSON.parse(json)
-       console.log(sharejson.data)
-//       console.log({
-// "type": "FeatureCollection",
-// "name": "Projet_test",
-// "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-// "features": [
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.40042411742963, 46.235248176940573, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 562.1537 ], [ 7.400519814267865, 46.235306614719399, 562.1537 ], [ 7.400408650284502, 46.235272317023053, 562.1537 ], [ 7.400535281373425, 46.235282474621698, 562.1537 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400519814267865, 46.235306614719399, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } },
-// { "type": "Feature", "properties": { "Layer": "Objets_3DReshaper", "PaperSpace": null, "SubClasses": null, "Linetype": null, "EntityHandle": null, "Text": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.400535281373425, 46.235282474621698, 552.1520 ], [ 7.40042411742963, 46.235248176940573, 552.1520 ], [ 7.400408650284502, 46.235272317023053, 552.1520 ], [ 7.400535281373425, 46.235282474621698, 552.1520 ] ] ] } }
-// ]
-// }),
       sharejson.object=json
       this.projet = chaine_json.AddVectorLayer2(this.olmap);
     },
@@ -262,45 +236,25 @@ export default {
 intersection : function(){
     
     
-    
+    // création d'un polygone avec le projet importé
     var projet = polygon(sharejson.data.features[0].geometry.coordinates);
-    //turf.polygonize
-    //geojsonObject.features[0].geometry.coordinates
-    console.log(projet);
+    // récupération du nom du projet
+    this.name = sharejson.data.name;
+    // calcul de la surface du projet => ne fonctionne que pour les projets 2D
+    var surface_calc = turf.area(projet);
+    if (surface_calc){this.surface = turf.round(surface_calc, 2)}
 
-    var air_implant = polygon(sharedproject.data.features[0].geometry.coordinates);
-        console.log(air_implant);
-    
-    // {
-    // "type": "FeatureCollection",
-    // "name": "Projet_test",
-    // "crs": { "type": "name", "properties": { "name": "EPSG:4326" } },
-    // "features": [
-    // { "type": "Feature", "properties": { }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 7.401150372542284, 46.235605880314871 ], [ 7.399830108041084, 46.235331953263326 ], [ 7.399914698308324, 46.235136647041486 ], [ 7.401224726130267, 46.235405242285502 ], [ 7.401150372542284, 46.235605880314871 ] ] ] } }
-    // ]
-    // }
-
-
-
-
-    //var limite_construction = polygon(air_implant.features[0].geometry.coordinates);
-
-    // polygon([[
-    //     [2, 2],
-    //     [3, 2],
-    //     [3, 10],
-    //     [2, 3],
-    //     [2, 2]
-    // ]]);
-
-    var intersectionnn = turf.booleanContains(air_implant, projet);
-    console.log(intersectionnn);
-    if (intersectionnn == true){this.validation = 'validé'}
-      else {this.validation = 'fausse'};
-
-    var surface = turf.area(sharejson.data.features[0].geometry.coordinates);
-    console.log(surface);
-    
+// validation du projet par rapport aux aires d'implantation de la commune
+var count = 0
+for (const features in sharedproject.data.features) {
+  var air_implant = polygon(sharedproject.data.features[features].geometry.coordinates[0]);
+  var contains = turf.booleanContains(air_implant, projet);
+  console.log(contains);
+  if (contains == true){count += 1}
+}
+console.log(count);
+if (count == 1){this.validation = 'validé'}
+else {this.validation = 'fausse'};
 
     },
 
@@ -310,8 +264,9 @@ intersection : function(){
 
   mounted() {
 
-
-    var validation = 'fr';
+    var name = '';
+    var validation = '';
+    var surface = '';
     //faire une liste et une boucle
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
     this.mapbox_rues = import_base.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true, this.olmap)
