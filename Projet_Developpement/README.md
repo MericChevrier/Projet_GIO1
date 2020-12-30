@@ -1,5 +1,5 @@
 # Rapport projet de développement
-##Développement d'une petite application web géoportail
+## Développement d'une petite application web géoportail
 ***MDT - SA2020 - Bosson, Chevrier et Bobillier***
 
 ### Concept
@@ -23,8 +23,23 @@ Pour respecter ces contraintes, nous avons choisi de développé un site web 2D 
 ### Démarche
 
 Nous avons commencé par créer un GitHub et à le partager entre les étudiants. Nous avons ensuite établit la structure du projet en se bassant sur celle mise à disposition par les encadrants. 
+Au départ, pour les tâches de préparation, nous avions décidé de se séparer les tâches entre nous :
+- Recherche et préparation des données --> Méric
+- Tests des données en entré --> Adrien
+- Préparation de la structure html et css --> Quentin
+Nous avons vite remarqué que cette répartition n'était pas optimale, surtout à distance. Nous avons donc revu notre idée et avons décider de s'entraider sur toutes les tâches. De plus cela permettra que chacun apprenne et comprenne mieux les objectifs du projet. De ce fait chacun à participé à mettre en place des outils .js, vue.js, sur des données OpenLayers et Cesium ainsi que sur les caluls avec turf.js.
+L'outil Teams de Microsoft à aussi été utilisé à chaque fois que nous avons travailler sur le projet. Il nous a permis de discuter sur nos intérogations et/ou problèmes ainsi que de voir en live de quoi nous parlions. Cette méthodologie nous a permis de compléter nos compétances et connaissances sur les thèmes abordés.
+Le code a été commenté dans le but de faciliter sa compréhension.
 
 ### Donnée
+L'acquisition des données est une étape très importante qui nous a pris beaucoup de temps. Nous avons pu avoir les donnéesde la mensuration officiel via un bureau privé d'un étudiant. Pour les données du modèle numérique de terrain et des swissBuildings2.0, nous avons pu les avoir via l'HEIG-VD.
+Pour pouvoir les utiliser, nous avons du effectuer de nombreux traitement dessus :
+- Transformation de coordonnées, MN95 --> WGS84 et NF02 --> hauteur ellipsoidale
+- Constructions des aires d'implantation
+- Transformation des fichiers au format .geojson qui nous permet d'utiliser les données aussi bien avec OpenLayers qu'avec Cesium
+- ...
+Les données téléchargées dans notre projet sont donc tous en WGS84 avec une hauteur ellipsoidale au format .geojson.
+L'utilisateur qui voudra charger son projet devra donc tenir compte du système de coordonnée ainsi que du format. Dans le cas contraire, l'ajout du projet echouera.
 
 ### Problème
 
