@@ -3,8 +3,8 @@ import Vector from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
-import { createStyleFunction } from 'ol/Feature';
 
+// gestion des styles des couches de la MO
 var styles = {
     'bien_fond': new Style({
         stroke: new Stroke({
@@ -46,7 +46,7 @@ var styles = {
     })
 }
 
-
+// fonction d'import de couches geojson en donnant le chemin vers la couche
 export function AddVectorLayer(layer_url, olmap, visibility, StyleName) {
     if (visibility === undefined) { visibility = false }
     var layer = new Vector({
