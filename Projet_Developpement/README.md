@@ -1,44 +1,35 @@
-# Vuejs 3.0 + carto2D/3D Seed
+# Rapport projet de développement
+##Développement d'une petite application web géoportail
+***MDT - SA2020 - Bosson, Chevrier et Bobillier***
 
-This is a basic starter project for a Vuejs 3.0 app (via vue-cli). 
-It includes :
-- vuejs: 3.0
-    - vue-router
-    - axios
-- cesium: 1.75
-- leaflet: 1.7.1
-- Openlayers: 6.4.3
+### Concept
+Pour ce projet, il nous a été demander de développer une petit application web de type "géoportail".
+Ci-dessous, quelques points spécifiques qui nous a été demandé :
+- Le développement doit se faire avec vue.js
+- Intégrer une librairie avec des composants
+- Menu d'accueil permettant d'afficher des couches spécifiques selon les désirent de l'utilisateur
+- Pages affichants des données géographiques en 2D et 3D (OpenLayers et Cesium)
+- Une page statique décrivent le projet, les outils et l'équipe
+- Le projet doit être contrôlé et stocké sur GitHub
 
-## Installation
+Pour respecter ces contraintes, nous avons choisi de développé un site web 2D et 3D intéractive ayant une utilitée pour notre métier. Un outil de validation de nouvelles constructions selon les contraintes liées à l'aménagement du territoire et de la Mensuration Officielle. L'utilisateur pourra introduire son projet (par ex. bâtiment) dans le site web, visualiser son emplacement en 2D et 3D, soit son intégration dans l'environnement construit. Il pourra ensuite contrôler si la construction respect les contraintes d'aménagement du territoire en apuyant sur un bouton de validation. Le site web retournera ensuite différentes informations. Par exemple :
+- Surface de la construction
+- Surface de l'aire d'implantation
+- IBUS
+- Validation que la construction se situ à l'intérieur d'une aire d'implantation --> validé ou fausse
+- ...
+ 
 
-First download the project with Git:
+### Démarche
 
-```
-git clone https://github.com/thibaud-c/seed-vuejs3.0-carto2D-3D.git your_project_name
-```
+Nous avons commencé par créer un GitHub et à le partager entre les étudiants. Nous avons ensuite établit la structure du projet en se bassant sur celle mise à disposition par les encadrants. 
 
-Then open the folder in your command line, and install the needed dependencies:
+### Donnée
 
-```
-cd your_project_name
-npm install
-```
+### Problème
 
-Finally create a file .env at your project root to provide your Cesium ion key:
+### Conclusion
 
-<sup>_an example of .env is provided in .env.example_</sup>
-```js
-VUE_APP_CESIUM_ION_TOKEN=YOUR_CESIUM_ION_KEY
-```
+### Perspective
 
-## Run
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
+### Documentation
