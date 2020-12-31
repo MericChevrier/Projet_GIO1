@@ -53,11 +53,10 @@ Tout au long du projet, nous avons été confronté à de nombreux problème que
     - QGis
     Les données concernants les swissBuildings3.0, n'ont pas été utilisé car leurs transformations en .geojson n'a pas abouti. Effectivement ces dernières données sont un sorte de hachures et non des maillages. De se fait, lors des transformations, les informations concernants les altitudes ne suivaient pas. Dans le cadre de se projet, cela n'est pas très grave car nous avons déjà les bâtiments en 3D depuis la source de donnée OSM. Les swissBuildings3.0 auraient amené une meilleures précision ainsi que des détails plus fin. Il serait intéressant de prendre contact avec swisstopo pour qu'il nous fournisse directement les données dans le format voulu. Ci-après, un lien intéressant qui pourrait aussi nous aider : [exemple avec swissBuildings3.0](https://codepen.io/geoadmin/pen/zBEYGE?editors=0011) ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44d.png =25x)
 5. Un de nos principales problèmes était de pouvoir utiliser un seul projet que l'utilisateur importerait dans notre interface web. Le format .geojson a été choisi car il est supporté autant par OpenLayers que par cesium. Ce format "text" nous permet facilement d'attaquer la donnée qui se trouve à l'intérieur. Pour ce faire nous avons du créer un parseur qui
-récuperer le texte du geojson --> callback est un fonction qu'on retourve dans le shared project qui est récuperable getJSONContent representer par le callback avec la fonction import json
-dans cesium ont utilise shared_project (constante globale qu'on a créer précédement) on rempli la constante via openlayer vue avec getjson contain et après cesium va rechercher cette constante
+récuperer le texte du geojson. Dans le fichier json_data.js, nous crééons une constante vide. Ensuite dans le fichier ViewOpenlayers.vue, nous attribuons avec la commande "getJSONcontent" une valeur à la constante sharejson. Avec cette astuce, il est maintenant possible de récupère cette constante depuis le fichier ViewCesium.vue et de charger la data dans cesium. ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44d.png =25x)
 6. 
 7. 
-8. 
+8. Avec cesium (ViewCesum.vue) nous n'avons pas réussi à fair fonctionner des paramètres particuliers avec par exemple la fonction "Cesium.GeoJsonDataSource.load". Effectivement selon la documentation et les exemples vu, il devrait être possible de gérer si une couche importée soit visible ou non avec la propriété "show = true or false (booléean))
 
 ### Conclusion
 
