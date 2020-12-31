@@ -85,12 +85,11 @@ export default {
     CesiumImportJson : function(obj){
         var jsonOptions = {
         //show : true // propriétés que nous arrivons pas à faire fonctionner
-      }
+        }
         var dataSource = Cesium.GeoJsonDataSource.load(obj,jsonOptions);
         this.viewer.dataSources.add(dataSource);
         //this.viewer.zoomTo(dataSource); // propriétés que nous arrivons pas à faire fonctionner
         //dataSource.show = false; // propriétés que nous arrivons pas à faire fonctionner
-        console.log("hello");
         return dataSource
     },
     
@@ -113,7 +112,7 @@ export default {
     this.flytodirection(this.center,this.defaultheight,this.viewer);
     //import de couches de bases qui concerne les restrictions
     this.CesiumImportJson("geojson/Aire_implantation_3D_transfo_WGS84_Helli.geojson")
-    this.CesiumImportJson("geojson/MNT_coupe_transfo_WGS84_Helli.geojson")
+    // this.CesiumImportJson("geojson/MNT_coupe_transfo_WGS84_Helli.geojson")
   },
 };
 </script>

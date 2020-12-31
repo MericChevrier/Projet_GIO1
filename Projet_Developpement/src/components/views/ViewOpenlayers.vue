@@ -34,7 +34,7 @@
         <h1 class="title is-4">Informations</h1>
         <!-- bouton d'import du projet à contrôler -->
         <input hidden= "true" type="file" id="file-input" />
-        <pre hidden=true id="file-content"></pre>
+        <!-- <pre hidden=true id="file-content"></pre> -->
 				<button class="button is-small" type="button" id="import_j" v-on:click="import_projet(getJSONcontent)">Importer .json</button>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Projet :</U></h3>
         <!-- affichage des données du projet sur clic du bouton validation -->
@@ -141,9 +141,6 @@ export default {
 
     //changement de fond de carte
 		changeBaselayer : function (layer) {
-      console.log("changeBaselayer(\"" + layer + "\")");
-
-
         switch (layer) {
           case "mapbox_rues":
             this.mapbox_rues.setVisible(true);
@@ -164,7 +161,6 @@ export default {
 		ChangeLayerVisibility : function (layer) {
       switch (layer) {
         case "bien_fond":
-          console.log(document.getElementById(layer).checked)
           if(document.getElementById(layer).checked == true){
             this.bien_fond.setVisible(true);
           }
