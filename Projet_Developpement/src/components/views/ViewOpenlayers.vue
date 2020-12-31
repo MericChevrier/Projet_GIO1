@@ -133,6 +133,18 @@ export default {
       })
     },
 
+    setupmapbox (url, name, visibility) {
+      var name = new TileLayer({
+        source: new XYZ({
+          url: url
+        }),
+      visible: visibility,
+    })
+
+    this.olmap.addLayer(name)
+    return name
+    },
+
 
     //changement de fond de carte
 		changeBaselayer : function (layer) {
@@ -252,7 +264,7 @@ export default {
 
     // création de la carte avec couches de bases
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
-    this.mapbox_rues = import_base.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true, this.olmap)
+    this.mapbox_rues = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
     this.mapbox_satellite = import_base.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false, this.olmap)
     // ajout de nos couches geojson affichables
     this.surface_cs = import_json.AddVectorLayer( "geojson/MO_CS_WGS84.geojson",this.olmap, false, 'surface_cs');

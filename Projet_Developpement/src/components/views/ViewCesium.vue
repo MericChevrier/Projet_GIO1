@@ -44,7 +44,7 @@
 import "cesium/Build/Cesium/Widgets/widgets.css";
 import * as Cesium from 'cesium';
 import { sharejson } from './json_data.js';
-
+//import * as MNT_funct from './MNT.js';
 
 
 export default {
@@ -55,11 +55,15 @@ export default {
       center: [7.40, 46.23],
       defaultheight:1500.,
       viewer:null,
-      mnt:null
+      mnt:null,
+      
     }
   },
 
   methods: {
+    
+    
+    
     /**
      * Fly to position 
      * 
@@ -87,14 +91,18 @@ export default {
     },  
     // fonction d'import pour fichiers json
     CesiumImportJson : function(obj){
-        var dataSource = Cesium.GeoJsonDataSource.load(obj,{
-          show :1
-          });
+        var jsonOptions = {
+        // show : Set(false)
+      }
+        var dataSource = Cesium.GeoJsonDataSource.load(obj,jsonOptions);
         this.viewer.dataSources.add(dataSource);
         //this.viewer.zoomTo(dataSource);
+        //dataSource.show = false;
         console.log("hello");
         return dataSource
     },
+    
+
 
   // fonction d'import pour projet json
     CesiumImportProjet : function(){
@@ -137,10 +145,15 @@ export default {
   },
   mounted() {
     var show = '';
+
     // add cesium ion token to the app
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZDUzNGNhNC0wYmFmLTQ0MWMtYjAxNS1iNjY1ZmNkY2VhYTUiLCJpZCI6MzgxMjcsImlhdCI6MTYwNTk2NDc5Mn0.PYaP8WOSB4mIuk_kBnuIz1xcJc5rewQbB0xoyUjuW8I';
     //initialisation du globe Cesium
     this.viewer = this.setupCesiumGlobe();
+    // var entities = this.viewer.entities;
+    // console.log(entities);
+    var MNT = this.viewer.entities.add(new Cesium.Entity());
+    console.log(MNT);
     // positionement de base de la caméra
     this.flytodirection(this.center,this.defaultheight,this.viewer);
     //var projetjson = sharejson.data
@@ -148,6 +161,11 @@ export default {
     //this.CesiumImportJson("geojson/MNT_coupe_transfo_WGS84_Helli.geojson")
     //this.CesiumImportJson("geojson/Aire_implantation_3D_transfo_WGS84_Helli.geojson")
     this.mnt = this.CesiumImportJson('geojson/MNT_coupe_transfo_WGS84_Helli.geojson');
+    //this.mnt = this.MNT_cesium();
+    //this.mnt.show = false;
+    window.Sandcastle.addToolbarButton("MNT", function () {
+    this.mnt.show = !this.mnt.show;
+    });
   },
 };
 </script>
