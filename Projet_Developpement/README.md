@@ -10,7 +10,7 @@ Ci-dessous, quelques points spécifiques qui nous a été demandé :
 - Menu d'accueil permettant d'afficher des couches spécifiques selon les désirent de l'utilisateur
 - Pages affichants des données géographiques en 2D et 3D (OpenLayers et Cesium)
 - Une page statique décrivent le projet, les outils et l'équipe
-- Le projet doit être contrôlé et stocké sur GitHub
+- Le projet doit être contrôlé et stocké sur Github
 
 Pour respecter ces contraintes, nous avons choisi de développé un site web 2D et 3D intéractive ayant une utilitée pour notre métier. Un outil de validation de nouvelles constructions selon les contraintes liées à l'aménagement du territoire et de la Mensuration Officielle. L'utilisateur pourra introduire son projet (par ex. bâtiment) dans le site web, visualiser son emplacement en 2D et 3D, soit son intégration dans l'environnement construit. Il pourra ensuite contrôler si la construction respect les contraintes d'aménagement du territoire en apuyant sur un bouton de validation. Le site web retournera ensuite différentes informations. Par exemple :
 - Surface de la construction
@@ -22,7 +22,7 @@ Pour respecter ces contraintes, nous avons choisi de développé un site web 2D 
 
 ### Démarche
 
-Nous avons commencé par créer un GitHub et à le partager entre les étudiants. Nous avons ensuite établit la structure du projet en se bassant sur celle mise à disposition par les encadrants. 
+Nous avons commencé par créer un Github et à le partager entre les étudiants. Nous avons ensuite établit la structure du projet en se bassant sur celle mise à disposition par les encadrants. 
 Au départ, pour les tâches de préparation, nous avions décidé de se séparer les tâches entre nous :
 - Recherche et préparation des données --> Méric
 - Tests des données en entré --> Adrien
@@ -42,21 +42,21 @@ Les données téléchargées dans notre projet sont donc tous en WGS84 avec une 
 L'utilisateur qui voudra charger son projet devra donc tenir compte du système de coordonnée ainsi que du format. Dans le cas contraire, l'ajout du projet echouera.
 
 ### Problème
-Tout au long du projet, nous avons été confronté à de nombreux problème que nous avons, dans la majoritée des cas, résolu.
+Tout au long du projet, nous avons été confronté à de nombreux problème que nous avons, dans la majoritée des cas, résolu. Ci-dessous, voici les principaux problèmes rencontrés :
 1. Se remettre aux languages de programmation js, html et css que nous utlisons que dans des rares occasions, si ce n'est jamais dans le cadre de notre travail. ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44d.png =25x)
-2. L'apprentissage de vue.js a été compliqué et pas évidente. Nous avons remarqué que nos connaissances sur vue.js se sont améliorées. Nous l'utilisons actuellement à un niveau basique. ![alt text](https://images.emojiterra.com/google/android-10/512px/270a.png =30x)
-3. Idem pour l'utilisation de cesium. ![alt text](https://images.emojiterra.com/google/android-10/512px/270a.png =30x)
+2. L'apprentissage de vue.js a été compliqué et pas évidente. Nous avons remarqué que nos connaissances sur vue.js se sont améliorées. Nous l'utilisons actuellement à un niveau basique. ![alt text](https://images.emojiterra.com/google/android-10/512px/270a.png =25x)
+3. Idem pour l'utilisation de cesium. ![alt text](https://images.emojiterra.com/google/android-10/512px/270a.png =25x)
 4. Quelques problèmes ont été rencontré au niveau des données de bases. Effectivement les transformations de coordonnées de MN95 --> WGS84, NF02 --> hauteur ellipsoidale et du format .dxf au .geojson n'a pas été facile. Pour régler ces soucis, nous avons du utiliser les programmes suivants : 
     - GeoSuite (transformation par lots, Reframe)
     - FME   
     - 3DReshaper
     - QGis
     Les données concernants les swissBuildings3.0, n'ont pas été utilisé car leurs transformations en .geojson n'a pas abouti. Effectivement ces dernières données sont un sorte de hachures et non des maillages. De se fait, lors des transformations, les informations concernants les altitudes ne suivaient pas. Dans le cadre de se projet, cela n'est pas très grave car nous avons déjà les bâtiments en 3D depuis la source de donnée OSM. Les swissBuildings3.0 auraient amené une meilleures précision ainsi que des détails plus fin. Il serait intéressant de prendre contact avec swisstopo pour qu'il nous fournisse directement les données dans le format voulu. Ci-après, un lien intéressant qui pourrait aussi nous aider : [exemple avec swissBuildings3.0](https://codepen.io/geoadmin/pen/zBEYGE?editors=0011) ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44d.png =25x)
-5. Un de nos principales problèmes était de pouvoir utiliser un seul projet que l'utilisateur importerait dans notre interface web. Le format .geojson a été choisi car il est supporté autant par OpenLayers que par cesium. Ce format "text" nous permet facilement d'attaquer la donnée qui se trouve à l'intérieur. Pour ce faire nous avons du créer un parseur qui
-récuperer le texte du geojson. Dans le fichier json_data.js, nous crééons une constante vide. Ensuite dans le fichier ViewOpenlayers.vue, nous attribuons avec la commande "getJSONcontent" une valeur à la constante sharejson. Avec cette astuce, il est maintenant possible de récupère cette constante depuis le fichier ViewCesium.vue et de charger la data dans cesium. ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44d.png =25x)
-6. 
-7. 
-8. Avec cesium (ViewCesum.vue) nous n'avons pas réussi à fair fonctionner des paramètres particuliers avec par exemple la fonction "Cesium.GeoJsonDataSource.load". Effectivement selon la documentation et les exemples vu, il devrait être possible de gérer si une couche importée soit visible ou non avec la propriété "show = true or false (booléean))
+5. L'utilisation de Github nous à aussi posé des soucis. Effectivement nous avons tenté de l'utiliser via ligne de commande mais malheureusement se fut un echec. ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44e.png =25x) <br/>  Heureusement, nous avons trouver une alternative en utilisant le Github Desktop. L'utilisation est identique mais avec un interface graphique. L'utilisation de Github nous a bien rendu service pour travail en même temps et pour y récupèrer de temps à autres des données. ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44d.png =25x)
+6. Un de nos principales problèmes était de pouvoir utiliser un seul projet que l'utilisateur importerait dans notre interface web. Le format .geojson a été choisi car il est supporté autant par OpenLayers que par cesium. Ce format "text" nous permet facilement d'attaquer la donnée qui se trouve à l'intérieur. Pour ce faire nous avons du créer un parseur qui récupère le texte du geojson. Dans le fichier json_data.js, nous crééons une constante vide. Ensuite dans le fichier ViewOpenlayers.vue, nous attribuons avec la commande "getJSONcontent" une valeur à la constante sharejson. Avec cette astuce, il est maintenant possible de récupère cette constante depuis le fichier ViewCesium.vue et de charger la data dans cesium. ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44d.png =25x)
+7. Concernant l'import des données de projet (fichier .geojson) et l'ouverture de la fenêtre qui permet d'aller chercher le bon fichier sur le pc de l'utilisateur, nous avons un problème concernant le nombre de clic à effectuer ainsi que l'ordre des clics sur les boutons. Effectivement nous devions cliquer d'abord sur le bouton pour parcourir les fichiers (aucun fenêtre ne s'ouvrait), puis cliquer sur le bouton d'import du projet, puis de nouveau sur le bouton qui ouvrait la fenêtre pour parcourir les fichiers. Pour remédier à ceci, nous avons fait une fonction asynchrone. Lorsque nous cliquons sur le bouton pour importer un json, en arrière plan, un clic est effectué sur le bouton caché qui sert à ouvrir la fenêtre pour aller rechercher le bon fichier de l'utilisateur. Le bouton caché est réalisé en utilisant la balise "hidden= "true"" sur l'id "file-input". Le clic est reprit avec l'id "file-input" dans le fichier import_projet.js. ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44d.png =25x)
+8. Structure des données pour utilisation avec turf.js
+9. Avec cesium (ViewCesum.vue) nous n'avons pas réussi à fair fonctionner des paramètres particuliers avec par exemple la fonction "Cesium.GeoJsonDataSource.load". Effectivement selon la documentation et les exemples vu, il devrait être possible de gérer si une couche importée soit visible ou non avec la propriété "show = true or false (booléean))"
 
 ### Conclusion
 
