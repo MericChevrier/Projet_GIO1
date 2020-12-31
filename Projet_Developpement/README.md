@@ -42,6 +42,9 @@ Les données téléchargées dans notre projet sont donc tous en WGS84 avec une 
 L'utilisateur qui voudra charger son projet devra donc tenir compte du système de coordonnée ainsi que du format. Dans le cas contraire, l'ajout du projet echouera.
 
 ### Problème
+Tout au long du projet, nous avons été confronté à de nombreux problème que nous avons, dans la majoritée des cas, résolu.
+1. Se remettre aux languages de programmation js, html et css que nous utlisons que dans des rares occasions, si ce n'est jamais dans le cadre de notre travail. ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44d.png =25x)
+2. L'apprentissage de vue.js a été compliqué et pas évidente. Nous avons remarqué que nos connaissances sur vue.js se sont améliorées. Nous l'utilisons actuellement à un niveau basique. ![alt text](https://images.emojiterra.com/google/android-10/512px/270a.png =30x)
 
 ### Conclusion
 

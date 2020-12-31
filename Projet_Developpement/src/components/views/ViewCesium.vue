@@ -1,4 +1,5 @@
 <template>
+
   <div id="ces-container">
     <!--Menu de gauche - situation de base--> 
     <div id="cesium-container">
