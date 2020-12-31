@@ -24,13 +24,13 @@
 		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="CesiumImportProjet()">Afficher le projet en 3D</button>
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Projet :</U></h3>
         <!-- affichage des données du projet sur clic du bouton validation -->
-		  	<p><label class="is-size-7 has-text-black">Nom du projet :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Nom du projet : {{name}}</label></p>
 		  	<p><label class="is-size-7 has-text-black">Volume d'implantation : m³</label></p>
         <h3 class="subtitle is-6"><U>Respect des restrictions 3D :</U></h3>
         <!-- contrôle du projet par rapport au aire d'implantation 3D -->
 		  	<p><label class="is-size-7 has-text-black">Implantation :</label></p>
         <!-- bouton qui affiche le nom du projet, calcul son volume et contrôle son implantation 3D -->
-        <button class="button is-small" type="button" name="validation3D" id="validation3D" v-on:click="calcul_validation3D()">Validation 3D</button>
+        <button class="button is-small" type="button" name="validation3D" id="validation3D" v-on:click="intersecttt(this.projet, this.air_implantation)">Validation 3D</button>
 		  </div>
 	  </div>
   </div>
@@ -51,7 +51,10 @@ export default {
       //position et zoom du globe cesium de base, variables de base
       center: [7.39994, 46.23544],
       defaultheight:1500.,
-      viewer:null,   
+      viewer:null,
+      name:'',
+      projet:null,
+      air_implantation:null,
     }
   },
 
@@ -88,6 +91,7 @@ export default {
         }
         var dataSource = Cesium.GeoJsonDataSource.load(obj,jsonOptions);
         this.viewer.dataSources.add(dataSource);
+        dataSource = Cesium.Visibility.NONE;
         //this.viewer.zoomTo(dataSource); // propriétés que nous arrivons pas à faire fonctionner
         //dataSource.show = false; // propriétés que nous arrivons pas à faire fonctionner
         return dataSource
@@ -95,12 +99,21 @@ export default {
     
   // fonction d'import pour projet json
     CesiumImportProjet : function(){
-        var dataSource = Cesium.GeoJsonDataSource.load(shared_project.data,{
-          //show :true // propriétés que nous arrivons pas à faire fonctionner
-          });
-        this.viewer.dataSources.add(dataSource);
-        //this.viewer.zoomTo(dataSource); // propriétés que nous arrivons pas à faire fonctionner
+      this.name = shared_project.data.name;
+      var dataSource = Cesium.GeoJsonDataSource.load(shared_project.data,{
+        //show :true // propriétés que nous arrivons pas à faire fonctionner
+      });
+      var projet = this.viewer.dataSources.add(dataSource);
+      //this.viewer.zoomTo(dataSource); // propriétés que nous arrivons pas à faire fonctionner
+      return projet
     },
+
+    // intersecttt : function(projet, aire_implantation){
+    //   console.log(projet);
+    //   console.log(aire_implantation);
+    //   console.log(Cesium.Intersect(projet, aire_implantation))
+
+    // }
   },
 
   mounted() {
@@ -111,6 +124,10 @@ export default {
     // positionement de base de la caméra
     this.flytodirection(this.center,this.defaultheight,this.viewer);
     //import de couches de bases qui concerne les restrictions
+    // this.air_implantation = this.viewer.entities.add("geojson/Aire_implantation_3D_transfo_WGS84_Helli.geojson")
+    // this.projet = this.viewer.entities.add("geojson/cesium_projet_test.geojson", {
+    //     _show : false // propriétés que nous arrivons pas à faire fonctionner
+    //   })
     this.CesiumImportJson("geojson/Aire_implantation_3D_transfo_WGS84_Helli.geojson")
     // this.CesiumImportJson("geojson/MNT_coupe_transfo_WGS84_Helli.geojson")
   },
