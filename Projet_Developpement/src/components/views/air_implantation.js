@@ -1,24 +1,16 @@
-import { sharedproject } from './json_data.js';
-function loadJSON(callback) {
+// constantes globales
+import { shared_aire_implantation } from './const_globales.js';
 
+// chargement du geojson des aires d'implantation de la commune et affectation à une constante globale
+export function loadJSON() {
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
     xobj.open('GET', 'geojson/Aire_Implantation.geojson', true)
     xobj.onreadystatechange = function () {
         if (xobj.readyState == 4 && xobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xobj.responseText);
+            // Parse JSON string into object
+            shared_aire_implantation.data = JSON.parse(xobj.responseText);
         }
     };
     xobj.send(null);
-};
-export function init() {
-    let that = this
-    loadJSON(function (response) {
-        // Parse JSON string into object
-        sharedproject.data = JSON.parse(response);
-        //sharedproject.data = data;
-        console.log(sharedproject.data);
-        //that.messages = data.messages
-    });
 };

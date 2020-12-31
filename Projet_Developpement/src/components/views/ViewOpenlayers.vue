@@ -44,7 +44,7 @@
         <!-- contrôle du projet par rapport au aire d'implantation -->
 				<p><label class="is-size-7 has-text-black">Implantation : {{validation}}</label></p>
         <!-- bouton qui affiche le nom du projet, calcul sa surface et contrôle son implantation -->
-        <button class="button is-small" type="button" name="validation" id="validation" v-on:click="intersection()">Validation</button>
+        <button class="button is-small" type="button" name="validation" id="validation" v-on:click="calcul_validation()">Validation</button>
 			</div>
 		</div>
   </div>
@@ -66,13 +66,11 @@ import GeoJSON from 'ol/format/GeoJSON';
 import * as olProj from 'ol/proj';
 // fichier js externes
 import * as import_json from './import_json.js';
-import * as import_base from './import_base.js';
 import * as import_projet from './import_projet.js';
-import * as chaine_json from './chaine_json.js';
 import * as air_implant from './air_implantation.js';
 // constantes globales
-import { sharejson } from './json_data.js';
-import { sharedproject } from './json_data.js';
+import { shared_project } from './const_globales.js';
+import { shared_aire_implantation } from './const_globales.js';
 // librairies de calcul turf
 import * as turf from '@turf/turf';
 import { intersect } from '@turf/intersect';
@@ -80,10 +78,6 @@ import { feature, polygon } from '@turf/helpers';
 import { area } from '@turf/area';
 import { booleanContains } from '@turf/boolean-contains';
 import { polygonize } from '@turf/polygonize';
-
-
-
-
 
 
 export default {
@@ -96,12 +90,11 @@ export default {
       mapbox_satellite:null,
       zoom: 12,
       mapbox_url_rues: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg',
-      mapbox_name_rues: 'mapbox_rues',
       mapbox_url_satellite: 'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg',
-      mapbox_name_satellite: 'mapbox_satellite',
       validation: ''
     }
   },
+
   computed:{
     /**
      * Transform coordinate from EPSG:4326 to EPSG:3857
@@ -113,9 +106,9 @@ export default {
       return olProj.transform(this.center, 'EPSG:4326', 'EPSG:3857');
     }
   },
+
   methods: {
 
-    
     /**
      * Init Openlayers map
      *
@@ -133,7 +126,8 @@ export default {
       })
     },
 
-    setupmapbox (url, name, visibility) {
+    // initiatlisation des fonds de carte mapbox
+    setupmapbox (url, visibility) {
       var name = new TileLayer({
         source: new XYZ({
           url: url
@@ -144,7 +138,6 @@ export default {
     this.olmap.addLayer(name)
     return name
     },
-
 
     //changement de fond de carte
 		changeBaselayer : function (layer) {
@@ -230,28 +223,28 @@ export default {
         }
     },
  
-
     //import projet en json
     import_projet : import_projet.import_json,
-    //
+
+    // affectation du block de text json à une constante et import du projet dans la carte
     getJSONcontent : function(json){
-      sharejson.data=JSON.parse(json)
-      sharejson.object=json
-      this.projet = chaine_json.AddVectorLayer2(this.olmap);
+      shared_project.data=JSON.parse(json)
+      this.projet = import_json.AddVectorLayer_object(this.olmap);
     },
 
-    intersection : function(){
-      // création d'un polygone avec le projet importé
-      var projet = polygon(sharejson.data.features[0].geometry.coordinates);
+    // fonction du bouton validation
+    calcul_validation : function(){
       // récupération du nom du projet
-      this.name = sharejson.data.name;
+      this.name = shared_project.data.name;
+      // création d'un polygone avec le projet importé
+      var projet = polygon(shared_project.data.features[0].geometry.coordinates);
       // calcul de la surface du projet => ne fonctionne que pour les projets 2D
       var surface_calc = turf.area(projet);
       if (surface_calc){this.surface = turf.round(surface_calc, 2)}
       // validation du projet par rapport aux aires d'implantation de la commune
       var count = 0
-      for (const features in sharedproject.data.features) {
-        var air_implant = polygon(sharedproject.data.features[features].geometry.coordinates[0]);
+      for (const features in shared_aire_implantation.data.features) {
+        var air_implant = polygon(shared_aire_implantation.data.features[features].geometry.coordinates[0]);
         var contains = turf.booleanContains(air_implant, projet);
         if (contains == true){count += 1}
       }
@@ -264,20 +257,20 @@ export default {
 
     // création de la carte avec couches de bases
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
-    this.mapbox_rues = this.setupmapbox(this.mapbox_url_rues, this.mapbox_name_rues, true)
-    this.mapbox_satellite = import_base.setupmapbox(this.mapbox_url_satellite, this.mapbox_name_satellite, false, this.olmap)
+    this.mapbox_rues = this.setupmapbox(this.mapbox_url_rues, true)
+    this.mapbox_satellite = this.setupmapbox(this.mapbox_url_satellite, false)
     // ajout de nos couches geojson affichables
-    this.surface_cs = import_json.AddVectorLayer( "geojson/MO_CS_WGS84.geojson",this.olmap, false, 'surface_cs');
-    this.od_lineaire = import_json.AddVectorLayer( "geojson/MO_OD_Autre_lineaire_WGS84.geojson",this.olmap, false, 'od_lineaire');
-    this.od_surfacique = import_json.AddVectorLayer( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson",this.olmap, false, 'od_surfacique');
-    this.aire_implantation = import_json.AddVectorLayer( "geojson/Aire_Implantation.geojson",this.olmap);
-    this.batiment = import_json.AddVectorLayer('geojson/MO_CS_Batiment_WGS84.geojson',this.olmap, false, 'batiment');
-    this.bien_fond = import_json.AddVectorLayer( "geojson/MO_BF_Parcelle_WGS84.geojson",this.olmap, false, 'bien_fond');
+    this.surface_cs = import_json.AddVectorLayer_url( "geojson/MO_CS_WGS84.geojson",this.olmap, false, 'surface_cs');
+    this.od_lineaire = import_json.AddVectorLayer_url( "geojson/MO_OD_Autre_lineaire_WGS84.geojson",this.olmap, false, 'od_lineaire');
+    this.od_surfacique = import_json.AddVectorLayer_url( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson",this.olmap, false, 'od_surfacique');
+    this.aire_implantation = import_json.AddVectorLayer_url( "geojson/Aire_Implantation.geojson",this.olmap);
+    this.batiment = import_json.AddVectorLayer_url('geojson/MO_CS_Batiment_WGS84.geojson',this.olmap, false, 'batiment');
+    this.bien_fond = import_json.AddVectorLayer_url( "geojson/MO_BF_Parcelle_WGS84.geojson",this.olmap, false, 'bien_fond');
     // création des variables d'affichage des données du projet
     var name = '';
     var surface = '';
-    // création des aires d'implantation compatibles avec les calculs turf
-    air_implant.init();
+    // chargement du geojson des aires d'implantation de la commune et affectation à une constante globale
+    air_implant.loadJSON();
   }
 
 }

@@ -1,5 +1,4 @@
 <template>
-
   <div id="ces-container">
     <!--Menu de gauche - situation de base--> 
     <div id="cesium-container">
@@ -31,7 +30,7 @@
         <!-- contrôle du projet par rapport au aire d'implantation 3D -->
 		  	<p><label class="is-size-7 has-text-black">Implantation :</label></p>
         <!-- bouton qui affiche le nom du projet, calcul son volume et contrôle son implantation 3D -->
-        <button class="button is-small" type="button" name="validation3D" id="validation3D" v-on:click="intersection3D()">Validation 3D</button>
+        <button class="button is-small" type="button" name="validation3D" id="validation3D" v-on:click="calcul_validation3D()">Validation 3D</button>
 		  </div>
 	  </div>
   </div>
@@ -42,7 +41,7 @@
 import "cesium/Build/Cesium/Widgets/widgets.css";
 import * as Cesium from 'cesium';
 // import des constantes globales
-import { sharejson } from './json_data.js';
+import { shared_project } from './const_globales.js';
 
 
 export default {
@@ -97,7 +96,7 @@ export default {
     
   // fonction d'import pour projet json
     CesiumImportProjet : function(){
-        var dataSource = Cesium.GeoJsonDataSource.load(sharejson.data,{
+        var dataSource = Cesium.GeoJsonDataSource.load(shared_project.data,{
           //show :true // propriétés que nous arrivons pas à faire fonctionner
           });
         this.viewer.dataSources.add(dataSource);

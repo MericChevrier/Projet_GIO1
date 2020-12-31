@@ -1,4 +1,4 @@
-class jsondata{
+class projectdata{
     #data;
     get data(){
         return this.#data;
@@ -14,9 +14,9 @@ class jsondata{
         this.#object = {json}
     }
 }
-export const sharejson = new jsondata();
+export const shared_project = new projectdata();
 
-class projectdata{
+class aire_implantation_data{
     #data;
     get data(){
         return this.#data;
@@ -25,4 +25,4 @@ class projectdata{
         this.#data = json
     }
 }
-export const sharedproject = new projectdata();
+export const shared_aire_implantation = new aire_implantation_data();

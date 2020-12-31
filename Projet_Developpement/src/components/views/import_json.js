@@ -1,8 +1,11 @@
+// outils de base
 import 'ol/ol.css';
 import Vector from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import { Circle as CircleStyle, Fill, Stroke, Style } from 'ol/style';
+// constantes globales
+import { shared_project } from './const_globales.js';
 
 // gestion des styles des couches de la MO
 var styles = {
@@ -47,7 +50,7 @@ var styles = {
 }
 
 // fonction d'import de couches geojson en donnant le chemin vers la couche
-export function AddVectorLayer(layer_url, olmap, visibility, StyleName) {
+export function AddVectorLayer_url(layer_url, olmap, visibility, StyleName) {
     if (visibility === undefined) { visibility = false }
     var layer = new Vector({
         source: new VectorSource({
@@ -62,3 +65,16 @@ export function AddVectorLayer(layer_url, olmap, visibility, StyleName) {
     return layer
 }
 
+// fonction d'import de couches geojson en donnant l'objet json
+export function AddVectorLayer_object(olmap) {
+  var layer = new Vector({
+    source: new VectorSource({
+      features: new GeoJSON().readFeatures(shared_project.data, {
+        dataProjection: 'EPSG:4326',
+        featureProjection: 'EPSG:3857'
+      }),
+    }),
+    visible: 'True',
+  });
+  olmap.addLayer(layer)
+}
