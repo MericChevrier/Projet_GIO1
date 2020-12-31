@@ -7,13 +7,11 @@
 		  <div id="situation">
         <!--Titres et création des divers boutons pour l'affichage des couches souhaitées-->
 		  	<h1 class="title is-4">Vue3D</h1>
-			  <input class="input is-primary is-small" type="text" placeholder="Text" id="search" name="barre_recherche">
-        <button class="button is-small" type="button">Recherche</button>
-				<h2 class="subtitle is-6 has-text-left has-text-weight-semibold">Gestion des couches</h2>
-        <p><label class="checkbox subtitle is-6"><input type="checkbox" name="MNT" onclick="change_MNT(this.checked)"> MNT</label></p>
-		  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="swissbuilding" onclick="change_swissbuilding(this.checked)"> SwissBuilding</label></p>
-		  	<p><label class="checkbox subtitle is-6"><input type="checkbox" name="volume_implantation" onclick="volume_implantation(this.checked)"> Volume d'implantation</label></p>
-        <!-- <p><label class="is-size-7 has-text-black"><input type="checkBox" id="mnt" v-on:click="ChangeLayerVisibility('mnt')"> mnt</label></p> -->
+				<h2 class="subtitle is-6 has-text-left">Gestion des couches :</h2>
+			  <h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Couches restrictives</U></h3>
+        <!-- bouton permettant l'affichage ou non des données restrictives -->
+        <p><label class="is-size-7 has-text-black"><input type="checkBox" id="MNT" v-on:click="ChangeLayerVisibility('MNT')"> Modèle numérique de terrain</label></p>
+        <p><label class="is-size-7 has-text-black"><input type="checkBox" id="volume_implantation" v-on:click="ChangeLayerVisibility('volume_implantation')"> Volume d'implantation</label></p>
 			</div>
     </div>
 		
@@ -22,48 +20,42 @@
 		  <div id="information_projet">
         <!--Titres et création des divers boutons pour l'affichage des couches souhaitées-->
 		  	<h1 class="title is-4">Information sur le projet</h1>
+        <!-- bouton de chargement du projet 3D à contrôler -->
 		  	<button class="button is-small" type="button" id="cesium_import_json" v-on:click="CesiumImportProjet()">Afficher le projet en 3D</button>
-		  	<h2 class="subtitle is-5 has-text-weight-semibold">Général :</h2>
-		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Mensuration officielle :</U></h3>
-		  	<p><label class="is-size-7 has-text-black">Propriétaire :</label></p>
-		  	<p><label class="is-size-7 has-text-black">Porteur du projet :</label></p>
-		  	<p><label class="is-size-7 has-text-black">Parcelle:</label></p>
-		  	<p><label class="is-size-7 has-text-black">Date de mise à l'enquête :</label></p>
-		  	<p><label class="is-size-7 has-text-black">Zone d'affectation :</label></p>
-		  	<p><label class="is-size-7 has-text-black">Surface de plancher :</label></p>
-		  	<p><label class="is-size-7 has-text-black">Surface au sol :</label></p>
-		  	<button class="button is-small" type="button" name="validation" id="validation" onclick="poly_draw()">Validation</button>
-		  	<h3 class="subtitle is-6"><U>Respect des restrictions 3D :</U></h3>
-		  	<p><label class="is-size-7 has-text-black">Volume d'implantation :</label></p>
+		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Projet :</U></h3>
+        <!-- affichage des données du projet sur clic du bouton validation -->
+		  	<p><label class="is-size-7 has-text-black">Nom du projet :</label></p>
+		  	<p><label class="is-size-7 has-text-black">Volume d'implantation : m³</label></p>
+        <h3 class="subtitle is-6"><U>Respect des restrictions 3D :</U></h3>
+        <!-- contrôle du projet par rapport au aire d'implantation 3D -->
+		  	<p><label class="is-size-7 has-text-black">Implantation :</label></p>
+        <!-- bouton qui affiche le nom du projet, calcul son volume et contrôle son implantation 3D -->
+        <button class="button is-small" type="button" name="validation3D" id="validation3D" v-on:click="intersection3D()">Validation 3D</button>
 		  </div>
 	  </div>
   </div>
 </template>
 
 <script>
+// import des outils de base
 import "cesium/Build/Cesium/Widgets/widgets.css";
 import * as Cesium from 'cesium';
+// import des constantes globales
 import { sharejson } from './json_data.js';
-//import * as MNT_funct from './MNT.js';
 
 
 export default {
   name: "CesiumGlobeView",
   data() {
     return{
-      //position et zoom du globe cesium de base
-      center: [7.40, 46.23],
+      //position et zoom du globe cesium de base, variables de base
+      center: [7.39994, 46.23544],
       defaultheight:1500.,
-      viewer:null,
-      mnt:null,
-      
+      viewer:null,   
     }
   },
 
-  methods: {
-    
-    
-    
+  methods: {    
     /**
      * Fly to position 
      * 
@@ -84,88 +76,44 @@ export default {
     setupCesiumGlobe () {
       let viewer = new Cesium.Viewer('cesium-container', {
         terrainProvider: new Cesium.createWorldTerrain(),
-        //feature: new Cesium.GeoJsonDataSource.load(sharejson.data)
       });
       viewer.scene.primitives.add(Cesium.createOsmBuildings());
       return viewer;
-    },  
+    },
+
     // fonction d'import pour fichiers json
     CesiumImportJson : function(obj){
         var jsonOptions = {
-        // show : Set(false)
+        //show : true // propriétés que nous arrivons pas à faire fonctionner
       }
         var dataSource = Cesium.GeoJsonDataSource.load(obj,jsonOptions);
         this.viewer.dataSources.add(dataSource);
-        //this.viewer.zoomTo(dataSource);
-        //dataSource.show = false;
+        //this.viewer.zoomTo(dataSource); // propriétés que nous arrivons pas à faire fonctionner
+        //dataSource.show = false; // propriétés que nous arrivons pas à faire fonctionner
         console.log("hello");
         return dataSource
     },
     
-
-
   // fonction d'import pour projet json
     CesiumImportProjet : function(){
         var dataSource = Cesium.GeoJsonDataSource.load(sharejson.data,{
-          show :1
+          //show :true // propriétés que nous arrivons pas à faire fonctionner
           });
         this.viewer.dataSources.add(dataSource);
-        this.viewer.zoomTo(dataSource);
-        console.log("hello");
+        //this.viewer.zoomTo(dataSource); // propriétés que nous arrivons pas à faire fonctionner
     },
-
-
-        //Affichage du fond de carte
-		// ChangeLayerVisibility : function (layer) {
-    //   switch (layer) {
-    //     case "mnt":
-    //       if(document.getElementById(layer).checked == true){
-    //         this.mnt = mnt.show;
-    //       }
-    //       else {
-    //         this.mnt = !mnt.show;
-    //       }
-    //       break;
-        // case "volume_implantation":
-        //   if(document.getElementById(layer).checked == true){
-        //     this.surface_cs.setVisible(true);
-        //   }
-        //   else {
-        //     this.surface_cs.setVisible(false);
-        //   }
-        //   break;
-    //     }
-    //   console.log(document.getElementById(layer).checked);
-    //   console.log("ChangeLayerVisibility(\"" + layer + "\")");
-    // },
-    //   Sandcastle.addToolbarButton('Toggle Ellipsoids', function () {
-    //   this.mnt.show = !this.mnt.show;
-    // })
-
   },
-  mounted() {
-    var show = '';
 
+  mounted() {
     // add cesium ion token to the app
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZDUzNGNhNC0wYmFmLTQ0MWMtYjAxNS1iNjY1ZmNkY2VhYTUiLCJpZCI6MzgxMjcsImlhdCI6MTYwNTk2NDc5Mn0.PYaP8WOSB4mIuk_kBnuIz1xcJc5rewQbB0xoyUjuW8I';
-    //initialisation du globe Cesium
+    //initialisation du viewer globe Cesium
     this.viewer = this.setupCesiumGlobe();
-    // var entities = this.viewer.entities;
-    // console.log(entities);
-    var MNT = this.viewer.entities.add(new Cesium.Entity());
-    console.log(MNT);
     // positionement de base de la caméra
     this.flytodirection(this.center,this.defaultheight,this.viewer);
-    //var projetjson = sharejson.data
-    //import de couches de bases
-    //this.CesiumImportJson("geojson/MNT_coupe_transfo_WGS84_Helli.geojson")
-    //this.CesiumImportJson("geojson/Aire_implantation_3D_transfo_WGS84_Helli.geojson")
-    this.mnt = this.CesiumImportJson('geojson/MNT_coupe_transfo_WGS84_Helli.geojson');
-    //this.mnt = this.MNT_cesium();
-    //this.mnt.show = false;
-    window.Sandcastle.addToolbarButton("MNT", function () {
-    this.mnt.show = !this.mnt.show;
-    });
+    //import de couches de bases qui concerne les restrictions
+    this.CesiumImportJson("geojson/Aire_implantation_3D_transfo_WGS84_Helli.geojson")
+    this.CesiumImportJson("geojson/MNT_coupe_transfo_WGS84_Helli.geojson")
   },
 };
 </script>
