@@ -45,6 +45,19 @@ L'utilisateur qui voudra charger son projet devra donc tenir compte du système 
 Tout au long du projet, nous avons été confronté à de nombreux problème que nous avons, dans la majoritée des cas, résolu.
 1. Se remettre aux languages de programmation js, html et css que nous utlisons que dans des rares occasions, si ce n'est jamais dans le cadre de notre travail. ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44d.png =25x)
 2. L'apprentissage de vue.js a été compliqué et pas évidente. Nous avons remarqué que nos connaissances sur vue.js se sont améliorées. Nous l'utilisons actuellement à un niveau basique. ![alt text](https://images.emojiterra.com/google/android-10/512px/270a.png =30x)
+3. Idem pour l'utilisation de cesium. ![alt text](https://images.emojiterra.com/google/android-10/512px/270a.png =30x)
+4. Quelques problèmes ont été rencontré au niveau des données de bases. Effectivement les transformations de coordonnées de MN95 --> WGS84, NF02 --> hauteur ellipsoidale et du format .dxf au .geojson n'a pas été facile. Pour régler ces soucis, nous avons du utiliser les programmes suivants : 
+    - GeoSuite (transformation par lots, Reframe)
+    - FME   
+    - 3DReshaper
+    - QGis
+    Les données concernants les swissBuildings3.0, n'ont pas été utilisé car leurs transformations en .geojson n'a pas abouti. Effectivement ces dernières données sont un sorte de hachures et non des maillages. De se fait, lors des transformations, les informations concernants les altitudes ne suivaient pas. Dans le cadre de se projet, cela n'est pas très grave car nous avons déjà les bâtiments en 3D depuis la source de donnée OSM. Les swissBuildings3.0 auraient amené une meilleures précision ainsi que des détails plus fin. Il serait intéressant de prendre contact avec swisstopo pour qu'il nous fournisse directement les données dans le format voulu. Ci-après, un lien intéressant qui pourrait aussi nous aider : [exemple avec swissBuildings3.0](https://codepen.io/geoadmin/pen/zBEYGE?editors=0011) ![alt text](https://images.emojiterra.com/google/android-pie/512px/1f44d.png =25x)
+5. Un de nos principales problèmes était de pouvoir utiliser un seul projet que l'utilisateur importerait dans notre interface web. Le format .geojson a été choisi car il est supporté autant par OpenLayers que par cesium. Ce format "text" nous permet facilement d'attaquer la donnée qui se trouve à l'intérieur. Pour ce faire nous avons du créer un parseur qui
+récuperer le texte du geojson --> callback est un fonction qu'on retourve dans le shared project qui est récuperable getJSONContent representer par le callback avec la fonction import json
+dans cesium ont utilise shared_project (constante globale qu'on a créer précédement) on rempli la constante via openlayer vue avec getjson contain et après cesium va rechercher cette constante
+6. 
+7. 
+8. 
 
 ### Conclusion
 
