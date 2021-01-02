@@ -3,6 +3,7 @@
   <!-- Bulma: menu tabs -->
   <div class="tabs is-centered">
     <ul>
+      <!-- utilisation des menulist et chemin d'accès créés en dessous -->
       <li v-for="menu in menulist" :key="menu.name" :class="{ 'is-active': currentRoute === menu.route }">
           <router-link :to="menu.route"> {{menu.menuname}} </router-link>
       </li>
@@ -17,6 +18,7 @@ export default {
   name: 'App',
   data(){
     return {
+      // création des différents onglets Vue et chemin d'accès
       menulist:[
         {
           menuname:"Accueil",

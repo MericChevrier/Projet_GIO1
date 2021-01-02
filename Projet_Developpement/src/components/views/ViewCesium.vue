@@ -30,7 +30,7 @@
         <!-- contrôle du projet par rapport au aire d'implantation 3D -->
 		  	<p><label class="is-size-7 has-text-black">Implantation :</label></p>
         <!-- bouton qui affiche le nom du projet, calcul son volume et contrôle son implantation 3D -->
-        <button class="button is-small" type="button" name="validation3D" id="validation3D" v-on:click="intersecttt(this.projet, this.air_implantation)">Validation 3D</button>
+        <button class="button is-small" type="button" name="validation3D" id="validation3D" v-on:click="intersect(this.projet, this.air_implantation)">Validation 3D</button>
 		  </div>
 	  </div>
   </div>
@@ -91,7 +91,7 @@ export default {
         }
         var dataSource = Cesium.GeoJsonDataSource.load(obj,jsonOptions);
         this.viewer.dataSources.add(dataSource);
-        dataSource = Cesium.Visibility.NONE;
+        // dataSource = Cesium.Visibility.NONE; // propriétés que nous arrivons pas à faire fonctionner
         //this.viewer.zoomTo(dataSource); // propriétés que nous arrivons pas à faire fonctionner
         //dataSource.show = false; // propriétés que nous arrivons pas à faire fonctionner
         return dataSource
@@ -99,7 +99,7 @@ export default {
     
   // fonction d'import pour projet json
     CesiumImportProjet : function(){
-      this.name = shared_project.data.name;
+      this.name = shared_project.data.name; //affichage du nom du projet dans le menu de droite
       var dataSource = Cesium.GeoJsonDataSource.load(shared_project.data,{
         //show :true // propriétés que nous arrivons pas à faire fonctionner
       });
@@ -108,7 +108,7 @@ export default {
       return projet
     },
 
-    // intersecttt : function(projet, aire_implantation){
+    // intersect : function(projet, aire_implantation){
     //   console.log(projet);
     //   console.log(aire_implantation);
     //   console.log(Cesium.Intersect(projet, aire_implantation))

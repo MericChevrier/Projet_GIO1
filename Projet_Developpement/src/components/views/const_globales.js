@@ -1,3 +1,5 @@
+// création des constantes globales permettant de reprendre des éléments entre les différents onglets Vue
+
 class projectdata{
     #data;
     get data(){
@@ -5,13 +7,6 @@ class projectdata{
     }
     set data(json){
         this.#data = json
-    }
-    #object;
-    get object(){
-        return this.#object;
-    }
-    set object(json){
-        this.#object = {json}
     }
 }
 export const shared_project = new projectdata();
