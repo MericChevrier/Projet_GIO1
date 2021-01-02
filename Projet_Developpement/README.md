@@ -124,7 +124,7 @@ Le menu de droite est séparé en 3 parties :
 La partie en 3D est séparé sur le même principe que la partie 2D, en 3 parties. A gauche et à droite l'utilisateur trouve des menus et au centre l'interface 3D<br/><br/>![Exemple avec vue 3D](Image_README/Page_3D_General.JPG)
 
 ##### Menu de gauche
-
+Ce menu nous permet de gèrer l'affiche des couches 3D. Ici l'utilisateur à le choix d'afficher le modèle numérique de terrain (MNT) et les volumes d'implantation. Actuellement, la couche des volumes d'implantation est affiché de base.
 ##### Partie du centre
 
 ##### Menu de droite
