@@ -95,11 +95,17 @@ La première à gauche qui est un menu de changement et d'affichage de couche. L
 
 ##### Menu de gauche
 Le menu de gauches est séparé en 3 chapitres :
-1. Fond de plan 
-    - Rue
+1. Fond de plan, qui permet de choisir le fond désiré par l'utilisateur. De base le fond "rues" est affiché.
+    - Rues
     - Satellite qui correspond à une orthophoto
     - Blanc qui correspond à un fond blanc. Il peut être intéressant lors d'affichage des couches de la MO et du projet
-    <br/>![exxxx](Image_README/Page_2D_General_fond_satellite.JPG)
+    <br/>![Exemple avec fond rues](Image_README/Page_2D_General_fond_satellite.JPG)
+2. Mensuration officielle
+ - Biend-fonds
+ - Bâtiments
+ - Objets linéaires
+ - Objets surfaciques
+ - Couverture du sol
 
 #### 3D
 
