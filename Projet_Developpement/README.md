@@ -38,7 +38,8 @@ Pour pouvoir les utiliser, nous avons dû effectuer de nombreux traitement dessu
 - Construction des aires d'implantation
 - Transformation des fichiers au format .geojson qui nous permet d'utiliser les données aussi bien avec OpenLayers qu'avec Cesium
 - ...
-<br/>Les données téléchargées dans notre projet sont donc toutes en WGS84 avec une hauteur ellipsoïdale au format .geojson.
+
+Les données téléchargées dans notre projet sont donc toutes en WGS84 avec une hauteur ellipsoïdale au format .geojson.
 L'utilisateur qui voudra charger son projet devra donc tenir compte du système de coordonnée ainsi que du format. Dans le cas contraire, l'ajout du projet échouera.
 
 ### Problèmes
@@ -51,7 +52,8 @@ Tout au long du projet, nous avons été confrontés à de nombreux problèmes q
     - FME   
     - 3DReshaper
     - QGis
-    <br/>Les données concernant les swissBuildings2.0, n'ont pas été utilisées car leurs transformations en .geojson n'a pas abouti. Effectivement ces dernières données sont une sorte de hachures et non des maillages. De ce fait, lors des transformations, les informations concernant les altitudes ne suivaient pas. Dans le cadre de ce projet, cela n'est pas très grave car nous pouvons utiliser les bâtiments en 3D depuis la source de donnée OSM. Les swissBuildings2.0 auraient amené une meilleure précision ainsi que des détails plus fins. Il serait intéressant de prendre contact avec swisstopo pour qu'ils nous fournissent directement les données dans le format voulu. Ci-après, un lien intéressant qui pourrait aussi nous aider : [exemple avec swissBuildings2.0](https://codepen.io/geoadmin/pen/zBEYGE?editors=0011)
+
+Les données concernant les swissBuildings2.0, n'ont pas été utilisées car leurs transformations en .geojson n'a pas abouti. Effectivement ces dernières données sont une sorte de hachures et non des maillages. De ce fait, lors des transformations, les informations concernant les altitudes ne suivaient pas. Dans le cadre de ce projet, cela n'est pas très grave car nous pouvons utiliser les bâtiments en 3D depuis la source de donnée OSM. Les swissBuildings2.0 auraient amené une meilleure précision ainsi que des détails plus fins. Il serait intéressant de prendre contact avec swisstopo pour qu'ils nous fournissent directement les données dans le format voulu. Ci-après, un lien intéressant qui pourrait aussi nous aider : [exemple avec swissBuildings2.0](https://codepen.io/geoadmin/pen/zBEYGE?editors=0011)
     
 5. L'utilisation de Github nous a aussi posé des soucis. Effectivement nous avons tenté de l'utiliser via ligne de commande mais malheureusement se fut un échec. <br/>Heureusement, nous avons trouvé une alternative en utilisant le Github Desktop. L'utilisation est identique mais avec une interface graphique. L'utilisation de Github nous a bien rendu service pour travailler en même temps et pour y récupérer de temps à autres des données.
 6. Un de nos principaux problèmes était de pouvoir utiliser un seul projet que l'utilisateur importerait dans notre interface web. Le format .geojson a été choisi car il est supporté autant par OpenLayers que par cesium. Ce format "texte" nous permet facilement d'attaquer la donnée qui se trouve à l'intérieur. Pour ce faire nous avons dû utiliser un parseur qui récupère le texte du geojson. Dans le fichier const_globales.js, nous créons une constante vide. Ensuite dans le fichier ViewOpenlayers.vue, nous attribuons avec la commande "getJSONcontent" une valeur à la constante sharejson. Avec cette astuce, il est maintenant possible de récupérer cette constante depuis le fichier ViewCesium.vue et de charger la data dans cesium. Cependant il faut encore faire un clic dans la fenêtre 3D sur "Afficher le projet en 3D" car nous n'avons pas réussi à le lier au bouton de la fenêtre 2D.
