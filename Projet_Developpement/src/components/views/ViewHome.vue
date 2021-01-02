@@ -1,55 +1,70 @@
 <template>
-  <div id="body">
-    <div class="tile is-ancestor">
-      <div class="tile is-vertical is-8">
-        <div class="tile">
-          <div class="tile is-parent is-vertical">
-            <article class="tile is-child notification is-warning">
-             <p class="title">Commune de Bramois</p>
-             <p class="subtitle">Police des constructions</p>
-             <p class="is-size-6">cndjwivbfiuvbeijvfnivbaijvnfejbfi</p>
-            </article>
-            <article class="tile is-child box">
-             <p class="title">Projet GI01</p>
-             <figure class="image is-16by9">
-                <img src="../../../src/assets/hes-so-master.png">
-              </figure>
-           </article>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child notification is-info">
-              <p class="title">Description de l'équipe</p>
-              <p class="subtitle">xxx</p>
-              <p class="is-size-6">cdwnvjibviuqrenijfndc jdnveiufbiuewncjsdnciurb</p>
-            </article>
-          </div>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-danger">
-            <p class="subtitle-7">Copyright</p>
-            <p class="is-size-7">Développé par A.Bosson, M.Chevrier et Q.Bobillier @SP2020MDT</p>
-            <div class="content">
-            <!-- Content -->
-            </div>
-          </article>
-        </div>
-     </div>
-      <div class="tile is-parent">
-        <article class="tile is-child notification is-success">
-          <div class="content">
-            <p class="title">Notice d'utilisation</p>
-            <p class="subtitle">Carte 2D</p>
-            <p class="is-size-6">cdwnvjibviuqrenijfndc jdnveiufbiuewncjsdnciurb</p>
-            <p class="subtitle">Carte 3D</p>
-            <p class="is-size-6">cdwnvjibviuqrenijfndc jdnveiufbiuewncjsdnciurb</p>
-            <div class="content">
-              <!-- Content -->
-            </div>
-          </div>
-        </article>
+  <div>
+  <section class="hero is-medium is-primary is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title is-spaced">
+          Outils de validation pour les nouvelles contructions 
+        </h1>
+        <h2 class="subtitle">
+          Interface 2D + 3D
+        </h2>
       </div>
     </div>
+  </section>
   
+
+  <section class="section">
+    <div class="container" style="text-align: left">
+      <h1 class="title is-spaced">Description du Projet</h1>
+        <h2 class="subtitle">  
+          Pour ce projet, il nous a été demander de développer une petite application web de type "géoportail". 
+          Ci-dessous, quelques points spécifiques qui nous ont été demandé :
+        </h2>
+
+        <ul class="block-list" style="color: black">
+          <li>- Le développement doit se faire avec vue.js</li>
+          <li>- Intégrer une librairie avec des composants</li>
+          <li>- Menu d'accueil permettant d'afficher des couches spécifiques selon les désirent de l'utilisateur</li>
+          <li>- Pages affichants des données géographiques en 2D et 3D (OpenLayers et Cesium)</li>
+          <li>- Une page statique décrivent le projet, les outils et l'équipe</li>
+          <li>- Le projet doit être contrôlé et stocké sur Github</li>
+        </ul>  
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="text-align: left">
+      <h1 class="title is-spaced">Outils Développés</h1>
+        <h2 class="subtitle">  
+          Pour respecter ces contraintes, nous avons choisi de développé un site web 2D et 3D intéractif ayant une utilitée pour notre métier. 
+          Un outil de validation de nouvelles constructions selon les contraintes liées à l'aménagement du territoire et de la mensuration officielle (MO). 
+          L'utilisateur pourra introduire son projet (par ex. bâtiment) dans le site web, visualiser son emplacement en 2D et 3D, soit son intégration dans l'environnement construit. 
+          Il pourra ensuite contrôler si la construction respecte les contraintes d'aménagement du territoire en appuyant sur un bouton de validation. 
+          Le site web retournera ensuite différentes informations. Par exemple :
+        </h2>
+
+        <ul class="block-list" style="color: black">
+          <li>- Nom du projet</li>
+          <li>- Surface de la construction</li>
+          <li>- Validation que la construction se situe à l'intérieur d'une aire d'implantation --> validé ou fausse</li>
+        </ul>  
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="container" style="text-align: left">
+      <h1 class="title is-spaced">L'Equipe</h1>
+        <h2 class="subtitle">  
+          L'équipe qui à travaillé sur ce projet est composée de trois étudiants en Master : Bosson Adrien, Bobillier Quentin, Chevrier Méric. L'ensemble des tâches ont été effectuée en collaboration entre les trois étudiants.
+
+        </h2>
+    </div>
+  </section>
+
+
   </div>
 </template>
 
