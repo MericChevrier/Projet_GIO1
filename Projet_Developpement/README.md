@@ -106,19 +106,19 @@ Le menu de gauches est séparé en 3 chapitres :
     - Objets linéaires
     - Objets surfaciques
     - Couverture du sol
-<br/> Ci-dessous un exemple avec le fond blanc et la MO. <br/>![Exemple avec fond blanc et MO](Image_README/Page_2D_General_fond_All.JPG)<br/>
+<br/><br/> Ci-dessous un exemple avec le fond blanc et la MO. <br/>![Exemple avec fond blanc et MO](Image_README/Page_2D_General_fond_All.JPG)<br/>
 3. Restrictions qui contient les restrictions concernat l'implantation des bâtiments.
-    - Aire d'implantation <br/>![Exemple avec aire d'implantation](Image_README/Page_2D_General_fond_Restriction.JPG)
-<br/> Ci-dessous un exemple avec le fond blanc, la MO et les restictions. <br/>![Exemple avec fond blanc, MO et restriction](Image_README/Page_2D_General_fond_All_Restriction.JPG)
+    - Aire d'implantation <br/><br/>![Exemple avec aire d'implantation](Image_README/Page_2D_General_fond_Restriction.JPG)
+<br/><br/> Ci-dessous un exemple avec le fond blanc, la MO et les restictions.<br/> <br/>![Exemple avec fond blanc, MO et restriction](Image_README/Page_2D_General_fond_All_Restriction.JPG)
 
 ##### Partie du centre
 La partie du centre est une interface 2D de naviguation. Pour se déplacer et zoomer dans la fenêtre, l'utilisateur doit utiliser les outils standards de la souris.
 
 ##### Menu de droite
 Le menu de droite est séparé en 3 parties :
-1. Un bouton d'import de projet, qui en cliquant dessus, ouvre une fenêtre qui permet d'aller chercher notre fichier de projet. Le fichier doit être au format .geojson, en WGS84 et avec une hauteur ellipsoidale. <br/>![Exemple avec ouverture de la fenêtre](Image_README/Page_2D_Choisir_Projet.JPG) <br/> Le projet est bien importé. <br/>![Exemple avec projet importé](Image_README/Page_2D_Projet_Import.JPG) 
+1. Un bouton d'import de projet, qui en cliquant dessus, ouvre une fenêtre qui permet d'aller chercher notre fichier de projet. Le fichier doit être au format .geojson, en WGS84 et avec une hauteur ellipsoidale. <br/><br/>![Exemple avec ouverture de la fenêtre](Image_README/Page_2D_Choisir_Projet.JPG) <br/><br/> Le projet est bien importé. <br/><br/>![Exemple avec projet importé](Image_README/Page_2D_Projet_Import.JPG) 
 2. Cette partie concerne les informations du projet. Lors du calcul de validation (voir prochain point --> 3), ces champs seront remplis avec le nom du projet et la surface qui est calulé en live.
-3. La troisième partie est la validation des restricitons selon le projet importé. Lorsque l'utilisateur clic sur le bouton "Validation", un calcul en live est exécuté. Les champs du nom du projet, du calcul de surface et l'information sur la validation du projet. Le champs est rempli avec "validé" si le projet respect les restrictions et "fausse" si le projet ne respect pas les restrictions. <br/> Le projet est conforme aux restrictions. La vérification retourne "validé". <br/><br/>![Exemple avec projet validé](Image_README/Page_2D_Validation.JPG)<br/>![Exemple avec projet validé](Image_README/Page_2D_Validation_Fausse.JPG) <br/> Le projet n'est pas conforme aux restrictions. La vérification retourne "fausse".
+3. La troisième partie est la validation des restricitons selon le projet importé. Lorsque l'utilisateur clic sur le bouton "Validation", un calcul en live est exécuté. Les champs du nom du projet, du calcul de surface et l'information sur la validation du projet. Le champs est rempli avec "validé" si le projet respect les restrictions et "fausse" si le projet ne respect pas les restrictions. <br/> Le projet est conforme aux restrictions. La vérification retourne "validé". <br/><br/>![Exemple avec projet validé](Image_README/Page_2D_Validation.JPG)<br/><br/>![Exemple avec projet validé](Image_README/Page_2D_Validation_Fausse.JPG) <br/><br/> Le projet n'est pas conforme aux restrictions. La vérification retourne "fausse".
 
 #### 3D
 
