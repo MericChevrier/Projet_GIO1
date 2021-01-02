@@ -106,7 +106,7 @@ Le menu de gauches est séparé en 3 chapitres :
     - Objets linéaires
     - Objets surfaciques
     - Couverture du sol
-    <br/><br/> Ci-dessous un exemple avec le fond blanc et la MO. <br/>![Exemple avec fond blanc et MO](Image_README/Page_2D_General_fond_All.JPG)<br/>
+    <br/> Ci-dessous un exemple avec le fond blanc et la MO. <br/><br/>![Exemple avec fond blanc et MO](Image_README/Page_2D_General_fond_All.JPG)<br/>
 3. Restrictions qui contient les restrictions concernat l'implantation des bâtiments.
     - Aire d'implantation <br/><br/>![Exemple avec aire d'implantation](Image_README/Page_2D_General_fond_Restriction.JPG)
 <br/><br/> Ci-dessous un exemple avec le fond blanc, la MO et les restictions.<br/> <br/>![Exemple avec fond blanc, MO et restriction](Image_README/Page_2D_General_fond_All_Restriction.JPG)
