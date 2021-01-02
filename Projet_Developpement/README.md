@@ -85,7 +85,7 @@ Nous pensons que ce projet nous a apporter beaucoup de nouvelles connaissances, 
 Notre site web contient 3 pages différentes. La page d'accueil, la page qui concerne la 2D et celle qui contient la 3D. Pour naviguer entre ces dernières, il vous suffit de cliquer sur le nom (onglet) voulu en haut de chaque page.
 
 #### Accueil
-La page sur laquelle nous arrivons sur le site web, accueil l'utilisateur avec plusieurs informations.<br/>Tous d'abord nous remarquons que le site permet à l'utilisateur de naviguer entre 3 pages : Accueil, 2D et 3D. <br/><br/>![title](Image_README/Onglet_Page.JPG)
+La page sur laquelle nous arrivons sur le site web, accueil l'utilisateur avec plusieurs informations.<br/>Tous d'abord nous remarquons que le site permet à l'utilisateur de naviguer entre 3 pages : Accueil, Carte 2D et Carte 3D. <br/><br/>![title](Image_README/Onglet_Page.JPG)
 <br/><br/>D'autres informations sont également visibles comme une description du projet, une description de l'outil ainsi que l'équipe de travail.
 
 
