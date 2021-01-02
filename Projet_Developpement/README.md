@@ -99,13 +99,13 @@ Le menu de gauches est séparé en 3 chapitres :
     - Rues
     - Satellite qui correspond à une orthophoto
     - Blanc qui correspond à un fond blanc. Il peut être intéressant lors d'affichage des couches de la MO et du projet
-    <br/>![Exemple avec fond rues](Image_README/Page_2D_General_fond_satellite.JPG)
-2. Mensuration officielle
- - Biend-fonds
- - Bâtiments
- - Objets linéaires
- - Objets surfaciques
- - Couverture du sol
+<br/>![Exemple avec fond rues](Image_README/Page_2D_General_fond_satellite.JPG)
+2. Mensuration officielle qui permet d'afficher plusieurs couches de la MO avec un style qui respect les normes.
+    - Biend-fonds
+    - Bâtiments <br/> ![Exemple avec fond rues](Image_README/Page_2D_General_fond_satellite.JPG)
+    - Objets linéaires
+    - Objets surfaciques
+    - Couverture du sol
 
 #### 3D
 
