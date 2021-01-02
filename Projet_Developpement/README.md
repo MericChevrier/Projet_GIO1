@@ -43,7 +43,7 @@ L'utilisateur qui voudra charger son projet devra donc tenir compte du système 
 
 ### Problème
 Tout au long du projet, nous avons été confronté à de nombreux problème que nous avons, dans la majoritée des cas, résolu. Ci-dessous, voici les principaux problèmes rencontrés :
-1. Se remettre aux languages de programmation js, html et css que nous utlisons que dans des rares occasions, si ce n'est jamais dans le cadre de notre travail. ![alt text](Image_README/Pouce_Haut.png =25x)
+1. Se remettre aux languages de programmation js, html et css que nous utlisons que dans des rares occasions, si ce n'est jamais dans le cadre de notre travail. [![alt text](Image_README/Pouce_Haut.png =25x)]
 2. L'apprentissage de vue.js a été compliqué et pas évidente. Nous avons remarqué que nos connaissances sur vue.js se sont améliorées. Nous l'utilisons actuellement à un niveau basique. ![alt text](Image_README/Pouce_Milieu.png =25x)
 3. Idem pour l'utilisation de cesium. ![alt text](Image_README/Pouce_Milieu.png =25x)
 4. Quelques problèmes ont été rencontré au niveau des données de bases. Effectivement les transformations de coordonnées de MN95 --> WGS84, NF02 --> hauteur ellipsoidale et du format .dxf au .geojson n'a pas été facile. Pour régler ces soucis, nous avons du utiliser les programmes suivants : 
