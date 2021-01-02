@@ -116,7 +116,9 @@ La partie du centre est une interface 2D de naviguation. Pour se déplacer et zo
 
 ##### Menu de droite
 Le menu de droite est séparé en 3 parties :
-1. 
+1. Un bouton d'import de projet, qui en cliquant dessus, ouvre une fenêtre qui permet d'aller chercher notre fichier de projet. Le fichier doir être au format .geojson, en WGS84 et avec une hauteur ellipsoidale. <br/>![Exemple avec ouverture de la fenêtre](Image_README/Page_2D_Choisir_Projet.JPG)
+<br/> Le projet est bien importé.
+<br/>![Exemple avec projet importé](Image_README/Page_2D_Projet_Import.JPG)
 2. 
 3. 
 
