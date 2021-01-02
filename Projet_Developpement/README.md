@@ -99,7 +99,7 @@ Le menu de gauches est séparé en 3 chapitres :
     - Rue
     - Satellite qui correspond à une orthophoto
     - Blanc qui correspond à un fond blanc. Il peut être intéressant lors d'affichage des couches de la MO et du projet
-    <br/>![Exemple xxx](Page_2D_General_fond_satellite.JPG)
+    <br/>![title](Page_2D_General_fond_satellite.JPG)
 
 #### 3D
 
