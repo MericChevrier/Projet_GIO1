@@ -26,6 +26,7 @@ Au départ, pour les tâches de préparation, nous avions décidé de se sépare
 - Recherche et préparation des données --> Méric
 - Tests des données en entrée --> Adrien
 - Préparation de la structure html et css --> Quentin
+
 <br/>Nous avons vite remarqué que cette répartition n'était pas optimale, surtout à distance. Nous avons donc revu notre idée et avons décidé de s'entraider sur toutes les tâches. De plus cela permettra que chacun apprenne et comprenne mieux les objectifs du projet. De ce fait chacun a participé à mettre en place des outils .js, vue.js, sur des données OpenLayers et Cesium ainsi que sur les calculs avec turf.js.
 L'outil Teams de Microsoft a aussi été utilisé à chaque fois que nous avons travaillé sur le projet. Il nous a permis de discuter sur nos interrogations et/ou problèmes ainsi que de voir en live de quoi nous parlions. Cette méthodologie nous a permis de compléter nos compétences et connaissances sur les thèmes abordés.
 Le code a été commenté dans le but de faciliter sa compréhension.
