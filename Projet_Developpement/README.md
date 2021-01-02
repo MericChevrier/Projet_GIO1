@@ -53,7 +53,7 @@ Tout au long du projet, nous avons été confronté à de nombreux problème que
     - QGis
     Les données concernants les swissBuildings3.0, n'ont pas été utilisé car leurs transformations en .geojson n'a pas abouti. Effectivement ces dernières données sont un sorte de hachures et non des maillages. De se fait, lors des transformations, les informations concernants les altitudes ne suivaient pas. Dans le cadre de se projet, cela n'est pas très grave car nous avons déjà les bâtiments en 3D depuis la source de donnée OSM. Les swissBuildings3.0 auraient amené une meilleures précision ainsi que des détails plus fin. Il serait intéressant de prendre contact avec swisstopo pour qu'il nous fournisse directement les données dans le format voulu. Ci-après, un lien intéressant qui pourrait aussi nous aider : [exemple avec swissBuildings3.0](https://codepen.io/geoadmin/pen/zBEYGE?editors=0011)
     
-5. L'utilisation de Github nous à aussi posé des soucis. Effectivement nous avons tenté de l'utiliser via ligne de commande mais malheureusement se fut un echec. <br/>  Heureusement, nous avons trouver une alternative en utilisant le Github Desktop. L'utilisation est identique mais avec un interface graphique. L'utilisation de Github nous a bien rendu service pour travail en même temps et pour y récupèrer de temps à autres des données.[![homepage](http://commonmark.org/help/images/favicon.png)](https://codepen.io/geoadmin/pen/zBEYGE?editors=0011http://commonmark.org "Redirect to page")
+5. L'utilisation de Github nous à aussi posé des soucis. Effectivement nous avons tenté de l'utiliser via ligne de commande mais malheureusement se fut un echec. <br/>  Heureusement, nous avons trouver une alternative en utilisant le Github Desktop. L'utilisation est identique mais avec un interface graphique. L'utilisation de Github nous a bien rendu service pour travail en même temps et pour y récupèrer de temps à autres des données.
 6. Un de nos principales problèmes était de pouvoir utiliser un seul projet que l'utilisateur importerait dans notre interface web. Le format .geojson a été choisi car il est supporté autant par OpenLayers que par cesium. Ce format "text" nous permet facilement d'attaquer la donnée qui se trouve à l'intérieur. Pour ce faire nous avons du créer un parseur qui récupère le texte du geojson. Dans le fichier json_data.js, nous crééons une constante vide. Ensuite dans le fichier ViewOpenlayers.vue, nous attribuons avec la commande "getJSONcontent" une valeur à la constante sharejson. Avec cette astuce, il est maintenant possible de récupère cette constante depuis le fichier ViewCesium.vue et de charger la data dans cesium.
 7. Concernant l'import des données de projet (fichier .geojson) et l'ouverture de la fenêtre qui permet d'aller chercher le bon fichier sur le pc de l'utilisateur, nous avons un problème concernant le nombre de clic à effectuer ainsi que l'ordre des clics sur les boutons. Effectivement nous devions cliquer d'abord sur le bouton pour parcourir les fichiers (aucun fenêtre ne s'ouvrait), puis cliquer sur le bouton d'import du projet, puis de nouveau sur le bouton qui ouvrait la fenêtre pour parcourir les fichiers. Pour remédier à ceci, nous avons fait une fonction asynchrone. Lorsque nous cliquons sur le bouton pour importer un json, en arrière plan, un clic est effectué sur le bouton caché qui sert à ouvrir la fenêtre pour aller rechercher le bon fichier de l'utilisateur. Le bouton caché est réalisé en utilisant la balise "hidden= "true"" sur l'id "file-input". Le clic est reprit avec l'id "file-input" dans le fichier import_projet.js.
 8. Structure des données pour utilisation avec turf.js
@@ -89,7 +89,17 @@ Notre site web contient 3 pages différentes. La page d'accueil, la page qui con
 
 
 #### 2D
-La page 2D est séparé en 3 partie. la première à gauche qui est un menu de changmemenet et d'affichage de couche. <br/>![title](Image_README/Page_2D_General.JPG)
+La page 2D est séparé en 3 partie.
+<br/>![title](Image_README/Page_2D_General.JPG)
+La première à gauche qui est un menu de changement et d'affichage de couche. La deuxième au centre concerne la visualisation des données en 2D et la troisième, à droite, gèrent les aspects liés d'import du projet, les calculs ainsi que la validation des restrictions.
+
+##### Menu de gauche
+Le menu de gauches est séparé en 3 chapitres :
+1. Fond de plan 
+    - Rue
+    - Satellite qui correspond à une orthophoto
+    - Blanc qui correspond à un fond blanc. Il peut être intéressant lors d'affichage des couches de la MO et du projet
+    <br/>![Exemple xxx](Page_2D_General_fond_satellite.JPG)
 
 #### 3D
 
