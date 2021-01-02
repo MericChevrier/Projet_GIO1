@@ -101,11 +101,15 @@ Le menu de gauches est séparé en 3 chapitres :
     - Blanc qui correspond à un fond blanc. Il peut être intéressant lors d'affichage des couches de la MO et du projet
 <br/>![Exemple avec fond rues](Image_README/Page_2D_General_fond_satellite.JPG)
 2. Mensuration officielle qui permet d'afficher plusieurs couches de la MO avec un style qui respect les normes.
-    - Biend-fonds
-    - Bâtiments <br/> ![Exemple avec fond rues](Image_README/Page_2D_General_fond_satellite.JPG)
+    - Biend-fonds <br/> ![Exemple avec biend-fonds](Image_README/Page_2D_General_fond_BF.JPG)
+    - Bâtiments <br/> ![Exemple avec bâtiment](Image_README/Page_2D_General_fond_Batiment.JPG)
     - Objets linéaires
     - Objets surfaciques
     - Couverture du sol
+Ci-dessous un exemple avec le fond blanc et la MO. <br/>![Exemple avec fond blanc et MO](Image_README/Page_2D_General_fond_All.JPG)
+3. Restrictions qui contient les restrictions concernat l'implantation des bâtiments.
+    - Aire d'implantation <br/>![Exemple avec aire d'implantation](Image_README/Page_2D_General_fond_Restriction.JPG)
+Ci-dessous un exemple avec le fond blanc, la MO et les restictions. <br/>![Exemple avec fond blanc et MO](Image_README/Page_2D_General_fond_All_Restriction.JPG)
 
 #### 3D
 
