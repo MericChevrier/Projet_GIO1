@@ -41,7 +41,7 @@
 		  	<p><label class="is-size-7 has-text-black">Nom du projet : {{name}}</label></p>
 				<p><label class="is-size-7 has-text-black">Surface au sol : {{surface}} m²</label></p>
 				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Respect des restrictions 2D :</U></h3>
-        <!-- contrôle du projet par rapport au aire d'implantation -->
+        <!-- contrôle du projet par rapport aux aires d'implantation sur clic du bouton validation -->
 				<p><label class="is-size-7 has-text-black">Implantation : {{validation}}</label></p>
         <!-- bouton qui affiche le nom du projet, calcul sa surface et contrôle son implantation -->
         <button class="button is-small" type="button" name="validation" id="validation" v-on:click="calcul_validation()">Validation</button>
@@ -91,7 +91,10 @@ export default {
       zoom: 12,
       mapbox_url_rues: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg',
       mapbox_url_satellite: 'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVyaWNjaGV2cmllciIsImEiOiJjazhzbDVvZm4wZDdkM2RvNXI2d2FjdXNxIn0.bje3c5XWbhb_eNI-PTx5cg',
-      validation: ''
+      // variables pour l'affichages des données/validation du projet
+      validation: '',
+      name:'',
+      surface:''
     }
   },
 
@@ -225,7 +228,7 @@ export default {
     // affectation du block de text json à une constante et import du projet dans la carte
     getJSONcontent : function(json){
       shared_project.data=JSON.parse(json)
-      this.projet = import_json.AddVectorLayer_object(this.olmap);
+      this.projet = import_json.AddVectorLayer_object(this.olmap, shared_project.data);
     },
 
     // fonction du bouton validation
@@ -262,9 +265,6 @@ export default {
     this.aire_implantation = import_json.AddVectorLayer_url( "geojson/Aire_Implantation.geojson",this.olmap);
     this.batiment = import_json.AddVectorLayer_url('geojson/MO_CS_Batiment_WGS84.geojson',this.olmap, false, 'batiment');
     this.bien_fond = import_json.AddVectorLayer_url( "geojson/MO_BF_Parcelle_WGS84.geojson",this.olmap, false, 'bien_fond');
-    // création des variables d'affichage des données du projet
-    var name = '';
-    var surface = '';
     // chargement du geojson des aires d'implantation de la commune et affectation à une constante globale
     air_implant.loadJSON();
   }

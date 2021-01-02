@@ -66,10 +66,10 @@ export function AddVectorLayer_url(layer_url, olmap, visibility, StyleName) {
 }
 
 // fonction d'import de couches geojson en donnant l'objet json
-export function AddVectorLayer_object(olmap) {
+export function AddVectorLayer_object(olmap, object) {
   var layer = new Vector({
     source: new VectorSource({
-      features: new GeoJSON().readFeatures(shared_project.data, {
+      features: new GeoJSON().readFeatures(object, {
         dataProjection: 'EPSG:4326',
         featureProjection: 'EPSG:3857'
       }),
