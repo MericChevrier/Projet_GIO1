@@ -10,7 +10,7 @@
           Interface 2D + 3D
         </h2>
         <div>
-          <label for="site-search">Recherche de lieu:</label>
+          <label for="site-search">Recherche de lieu : </label>
           <input type="search" id="search" aria-label="Search through site content">
           <button v-on:click="recherche()">Rechercher</button>
         </div>
