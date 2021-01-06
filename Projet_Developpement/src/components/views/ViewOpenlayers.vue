@@ -71,6 +71,8 @@ import * as air_implant from './air_implantation.js';
 // constantes globales
 import { shared_project } from './const_globales.js';
 import { shared_aire_implantation } from './const_globales.js';
+import { shared_latitude } from './const_globales.js';
+import { shared_longitude } from './const_globales.js';
 // librairies de calcul turf
 import * as turf from '@turf/turf';
 import { intersect } from '@turf/intersect';
@@ -94,7 +96,8 @@ export default {
       // variables pour l'affichages des données/validation du projet
       validation: '',
       name:'',
-      surface:''
+      surface:'',
+      
     }
   },
 
@@ -106,6 +109,12 @@ export default {
      * @return center in EPSG:3857
      */
     center3857(){
+      if (shared_latitude.data == null){
+        this.center=[7.40, 46.23]
+      }
+      else{
+        this.center=[shared_longitude.data,shared_latitude.data]
+      }
       return olProj.transform(this.center, 'EPSG:4326', 'EPSG:3857');
     }
   },
@@ -120,6 +129,7 @@ export default {
      * @returns {Map} initmap new openlayers map
      */
     setupOpenlayersMap (mapcenter,mapzoom) {
+      // this.shared_longitude.data=null;
       return new Map({
         target: 'ol-container',
         view: new View({
@@ -137,8 +147,8 @@ export default {
         }),
       visible: visibility,
     })
-
     this.olmap.addLayer(name)
+    // console.log(shared_latitude.data)
     return name
     },
 
@@ -221,7 +231,8 @@ export default {
 				  break;
         }
     },
- 
+
+    
     //import projet en json
     import_projet : import_projet.import_json,
 
