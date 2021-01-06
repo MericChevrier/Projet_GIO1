@@ -89,7 +89,7 @@ Notre site web contient 3 pages différentes. La page d'accueil, la page qui con
 
 #### Accueil
 La page sur laquelle nous arrivons sur le site web, accueil l'utilisateur avec plusieurs informations.<br/>Tous d'abord nous remarquons que le site permet à l'utilisateur de naviguer entre 3 pages : Accueil, Carte 2D et Carte 3D.
-<br/>D'autres informations sont également visibles comme une description du projet, une description des outils dévelloppés ainsi que l'équipe de travail.<br/><br/> (Image_README/Accueil.JPG)
+<br/>D'autres informations sont également visibles comme une description du projet, une description des outils dévelloppés ainsi que l'équipe de travail.<br/><br/> ![title](Image_README/Accueil.JPG)
 
 
 #### 2D
