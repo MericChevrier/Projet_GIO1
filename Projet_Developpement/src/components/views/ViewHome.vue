@@ -6,13 +6,11 @@
         <h1 class="title is-spaced">
           Outils de validation pour les nouvelles contructions 
         </h1>
-        <h2 class="subtitle">
-          Interface 2D + 3D
-        </h2>
+        <h2 class="subtitle is 2">Interface 2D + 3D</h2>
         <div>
-          <label for="site-search">Recherche de lieu : </label>
-          <input type="search" id="search" aria-label="Search through site content">
-          <button v-on:click="recherche()">Rechercher</button>
+          <label class="subtitle is-5" for="site-search">Recherche de lieu : </label>
+          <input type="search" class="input is-primary is-small" style="width: 10%;"  id="search" aria-label="Search through site content">
+          <button class="button is-small" v-on:click="recherche()">Rechercher</button>
         </div>
       </div>
     </div>
