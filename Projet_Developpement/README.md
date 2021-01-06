@@ -9,6 +9,7 @@ Ci-dessous, quelques points spécifiques qui nous ont été demandés :
 - Intégrer une librairie avec des composants
 - Menu permettant d'afficher des couches spécifiques selon les désirs de l'utilisateur
 - Pages affichants des données géographiques en 2D et 3D (OpenLayers et Cesium)
+- Requête à partir d'une API
 - Une page statique décrivant le projet, les outils et l'équipe
 - Le projet doit être contrôlé et stocké sur Github
 
@@ -80,7 +81,6 @@ Nous pensons que ce projet nous a apporté beaucoup de nouvelles connaissances, 
     - ...
 3. Openlayers
     - Calculer l'emprise de l'objet 3D pour calculer une surface au sol (avec un projet en 3D, en 2D ok)
-    - Barre de recherche pour trouver plus facilement un projet dans le site
     - Fonctionnalité qui zoom directement sur le projet au moment de l'import
     - ...
 
@@ -89,6 +89,7 @@ Notre site web contient 3 pages différentes. La page d'accueil, la page qui con
 
 #### Accueil
 La page sur laquelle nous arrivons sur le site web, accueil l'utilisateur avec plusieurs informations.<br/>Tous d'abord nous remarquons que le site permet à l'utilisateur de naviguer entre 3 pages : Accueil, Carte 2D et Carte 3D.
+<br/>Il est aussi possible d'utiliser la barre de recherche pour rechercher une localité. L'utilisateur doit introduire sa recherche dans la barre. En cliquant ensuite sur "rechercher", l'utilisateur est automatiquement redirigé sur la carte 2D, centré sur la localité introduite précédement.
 <br/>D'autres informations sont également visibles comme une description du projet, une description des outils dévelloppés ainsi que l'équipe de travail.<br/><br/> ![title](Image_README/Accueil.JPG)
 
 
