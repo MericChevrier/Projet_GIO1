@@ -9,6 +9,7 @@ Ci-dessous, quelques points spécifiques qui nous ont été demandés :
 - Intégrer une librairie avec des composants
 - Menu permettant d'afficher des couches spécifiques selon les désirs de l'utilisateur
 - Pages affichants des données géographiques en 2D et 3D (OpenLayers et Cesium)
+- Requête à partir d'une API
 - Une page statique décrivant le projet, les outils et l'équipe
 - Le projet doit être contrôlé et stocké sur Github
 
@@ -80,7 +81,6 @@ Nous pensons que ce projet nous a apporté beaucoup de nouvelles connaissances, 
     - ...
 3. Openlayers
     - Calculer l'emprise de l'objet 3D pour calculer une surface au sol (avec un projet en 3D, en 2D ok)
-    - Barre de recherche pour trouver plus facilement un projet dans le site
     - Fonctionnalité qui zoom directement sur le projet au moment de l'import
     - ...
 
