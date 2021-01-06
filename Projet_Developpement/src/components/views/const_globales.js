@@ -21,3 +21,25 @@ class aire_implantation_data{
     }
 }
 export const shared_aire_implantation = new aire_implantation_data();
+
+class latitude_search{
+    #data;
+    get data(){
+        return this.#data;
+    }
+    set data(json){
+        this.#data = json
+    }
+}
+export const shared_latitude = new latitude_search();
+
+class longitude_search{
+    #data;
+    get data(){
+        return this.#data;
+    }
+    set data(json){
+        this.#data = json
+    }
+}
+export const shared_longitude = new longitude_search();
