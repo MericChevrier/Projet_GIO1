@@ -10,9 +10,16 @@
           Interface 2D + 3D
         </h2>
       </div>
-    </div>
+    
+
+  <label for="site-search">Search the site:</label>
+  <input type="search" id="file-input" aria-label="Search through site content">
+  <button v-on:click="import_projet(coucou)()">Search</button>
+
+  </div>
   </section>
   
+
 
   <section class="section">
     <div class="container" style="text-align: left">
@@ -69,14 +76,61 @@
 </template>
 
 <script>
+import axios from "axios";
+import * as import_projet from './import_projet.js';
+
 export default {
   data(){
     return{
-      hellomessage:"Police de construction - Commune de Bramois"
+      hellomessage:"Police de construction - Commune de Bramois",
+      info : null,
+      recherche_barre:null
     }
+  },
+
+  methods: {
+    
+    import_projet : import_projet.import_json,
+    
+    recherche () {
+      this.recherche_barre=document.getElementById('site-search');
+      console.log(this.recherche_barre);
+      axios
+        .get('https://api3.geo.admin.ch/rest/services/api/SearchServer?features=ch.swisstopo-vd.ortschaftenverzeichnis_plz&type=featuresearch&searchText=bramois')
+        .then(response => (console.log(this.info = response)))
+      
+
+    },
+
+    coucou (arg) {
+      console.log(arg)
+    },
+
+    import_json(callback) {
+  var jsonfile=document.getElementById('file-input');
+    jsonfile.addEventListener('change', function (e) {
+      var file = e.target.files[0];
+      if (!file) {
+        return;
+      }
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        var contents = e.target.result;
+        callback(contents);
+      };
+      reader.readAsText(file);
+    }, false)
+    jsonfile.click();
+}
+
+
   }
 }
 </script>
+
+
+
+
 <style scoped>
 #body {
   height: 90%;
