@@ -10,7 +10,7 @@
         <div>
           <label class="subtitle is-5" for="site-search">Recherche de lieu : </label>
           <input type="search" class="input is-primary is-small" style="width: 10%;"  id="search" aria-label="Search through site content">
-          <button class="button is-small" v-on:click="recherche()">Rechercher</button>
+          <button class="button is-small" v-on:click="recherche()" href="">Rechercher</button>
         </div>
       </div>
     </div>
@@ -73,8 +73,9 @@
 </template>
 
 <script>
+// outils de base
 import axios from "axios";
-import * as import_projet from './import_projet.js';
+// constantes globales
 import { shared_latitude } from './const_globales.js';
 import { shared_longitude } from './const_globales.js';
 
@@ -90,46 +91,18 @@ export default {
 
   methods: {
     
-    //import_projet : import_projet.import_json,
-    
+
+    //récupération de la localité dans la barre de recherche, requête api pour avoir les coordonnées du lieu, affecter aux constantes globales
     recherche () {
       this.recherche_barre=document.getElementById('search');
-      console.log(this.recherche_barre.value);
       shared_latitude.data = null;
       axios
         .get('https://api3.geo.admin.ch/rest/services/api/SearchServer?features=ch.swisstopo-vd.ortschaftenverzeichnis_plz&type=featuresearch&searchText='+this.recherche_barre.value)
         .then(response => (shared_latitude.data = response.data.results[0].attrs.lat,
         shared_longitude.data = response.data.results[0].attrs.lon,
-        console.log(shared_latitude.data),
-        console.log(shared_longitude.data)
+        this.$router.push({path:'/carte2D'})
         ))
-      
-
     },
-
-    coucou (arg) {
-      console.log(arg)
-    },
-
-    import_json(callback) {
-      var jsonfile=document.getElementById('search');
-        jsonfile.addEventListener('change', function (e) {
-          var file = e.target.files[0];
-          if (!file) {
-            return console.log("exit");
-          }
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            var contents = e.target.result;
-            console.log(contents);
-            callback(contents);
-          };
-          reader.readAsText(file);
-        }, false)
-        //jsonfile.click();
-    }
-
-
   }
 }
 </script>

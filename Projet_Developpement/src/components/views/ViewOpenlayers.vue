@@ -148,7 +148,6 @@ export default {
       visible: visibility,
     })
     this.olmap.addLayer(name)
-    // console.log(shared_latitude.data)
     return name
     },
 
