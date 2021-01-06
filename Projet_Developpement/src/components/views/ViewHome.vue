@@ -58,7 +58,7 @@
     <div class="container" style="text-align: left">
       <h1 class="title is-spaced">L'Equipe</h1>
         <h2 class="subtitle">  
-          L'équipe qui à travaillé sur ce projet est composée de trois étudiants en Master : Bosson Adrien, Bobillier Quentin, Chevrier Méric. L'ensemble des tâches ont été effectuée en collaboration entre les trois étudiants.
+          L'équipe qui à travaillé sur ce projet est composée de trois étudiants en Master (MDT) : Bosson Adrien, Bobillier Quentin, Chevrier Méric. L'ensemble des tâches ont été effectuée en collaboration entre les trois étudiants. Le développement s'est déroulé lors du 3ème semestre du cursus (semestre d'automne 2020).
 
         </h2>
     </div>
