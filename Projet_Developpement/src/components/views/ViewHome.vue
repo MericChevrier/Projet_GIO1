@@ -92,7 +92,6 @@ export default {
     //récupération de la localité dans la barre de recherche, requête api pour avoir les coordonnées du lieu, affecter aux constantes globales
     recherche () {
       this.recherche_barre=document.getElementById('search');
-      shared_latitude.data = null;
       axios
         .get('https://api3.geo.admin.ch/rest/services/api/SearchServer?features=ch.swisstopo-vd.ortschaftenverzeichnis_plz&type=featuresearch&searchText='+this.recherche_barre.value)
         .then(response => (shared_latitude.data = response.data.results[0].attrs.lat,
