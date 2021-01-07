@@ -1,8 +1,6 @@
 <template>
   <div id="ol-container" class="map">
-          <li v-for="user in users" :key="user.id">         
-            {{user.name}}       
-          </li>
+
     <!--Menu de gauche - situation de base-->
     <div id="menu_gauche">
 		  	<div id="situation">
