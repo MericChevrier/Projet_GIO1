@@ -32,6 +32,7 @@
           <li>- Intégrer une librairie avec des composants</li>
           <li>- Menu d'accueil permettant d'afficher des couches spécifiques selon les désirent de l'utilisateur</li>
           <li>- Pages affichants des données géographiques en 2D et 3D (OpenLayers et Cesium)</li>
+          <li>- Requête à partir d'une API</li>
           <li>- Une page statique décrivent le projet, les outils et l'équipe</li>
           <li>- Le projet doit être contrôlé et stocké sur Github</li>
         </ul>  
