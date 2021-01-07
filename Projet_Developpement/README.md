@@ -85,7 +85,10 @@ Nous pensons que ce projet nous a apporté beaucoup de nouvelles connaissances, 
     - ...
 
 ### Documentation
-Notre site web contient 3 pages différentes. La page d'accueil, la page qui concerne la 2D et celle qui contient la 3D. Pour naviguer entre ces dernières, il vous suffit de cliquer sur le nom (onglet) voulu en haut de chaque page.
+Notre site web contient 3 pages différentes. La page d'accueil, la page qui concerne la 2D et celle qui contient la 3D. Pour naviguer entre ces dernières, il vous suffit de cliquer sur le nom (onglet) voulu en haut de chaque page.<br/>Pour tester nos fonctionnalitées, vous trouverez sous ***"Projet_Developpement\public\geojson"** 3 fichiers geojson.
+    - ***Projet_test.geojson***, pour utiliser en vu 2D et pour le calcul de surface
+    - ***cesium_projet_test-intersect.geojson***, pour identifer que le projet n'est pas contenu dans les restrictions 2D et 3D
+    - ***cesium_projet_test.geojson***, pour visualiser en 2D et en 3D que le projet respect les divers restrictions. **Actuellement le calcul de la surface au sol à partir d'un modèle 3D ne fonctionne pas encore**
 
 #### Accueil
 La page sur laquelle nous arrivons sur le site web, accueil l'utilisateur avec plusieurs informations.<br/>Tous d'abord nous remarquons que le site permet à l'utilisateur de naviguer entre 3 pages : Accueil, Carte 2D et Carte 3D.
@@ -122,7 +125,7 @@ La partie du centre est une interface 2D de navigation. Pour se déplacer et zoo
 
 ##### Menu de droite
 Le menu de droite est séparé en 3 parties :
-1. Un bouton d'import de projet, qui en cliquant dessus, ouvre une fenêtre qui permet d'aller chercher notre fichier de projet. Le fichier doit être au format .geojson, en WGS84 et avec une hauteur ellipsoïdale. <br/><br/>![Exemple avec ouverture de la fenêtre](Image_README/Page_2D_Choisir_Projet.JPG) <br/><br/> Le projet est bien importé. <br/><br/>![Exemple avec projet importé](Image_README/Page_2D_Projet_Import.JPG) 
+1. Un bouton d'import de projet, qui en cliquant dessus, ouvre une fenêtre qui permet d'aller chercher notre fichier de projet. Le fichier doit être au format .geojson, en WGS84 et avec une hauteur ellipsoïdale. Pour tester le site web, vous pouvez utiliser 1 des 3 fichiers tests mis à votre disposition (voir chapitre "Documentation") <br/><br/>![Exemple avec ouverture de la fenêtre](Image_README/Page_2D_Choisir_Projet.JPG) <br/><br/> Le projet est bien importé. <br/><br/>![Exemple avec projet importé](Image_README/Page_2D_Projet_Import.JPG) 
 2. Cette partie concerne les informations du projet. Lors du calcul de validation (voir prochain point --> 3), ces champs seront remplis avec le nom du projet et la surface qui est calculé en live.
 3. La troisième partie est la validation des restrictions selon le projet importé. Lorsque l'utilisateur clic sur le bouton "Validation", un calcul en live est exécuté. Les champs du nom du projet, du calcul de surface et l'information sur la validation du projet sont mis à jour. Le champ est rempli avec "validé" si le projet respecte les restrictions et "fausse" si le projet ne respecte pas les restrictions. <br/> Ci-dessous, le projet est conforme aux restrictions. La vérification retourne "validé". <br/><br/>![Exemple avec projet validé](Image_README/Page_2D_Validation.JPG)<br/><br/> Ci-dessous, le projet n'est pas conforme aux restrictions. La vérification retourne "fausse". <br/><br/>![Exemple avec projet validé](Image_README/Page_2D_Validation_Fausse.JPG) 
 
