@@ -103,16 +103,3 @@ export default {
   }
 }
 </script>
-
-
-<style scoped>
-#body {
-  height: 90%;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  background: url('../../../src/assets/Bramois.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-</style>
