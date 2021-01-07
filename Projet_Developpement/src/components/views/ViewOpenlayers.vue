@@ -36,7 +36,7 @@
 		  	<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Projet :</U></h3>
         <!-- affichage des données du projet sur clic du bouton validation -->
 		  	<p><label class="is-size-7 has-text-black">Nom du projet : {{name}}</label></p>
-				<p><label class="is-size-7 has-text-black">Surface au sol : {{surface}} m²</label></p>
+				<p><label class="is-size-7 has-text-black">Surface au sol : {{surface}} m²</label></p>
 				<h3 class="subtitle is-6 has-text-left has-text-weight-light"><U>Respect des restrictions 2D :</U></h3>
         <!-- contrôle du projet par rapport aux aires d'implantation sur clic du bouton validation -->
 				<p><label class="is-size-7 has-text-black">Implantation : {{validation}}</label></p>
