@@ -40,16 +40,19 @@
 // import des outils de base
 import "cesium/Build/Cesium/Widgets/widgets.css";
 import * as Cesium from 'cesium';
+// fichier js externes
+import * as set_center from './set_center.js';
 // import des constantes globales
 import { shared_project } from './const_globales.js';
+import { shared_center } from './const_globales.js';
+
 
 
 export default {
   name: "CesiumGlobeView",
   data() {
     return{
-      //position et zoom du globe cesium de base, variables de base
-      center: [7.39994, 46.23544],
+      //zoom du globe cesium de base, variables de base
       defaultheight:1500.,
       viewer:null,
       name:'',
@@ -59,6 +62,11 @@ export default {
   },
 
   methods: {    
+    
+
+    // définition du centre de vue
+    set_center : set_center.center_search,
+
     /**
      * Fly to position 
      * 
@@ -117,12 +125,14 @@ export default {
   },
 
   mounted() {
+    // définition du centre de vue
+    this.set_center(),
     // add cesium ion token to the app
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiZDUzNGNhNC0wYmFmLTQ0MWMtYjAxNS1iNjY1ZmNkY2VhYTUiLCJpZCI6MzgxMjcsImlhdCI6MTYwNTk2NDc5Mn0.PYaP8WOSB4mIuk_kBnuIz1xcJc5rewQbB0xoyUjuW8I';
     //initialisation du viewer globe Cesium
     this.viewer = this.setupCesiumGlobe();
     // positionement de base de la caméra
-    this.flytodirection(this.center,this.defaultheight,this.viewer);
+    this.flytodirection(shared_center.data,this.defaultheight,this.viewer);
     //import de couches de bases qui concerne les restrictions
     // this.air_implantation = this.viewer.entities.add("geojson/Aire_implantation_3D_transfo_WGS84_Helli.geojson")
     // this.projet = this.viewer.entities.add("geojson/cesium_projet_test.geojson", {

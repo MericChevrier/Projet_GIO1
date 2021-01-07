@@ -9,6 +9,7 @@
         <h2 class="subtitle is 2">Interface 2D + 3D</h2>
         <div>
           <label class="subtitle is-5" for="site-search">Recherche de lieu : </label>
+          <!-- Barre de recherche des localités -->
           <input type="search" class="input is-primary is-small" style="width: 10%;"  id="search" aria-label="Search through site content">
           <button class="button is-small" v-on:click="recherche()" href="">Rechercher</button>
         </div>
@@ -82,16 +83,11 @@ import { shared_longitude } from './const_globales.js';
 export default {
   data(){
     return{
-      hellomessage:"Police de construction - Commune de Bramois",
-      lat : null,
-      long:null,
-      recherche_barre:null
+
     }
   },
 
   methods: {
-    
-
     //récupération de la localité dans la barre de recherche, requête api pour avoir les coordonnées du lieu, affecter aux constantes globales
     recherche () {
       this.recherche_barre=document.getElementById('search');
@@ -106,8 +102,6 @@ export default {
   }
 }
 </script>
-
-
 
 
 <style scoped>
