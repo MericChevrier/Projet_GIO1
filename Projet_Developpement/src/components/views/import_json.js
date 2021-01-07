@@ -41,6 +41,13 @@ var styles = {
             width: 1,
         }),
     }),
+    'air_impl': new Style({
+        stroke: new Stroke({
+            color: 'rgb(255, 0, 0)',
+            lineDash: [6],
+            width: 1,
+        }),
+    }),
     'od_surfacique': new Style({
         stroke: new Stroke({
             color: 'rgb(45, 41, 42)',

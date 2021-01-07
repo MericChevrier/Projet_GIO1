@@ -267,7 +267,7 @@ export default {
     this.surface_cs = import_json.AddVectorLayer_url( "geojson/MO_CS_WGS84.geojson",this.olmap, false, 'surface_cs');
     this.od_lineaire = import_json.AddVectorLayer_url( "geojson/MO_OD_Autre_lineaire_WGS84.geojson",this.olmap, false, 'od_lineaire');
     this.od_surfacique = import_json.AddVectorLayer_url( "geojson/MO_OD_Autre_Surfacique_WGS84.geojson",this.olmap, false, 'od_surfacique');
-    this.aire_implantation = import_json.AddVectorLayer_url( "geojson/Aire_Implantation.geojson",this.olmap);
+    this.aire_implantation = import_json.AddVectorLayer_url( "geojson/Aire_Implantation.geojson",this.olmap, false, 'air_impl');
     this.batiment = import_json.AddVectorLayer_url('geojson/MO_CS_Batiment_WGS84.geojson',this.olmap, false, 'batiment');
     this.bien_fond = import_json.AddVectorLayer_url( "geojson/MO_BF_Parcelle_WGS84.geojson",this.olmap, false, 'bien_fond');
     // chargement du geojson des aires d'implantation de la commune et affectation à une constante globale
