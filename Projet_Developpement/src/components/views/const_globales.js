@@ -43,3 +43,14 @@ class longitude_search{
     }
 }
 export const shared_longitude = new longitude_search();
+
+class center_vue{
+    #data;
+    get data(){
+        return this.#data;
+    }
+    set data(json){
+        this.#data = json
+    }
+}
+export const shared_center = new center_vue();

@@ -68,11 +68,11 @@ import * as olProj from 'ol/proj';
 import * as import_json from './import_json.js';
 import * as import_projet from './import_projet.js';
 import * as air_implant from './air_implantation.js';
+import * as set_center from './set_center.js';
 // constantes globales
 import { shared_project } from './const_globales.js';
 import { shared_aire_implantation } from './const_globales.js';
-import { shared_latitude } from './const_globales.js';
-import { shared_longitude } from './const_globales.js';
+import { shared_center } from './const_globales.js';
 // librairies de calcul turf
 import * as turf from '@turf/turf';
 import { intersect } from '@turf/intersect';
@@ -82,11 +82,11 @@ import { booleanContains } from '@turf/boolean-contains';
 import { polygonize } from '@turf/polygonize';
 
 
+
 export default {
   data() {
     return{
       // variables de base
-      center: [7.40, 46.23],
       olmap:null,
       mapbox_rues:null,
       mapbox_satellite:null,
@@ -109,13 +109,7 @@ export default {
      * @return center in EPSG:3857
      */
     center3857(){
-      if (shared_latitude.data == null){
-        this.center=[7.40, 46.23]
-      }
-      else{
-        this.center=[shared_longitude.data,shared_latitude.data]
-      }
-      return olProj.transform(this.center, 'EPSG:4326', 'EPSG:3857');
+      return olProj.transform(shared_center.data, 'EPSG:4326', 'EPSG:3857');
     }
   },
 
@@ -129,7 +123,6 @@ export default {
      * @returns {Map} initmap new openlayers map
      */
     setupOpenlayersMap (mapcenter,mapzoom) {
-      // this.shared_longitude.data=null;
       return new Map({
         target: 'ol-container',
         view: new View({
@@ -231,7 +224,9 @@ export default {
         }
     },
 
-    
+    // définition du centre de vue
+    set_center : set_center.center_search,
+
     //import projet en json
     import_projet : import_projet.import_json,
 
@@ -263,7 +258,8 @@ export default {
     },
 
   mounted() {
-
+    // définition du centre de vue
+    this.set_center(),
     // création de la carte avec couches de bases
     this.olmap = this.setupOpenlayersMap(this.center3857,this.zoom);
     this.mapbox_rues = this.setupmapbox(this.mapbox_url_rues, true)
