@@ -86,9 +86,9 @@ Nous pensons que ce projet nous a apporté beaucoup de nouvelles connaissances, 
 
 ### Documentation
 Notre site web contient 3 pages différentes. La page d'accueil, la page qui concerne la 2D et celle qui contient la 3D. Pour naviguer entre ces dernières, il vous suffit de cliquer sur le nom (onglet) voulu en haut de chaque page.<br/>Pour tester nos fonctionnalitées, vous trouverez sous ***"Projet_Developpement\public\geojson"*** 3 fichiers geojson.<br/>
-    <br/> - ***Projet_test.geojson***, pour utiliser en vu 2D et pour le calcul de surface
-    <br/> - ***cesium_projet_test-intersect.geojson***, pour identifer que le projet n'est pas contenu dans les restrictions 2D et 3D
-    <br/> - ***cesium_projet_test.geojson***, pour visualiser en 2D et en 3D que le projet respect les divers restrictions. **Actuellement le calcul de la surface au sol à partir d'un modèle 3D ne fonctionne pas encore**
+    - ***Projet_test.geojson***, pour utiliser en vu 2D et pour le calcul de surface
+    - ***cesium_projet_test-intersect.geojson***, pour identifer que le projet n'est pas contenu dans les restrictions 2D et 3D
+    - ***cesium_projet_test.geojson***, pour visualiser en 2D et en 3D que le projet respect les divers restrictions. **Actuellement le calcul de la surface au sol à partir d'un modèle 3D ne fonctionne pas encore**
 
 #### Accueil
 La page sur laquelle nous arrivons sur le site web, accueil l'utilisateur avec plusieurs informations.<br/>Tous d'abord nous remarquons que le site permet à l'utilisateur de naviguer entre 3 pages : Accueil, Carte 2D et Carte 3D.
